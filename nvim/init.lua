@@ -1,0 +1,6 @@
+require("user.settings")
+require("user.keymaps")
+require("user.filetypes")
+require("user.plugins")
+require("user.autocmd")
+require("user.usercmd")

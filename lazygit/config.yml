@@ -19,8 +19,7 @@ gui:
     unstagedChangesColor:
       - red # Red
 os:
-  editCommand: 'nvim'
-  editCommandTemplate: '{{editor}} +{{line}} -- {{filename}}'
+  editPreset: 'nvim'
 git:
   paging:
     colorArg: always

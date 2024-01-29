@@ -35,7 +35,11 @@ return {
       mode = 'n',
       body = '<C-w>a',
       hint = false,
-      exit = false,
+      config = {
+        color = 'amaranth',
+        exit = false,
+        invoke_on_body = true
+      },
       heads = {
         { 'h',     '<C-w>h',                      { desc = 'Focus window left' } },
         { 'j',     '<C-w>j',                      { desc = 'Focus window below' } },
@@ -50,6 +54,7 @@ return {
         { 'K',     move_window('k'),              { desc = 'Move window above' } },
         { 'L',     move_window('l'),              { desc = 'Move window right' } },
         { 'S',     window_swap,                   { desc = 'Swap window with another' } },
+        { '<esc>', nil,                           { desc = 'Exit window adjustment', exit = true } },
       }
     })
   end

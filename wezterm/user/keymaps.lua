@@ -29,7 +29,7 @@ M.config.keys = {
   { key = "K",  mods = "LEADER|SHIFT", action = act({ AdjustPaneSize = { "Up", 5 } }) },
   { key = "L",  mods = "LEADER|SHIFT", action = act({ AdjustPaneSize = { "Right", 5 } }) },
   { key = "x",  mods = "LEADER",       action = act({ CloseCurrentPane = { confirm = true } }) },
-  { key = "s",  mods = "LEADER",       action = act({ PaneSelect = { mode = "SwapWithActive" } }) },
+  { key = "s",  mods = "LEADER",       action = act({ PaneSelect = { mode = "SwapWithActiveKeepFocus" } }) },
   { key = "z",  mods = "LEADER",       action = "TogglePaneZoomState" },
 
   -- splits

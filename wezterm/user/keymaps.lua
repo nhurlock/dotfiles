@@ -1,4 +1,5 @@
 local wezterm = require('wezterm')
+local colors = require('user.colors')
 
 local act = wezterm.action
 
@@ -68,13 +69,55 @@ M.config.keys = {
     key = "r",
     mods = "LEADER",
     action = act.PromptInputLine({
-      description = 'Enter new name for tab',
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { Color = colors.purple } },
+        { Text = 'Enter new name for tab' },
+      },
       action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
+        if line ~= nil then
           window:active_tab():set_title(line)
+        end
+      end)
+    })
+  },
+
+  -- workspaces
+  { key = 'f', mods = 'LEADER', action = act({ ShowLauncherArgs = { flags = 'FUZZY|WORKSPACES' } }) },
+  { key = "w", mods = "LEADER", action = act({ ActivateKeyTable = { name = "workspace_selection", one_shot = false } }) },
+  {
+    key = 'w',
+    mods = 'LEADER|SHIFT',
+    action = act.PromptInputLine({
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { Color = colors.purple } },
+        { Text = 'Switch to workspace' },
+      },
+      action = wezterm.action_callback(function(window, pane, line)
+        if line ~= nil then
+          window:perform_action(
+            act.SwitchToWorkspace({
+              name = (#line > 1 and line) or "default"
+            }),
+            pane
+          )
+        end
+      end)
+    })
+  },
+  {
+    key = "r",
+    mods = "LEADER|SHIFT",
+    action = act.PromptInputLine({
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { Color = colors.purple } },
+        { Text = 'Enter new name for workspace' },
+      },
+      action = wezterm.action_callback(function(window, pane, line)
+        if line ~= nil and #line > 1 then
+          wezterm.mux.rename_workspace(window:active_workspace(), line)
         end
       end)
     })
@@ -89,6 +132,11 @@ M.config.key_tables = {
   tab_selection = {
     { key = 'h',      action = act({ ActivateTabRelative = -1 }) },
     { key = 'l',      action = act({ ActivateTabRelative = 1 }) },
+    { key = 'Escape', action = 'PopKeyTable' }
+  },
+  workspace_selection = {
+    { key = 'h',      action = act({ SwitchWorkspaceRelative = -1 }) },
+    { key = 'l',      action = act({ SwitchWorkspaceRelative = 1 }) },
     { key = 'Escape', action = 'PopKeyTable' }
   },
   adjust_pane = {

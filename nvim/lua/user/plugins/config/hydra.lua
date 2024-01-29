@@ -49,7 +49,7 @@ return {
         { 'J',     move_window('j'),              { desc = 'Move window below' } },
         { 'K',     move_window('k'),              { desc = 'Move window above' } },
         { 'L',     move_window('l'),              { desc = 'Move window right' } },
-        { 's',     window_swap,                   { desc = 'Swap window with another' } },
+        { 'S',     window_swap,                   { desc = 'Swap window with another' } },
       }
     })
   end

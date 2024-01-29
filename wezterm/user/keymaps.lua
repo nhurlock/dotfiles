@@ -16,7 +16,7 @@ M.config.keys = {
     key = "a",
     mods = "LEADER",
     action = act({
-      ActivateKeyTable = { name = "adjust_pane_size", one_shot = false }
+      ActivateKeyTable = { name = "adjust_pane", one_shot = false }
     })
   },
   { key = "h",  mods = "LEADER",       action = act({ ActivatePaneDirection = "Left" }) },
@@ -91,11 +91,16 @@ M.config.key_tables = {
     { key = 'l',      action = act({ ActivateTabRelative = 1 }) },
     { key = 'Escape', action = 'PopKeyTable' }
   },
-  adjust_pane_size = {
-    { key = "h",      action = act({ AdjustPaneSize = { "Left", 5 } }) },
-    { key = "j",      action = act({ AdjustPaneSize = { "Down", 5 } }) },
-    { key = "k",      action = act({ AdjustPaneSize = { "Up", 5 } }) },
-    { key = "l",      action = act({ AdjustPaneSize = { "Right", 5 } }) },
+  adjust_pane = {
+    { key = "h",      action = act({ ActivatePaneDirection = "Left" }) },
+    { key = "j",      action = act({ ActivatePaneDirection = "Down" }) },
+    { key = "k",      action = act({ ActivatePaneDirection = "Up" }) },
+    { key = "l",      action = act({ ActivatePaneDirection = "Right" }) },
+    { key = "h",      mods = "ALT",                                                       action = act({ AdjustPaneSize = { "Left", 5 } }) },
+    { key = "j",      mods = "ALT",                                                       action = act({ AdjustPaneSize = { "Down", 5 } }) },
+    { key = "k",      mods = "ALT",                                                       action = act({ AdjustPaneSize = { "Up", 5 } }) },
+    { key = "l",      mods = "ALT",                                                       action = act({ AdjustPaneSize = { "Right", 5 } }) },
+    { key = "S",      action = act({ PaneSelect = { mode = "SwapWithActiveKeepFocus" } }) },
     { key = 'Escape', action = 'PopKeyTable' }
   },
   move_tab = {

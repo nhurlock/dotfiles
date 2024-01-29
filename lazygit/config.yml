@@ -1,0 +1,33 @@
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - "#a6da95" # Green
+      - bold
+    inactiveBorderColor:
+      - "#cad3f5" # Text
+    optionsTextColor:
+      - "#8aadf4" # Blue
+    selectedLineBgColor:
+      - "#363a4f" # Surface0
+    selectedRangeBgColor:
+      - "#363a4f" # Surface0
+    cherryPickedCommitBgColor:
+      - "#8bd5ca" # Teal
+    cherryPickedCommitFgColor:
+      - "#8aadf4" # Blue
+    unstagedChangesColor:
+      - red # Red
+os:
+  editCommand: 'nvim'
+  editCommandTemplate: '{{editor}} +{{line}} -- {{filename}}'
+git:
+  paging:
+    colorArg: always
+    # pager: 'delta --dark --paging=never --diff-so-fancy --features=interactive'
+keybinding:
+  universal:
+    scrollUpMain: '<pgup>' # main panel scroll up
+    scrollDownMain: '<pgdown>' # main panel scroll down
+    scrollUpMain-alt1: 'K' # main panel scroll up
+    scrollDownMain-alt1: 'J' # main panel scroll down

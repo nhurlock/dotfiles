@@ -52,55 +52,39 @@ local function get_date_time()
   return wezterm.strftime("%a %b %-d %I:%M %p");
 end
 
+local function to_right_status_part(text, bg, fg)
+  if text == nil then text = "" end
+  if bg == nil then bg = colors.white end
+  if fg == nil then fg = colors.black end
+  return {
+    { Foreground = { Color = bg } },
+    { Text = left_status_separator },
+
+    { Foreground = { Color = fg } },
+    { Background = { Color = bg } },
+    { Text = " " .. text .. " " }
+  }
+end
+
+local function merge_tables(tb1, tb2)
+  for _, item in ipairs(tb2) do
+    table.insert(tb1, item)
+  end
+end
+
 local function update_right_status(window)
   local right_status = {}
-  local base_info = {
-    { Foreground = { Color = colors.white } },
-    { Text = left_status_separator },
-
-    { Foreground = { Color = colors.black } },
-    { Background = { Color = colors.white } },
-    { Text = " " .. get_batt_level() .. " " },
-
-    { Foreground = { Color = colors.blue } },
-    { Text = left_status_separator },
-
-    { Foreground = { Color = colors.black } },
-    { Background = { Color = colors.blue } },
-    { Text = " " .. get_date_time() .. " " },
-  }
 
   if window:active_key_table() ~= nil and window:active_key_table() then
-    local key_table_info = {
-      { Foreground = { Color = colors.bright_red } },
-      { Text = left_status_separator },
-
-      { Foreground = { Color = colors.black } },
-      { Background = { Color = colors.bright_red } },
-      { Text = " " .. window:active_key_table() .. " " },
-    }
-    for _, item in ipairs(key_table_info) do
-      table.insert(right_status, item)
-    end
+    merge_tables(right_status, to_right_status_part(window:active_key_table(), colors.bright_red))
   end
 
   if wezterm.mux.get_active_workspace() ~= "default" then
-    local workspace_info = {
-      { Foreground = { Color = colors.purple } },
-      { Text = left_status_separator },
-
-      { Foreground = { Color = colors.black } },
-      { Background = { Color = colors.purple } },
-      { Text = " " .. wezterm.mux.get_active_workspace() .. " " },
-    }
-    for _, item in ipairs(workspace_info) do
-      table.insert(right_status, item)
-    end
+    merge_tables(right_status, to_right_status_part(wezterm.mux.get_active_workspace(), colors.purple))
   end
 
-  for _, item in ipairs(base_info) do
-    table.insert(right_status, item)
-  end
+  merge_tables(right_status, to_right_status_part(get_batt_level()))
+  merge_tables(right_status, to_right_status_part(get_date_time(), colors.blue))
 
   window:set_right_status(wezterm.format(right_status))
 end

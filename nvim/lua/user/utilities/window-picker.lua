@@ -1,4 +1,4 @@
-local window_picker_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+local window_picker_chars = "asdfqwerzxcvjklmiuopghtybn"
 
 local function usable_win_ids(winid)
   local tabpage = vim.api.nvim_get_current_tabpage()
@@ -107,7 +107,7 @@ local function pick_win_id(winid)
   -- read input for selected char
   vim.cmd("redraw")
   local _, resp = pcall(get_user_input_char)
-  resp = (resp or ""):upper()
+  resp = (resp or ""):lower()
 
   -- restore window options
   for _, id in ipairs(selectable) do

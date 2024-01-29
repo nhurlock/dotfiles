@@ -54,14 +54,6 @@ end
 
 local function update_right_status(window)
   local right_status = {}
-  local workspace_info = {
-    { Foreground = { Color = colors.purple } },
-    { Text = left_status_separator },
-
-    { Foreground = { Color = colors.black } },
-    { Background = { Color = colors.purple } },
-    { Text = " " .. wezterm.mux.get_active_workspace() .. " " },
-  }
   local base_info = {
     { Foreground = { Color = colors.white } },
     { Text = left_status_separator },
@@ -78,11 +70,34 @@ local function update_right_status(window)
     { Text = " " .. get_date_time() .. " " },
   }
 
+  if window:active_key_table() ~= nil and window:active_key_table() then
+    local key_table_info = {
+      { Foreground = { Color = colors.bright_red } },
+      { Text = left_status_separator },
+
+      { Foreground = { Color = colors.black } },
+      { Background = { Color = colors.bright_red } },
+      { Text = " " .. window:active_key_table() .. " " },
+    }
+    for _, item in ipairs(key_table_info) do
+      table.insert(right_status, item)
+    end
+  end
+
   if wezterm.mux.get_active_workspace() ~= "default" then
+    local workspace_info = {
+      { Foreground = { Color = colors.purple } },
+      { Text = left_status_separator },
+
+      { Foreground = { Color = colors.black } },
+      { Background = { Color = colors.purple } },
+      { Text = " " .. wezterm.mux.get_active_workspace() .. " " },
+    }
     for _, item in ipairs(workspace_info) do
       table.insert(right_status, item)
     end
   end
+
   for _, item in ipairs(base_info) do
     table.insert(right_status, item)
   end

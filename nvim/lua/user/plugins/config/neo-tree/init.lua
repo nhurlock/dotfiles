@@ -30,6 +30,7 @@ return {
   end,
   opts = {
     git_status_async = true,
+    enable_cursor_hijack = true,
     event_handlers = {
       {
         id = "neo-tree-first-open",
@@ -97,6 +98,7 @@ return {
     },
     filesystem = {
       use_libuv_file_watcher = true,
+      find_by_full_path_words = true,
       follow_current_file = {
         enabled = true
       },

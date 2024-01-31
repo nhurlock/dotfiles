@@ -30,7 +30,6 @@ return {
   end,
   opts = {
     git_status_async = true,
-    enable_cursor_hijack = true,
     event_handlers = {
       {
         id = "neo-tree-first-open",

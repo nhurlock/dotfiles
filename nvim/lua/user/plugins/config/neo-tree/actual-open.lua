@@ -1,7 +1,9 @@
 local window_picker = require('user.utilities.window-picker')
 
 local function open_in_new_window(winid, node_path, open_cmd)
-  local target_winid = window_picker(winid)
+  local target_winid = window_picker(winid, function(buf)
+    return vim.bo[buf].filetype ~= "toggleterm"
+  end)
   if not target_winid then
     return
   end

@@ -1,6 +1,6 @@
 local window_picker_chars = "asdfqwerzxcvjklmiuopghtybn"
 
-local function usable_win_ids(winid)
+local function usable_win_ids(winid, filter)
   local tabpage = vim.api.nvim_get_current_tabpage()
   local win_ids = vim.api.nvim_tabpage_list_wins(tabpage)
   local usable = {}
@@ -16,7 +16,7 @@ local function usable_win_ids(winid)
         win_config.focusable and
         not win_config.external and
         ((buf_type ~= "nofile" and buf_type ~= "prompt") or
-          (buf_filetype == "starter")) then
+          (buf_filetype == "starter")) and (filter == nil or filter(buf)) then
       table.insert(usable, id)
     else
       table.insert(unusable, id)
@@ -62,8 +62,8 @@ local function get_user_input_char()
   return vim.fn.nr2char(c)
 end
 
-local function pick_win_id(winid)
-  local selectable, not_selectable = usable_win_ids(winid)
+local function pick_win_id(winid, filter)
+  local selectable, not_selectable = usable_win_ids(winid, filter)
 
   if #selectable == 0 then
     return -1
@@ -133,8 +133,8 @@ local function pick_win_id(winid)
   return win_map[resp]
 end
 
-return function(winid)
-  local target_winid = pick_win_id(winid)
+return function(winid, filter)
+  local target_winid = pick_win_id(winid, filter)
   if target_winid == nil then return end
   return target_winid
 end

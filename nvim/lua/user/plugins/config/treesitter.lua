@@ -82,8 +82,8 @@ return {
             ["ib"] = "@block.inner",
             ["aa"] = "@assignment.outer",
             ["ia"] = "@assignment.inner",
-            ["ash"] = "@assignment.lhs",
-            ["asl"] = "@assignment.rhs",
+            ["la"] = "@assignment.lhs",
+            ["ra"] = "@assignment.rhs",
             ["ao"] = "@loop.outer",
             ["io"] = "@loop.inner"
           },

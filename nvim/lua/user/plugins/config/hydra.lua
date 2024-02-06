@@ -34,9 +34,9 @@ return {
       name = 'Window Adjustment',
       mode = 'n',
       body = '<C-w>a',
-      hint = false,
       config = {
         color = 'amaranth',
+        hint = false,
         exit = false,
         invoke_on_body = true
       },

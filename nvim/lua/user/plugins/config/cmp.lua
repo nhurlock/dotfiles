@@ -55,7 +55,9 @@ return {
     }
 
     cmp.setup({
-      enabled = function() return vim.fn.getbufvar(0, "buftype") ~= "prompt" end,
+      enabled = function()
+        return vim.bo.filetype ~= "prompt"
+      end,
       preselect = cmp.PreselectMode.None,
       snippet = {
         expand = function(args)
@@ -67,19 +69,25 @@ return {
         ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(function()
+        ["<C-f>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
+          else
+            fallback()
           end
         end, { "i", "s" }),
-        ["<C-v>"] = cmp.mapping(function()
+        ["<C-v>"] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
+          else
+            fallback()
           end
         end, { "i", "s" }),
-        ["<C-y>"] = cmp.mapping(function()
+        ["<C-y>"] = cmp.mapping(function(fallback)
           if luasnip.choice_active() then
             luasnip.change_choice(1)
+          else
+            fallback()
           end
         end, { "i", "s" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),

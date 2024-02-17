@@ -135,6 +135,26 @@ return {
             ["<PageDown>"] = actions.results_scrolling_down,
             ["?"] = actions.which_key
           }
+        },
+        preview = {
+          filetype_hook = function(filepath, bufnr, opts)
+            local api = require("image")
+            local preview_id = "telescope_preview"
+            api.clear(preview_id)
+
+            local is_image = function(filepath)
+              local image_extensions = { "png", "jpg", "jpeg", "gif", "webp" }
+              local split_path = vim.split(filepath:lower(), ".", { plain = true })
+              local extension = split_path[#split_path]
+              return vim.tbl_contains(image_extensions, extension)
+            end
+
+            if is_image(filepath) then
+              api.hijack_buffer(filepath, opts.winid, bufnr, { id = preview_id })
+              return false
+            end
+            return true
+          end
         }
       },
       pickers = {

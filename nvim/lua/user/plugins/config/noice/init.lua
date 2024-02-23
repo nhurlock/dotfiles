@@ -1,12 +1,13 @@
+local utils = require("user.utilities")
+
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  keys = {
-    { "<leader>nl", "<cmd>Noice last<cr>",      mode = { "n" }, silent = true, noremap = true, desc = "Noice show last" },
-    { "<leader>nh", "<cmd>Noice history<cr>",   mode = { "n" }, silent = true, noremap = true, desc = "Noice view history" },
-    { "<leader>nd", "<cmd>Noice dismiss<cr>",   mode = { "n" }, silent = true, noremap = true, desc = "Noice dismiss all" },
-    { "<leader>nt", "<cmd>Noice telescope<cr>", mode = { "n" }, silent = true, noremap = true, desc = "Noice view history in Telescope" }
-  },
+  keys = utils.lazy_maps({
+    { "<leader>nl", "Noice last",      "n", "Noice show last" },
+    { "<leader>nh", "Noice history",   "n", "Noice view history" },
+    { "<leader>nd", "Noice dismiss",   "n", "Noice dismiss all" }
+  }),
   dependencies = {
     "MunifTanjim/nui.nvim",
     {

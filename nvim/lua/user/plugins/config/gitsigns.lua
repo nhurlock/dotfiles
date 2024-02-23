@@ -1,16 +1,18 @@
+local utils = require("user.utilities")
+
 return {
   "lewis6991/gitsigns.nvim",
-  keys = {
-    { "<leader>gp", "<cmd>Gitsigns preview_hunk_inline<cr>", mode = { "n" }, silent = true, noremap = true, desc = "Git preview hunk" },
-    { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",          mode = { "n" }, silent = true, noremap = true, desc = "Git stage hunk" },
-    { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>",        mode = { "n" }, silent = true, noremap = true, desc = "Git stage buffer" },
-    { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>",     mode = { "n" }, silent = true, noremap = true, desc = "Git undo stage hunk" },
-    { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",          mode = { "n" }, silent = true, noremap = true, desc = "Git reset hunk" },
-    { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",        mode = { "n" }, silent = true, noremap = true, desc = "Git reset buffer" },
-    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",            mode = { "n" }, silent = true, noremap = true, desc = "Git diff" },
-    { "]g",         "<cmd>Gitsigns next_hunk<cr>",           mode = { "n" }, silent = true, noremap = true, desc = "Git next hunk" },
-    { "[g",         "<cmd>Gitsigns prev_hunk<cr>",           mode = { "n" }, silent = true, noremap = true, desc = "Git prev hunk" },
-  },
+  keys = utils.lazy_maps({
+    { "<leader>gp", "Gitsigns preview_hunk_inline", "n", "Git preview hunk" },
+    { "<leader>gs", "Gitsigns stage_hunk",          "n", "Git stage hunk" },
+    { "<leader>gS", "Gitsigns stage_buffer",        "n", "Git stage buffer" },
+    { "<leader>gu", "Gitsigns undo_stage_hunk",     "n", "Git undo stage hunk" },
+    { "<leader>gr", "Gitsigns reset_hunk",          "n", "Git reset hunk" },
+    { "<leader>gR", "Gitsigns reset_buffer",        "n", "Git reset buffer" },
+    { "<leader>gd", "Gitsigns diffthis",            "n", "Git diff" },
+    { "]g",         "Gitsigns next_hunk",           "n", "Git next hunk" },
+    { "[g",         "Gitsigns prev_hunk",           "n", "Git prev hunk" },
+  }),
   lazy = false,
   opts = {
     signs = {

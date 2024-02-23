@@ -1,6 +1,6 @@
 return {
   'codethread/qmk.nvim',
-  config = {
+  opts = {
     name = 'LAYOUT_65_ansi_blocker',
     variant = 'qmk',
     comment_preview = {

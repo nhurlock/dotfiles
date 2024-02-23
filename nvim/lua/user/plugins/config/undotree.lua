@@ -1,8 +1,10 @@
+local utils = require("user.utilities")
+
 return {
   "mbbill/undotree",
-  keys = {
-    { "<leader>u", "<cmd>UndotreeToggle<cr>", mode = { "n" }, silent = true, noremap = true, desc = "Undotree toggle" }
-  },
+  keys = utils.lazy_maps({
+    { "<leader>u", "UndotreeToggle", "n", "Undotree toggle" }
+  }),
   cmd = "UndotreeToggle",
   config = function()
     vim.g.undotree_WindowLayout = 3

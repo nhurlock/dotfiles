@@ -1,10 +1,12 @@
+local utils = require("user.utilities")
+
 return {
   "akinsho/toggleterm.nvim",
-  keys = {
-    { "<leader>\\", "<cmd>ToggleTerm<cr>",            mode = { "n" }, silent = true, noremap = true, desc = "Toggle terminal" },
-    { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", mode = { "n" }, silent = true, noremap = true, desc = "Lazygit" },
-    { "<leader>no", "<cmd>lua _NODE_TOGGLE()<cr>",    mode = { "n" }, silent = true, noremap = true, desc = "Node terminal" },
-  },
+  keys = utils.lazy_maps({
+    { "<leader>\\", "ToggleTerm",                     "n", "Toggle terminal" },
+    { "<leader>gg", function() _LAZYGIT_TOGGLE() end, "n", "Lazygit" },
+    { "<leader>no", function() _NODE_TOGGLE() end,    "n", "Node terminal" },
+  }),
   cmd = "ToggleTerm",
   config = function()
     require("toggleterm").setup({

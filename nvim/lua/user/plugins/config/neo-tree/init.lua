@@ -1,3 +1,5 @@
+local utils = require("user.utilities")
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -7,24 +9,10 @@ return {
     "MunifTanjim/nui.nvim"
   },
   cmd = "Neotree",
-  keys = {
-    {
-      "<leader>v",
-      "<cmd>Neotree toggle<cr>",
-      mode = { "n" },
-      silent = true,
-      noremap = true,
-      desc = "Neotree toggle"
-    },
-    {
-      "<leader>V",
-      "<cmd>Neotree<cr>",
-      mode = { "n" },
-      silent = true,
-      noremap = true,
-      desc = "Neotree open/focus"
-    }
-  },
+  keys = utils.lazy_maps({
+    { "<leader>v", "Neotree toggle", "n", "Neotree toggle" },
+    { "<leader>V", "Neotree",        "n", "Neotree open/focus" }
+  }),
   init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
   end,

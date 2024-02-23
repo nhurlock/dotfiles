@@ -1,18 +1,20 @@
+local utils = require("user.utilities")
+
 return {
   "mfussenegger/nvim-dap",
   cmd = {
     "DapContinue"
   },
-  keys = {
-    { "<leader>dc",    "<cmd>DapContinue<cr>",                            mode = { "n" }, silent = true, noremap = true, desc = "DAP continue" },
-    { "<leader>dl",    "<cmd>lua require('dap').run_last()<cr>",          mode = { "n" }, silent = true, noremap = true, desc = "DAP run last" },
-    { "<leader>dt",    "<cmd>DapTerminate<cr>",                           mode = { "n" }, silent = true, noremap = true, desc = "DAP terminate" },
-    { "<leader>do",    "<cmd>DapStepOver<cr>",                            mode = { "n" }, silent = true, noremap = true, desc = "DAP step over" },
-    { "<leader>di",    "<cmd>DapStepInto<cr>",                            mode = { "n" }, silent = true, noremap = true, desc = "DAP step into" },
-    { "<leader>b",     "<cmd>DapToggleBreakpoint<cr>",                    mode = { "n" }, silent = true, noremap = true, desc = "DAP toggle breakpoint" },
-    { "<leader><C-b>", "<cmd>lua require('dap').clear_breakpoints()<cr>", mode = { "n" }, silent = true, noremap = true, desc = "DAP clear breakpoints" },
-    { "<leader>dui",   "<cmd>lua require('dapui').toggle()<cr>",          mode = { "n" }, silent = true, noremap = true, desc = "DAP toggle UI" }
-  },
+  keys = utils.lazy_maps({
+    { "<leader>dc",    "DapContinue",                                     "n", "DAP continue" },
+    { "<leader>dl",    function() require('dap').run_last() end,          "n", "DAP run last" },
+    { "<leader>dt",    "DapTerminate",                                    "n", "DAP terminate" },
+    { "<leader>do",    "DapStepOver",                                     "n", "DAP step over" },
+    { "<leader>di",    "DapStepInto",                                     "n", "DAP step into" },
+    { "<leader>b",     "DapToggleBreakpoint",                             "n", "DAP toggle breakpoint" },
+    { "<leader><C-b>", function() require('dap').clear_breakpoints() end, "n", "DAP clear breakpoints" },
+    { "<leader>dui",   function() require('dapui').toggle() end,          "n", "DAP toggle UI" }
+  }),
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",

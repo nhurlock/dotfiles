@@ -4,6 +4,7 @@ return {
     "williamboman/mason.nvim",           -- simple to use language server installer
     "williamboman/mason-lspconfig.nvim", -- simple to use language server installer
     "folke/neodev.nvim",                 -- neovim-specific lsp helpers
+    "pmizio/typescript-tools.nvim"       -- javascript/typescript-specific lsp helpers
   },
   config = function()
     require("neodev").setup()

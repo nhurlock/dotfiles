@@ -67,7 +67,11 @@ local setup_server = function(server_name)
     server_opts = vim.tbl_deep_extend("force", server_opts, conf_opts)
   end
 
-  pcall(lspconfig[server].setup, server_opts)
+  if server == "tsserver" then
+    require("typescript-tools").setup(server_opts)
+  else
+    pcall(lspconfig[server].setup, server_opts)
+  end
 end
 
 for _, server in pairs(custom_servers) do

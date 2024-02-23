@@ -42,13 +42,29 @@ autocmd("TermEnter", {
   end
 })
 
+-- special keys to support fzf
+autocmd("TermEnter", {
+  pattern = "term://*",
+  callback = function(opts)
+    if vim.bo[opts.buf].filetype == "fzf" then
+      vim.keymap.set("t", "<C-h>", "<C-h>", { noremap = true, silent = true, buffer = true })
+      vim.keymap.set("t", "<C-j>", "<C-j>", { noremap = true, silent = true, buffer = true })
+      vim.keymap.set("t", "<C-k>", "<C-k>", { noremap = true, silent = true, buffer = true })
+      vim.keymap.set("t", "<C-l>", "<C-l>", { noremap = true, silent = true, buffer = true })
+      vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { noremap = true, silent = true, buffer = true })
+    end
+  end
+})
+
 -- auto close terminal when process exits
 autocmd("TermClose", {
   pattern = "term://*",
   callback = function(opts)
-    vim.schedule(function()
-      pcall(vim.api.nvim_buf_delete, opts.buf, {})
-    end)
+    if vim.bo[opts.buf].filetype ~= "fzf" then
+      vim.schedule(function()
+        pcall(vim.api.nvim_buf_delete, opts.buf, {})
+      end)
+    end
   end
 })
 

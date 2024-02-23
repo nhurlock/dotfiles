@@ -1,5 +1,18 @@
 local M = {}
 
+M.lazy_map = function(mapping, action, modes, desc)
+  if type(action) == "string" then
+    action = "<cmd>" .. action .. "<cr>"
+  end
+  return { mapping, action, mode = modes, silent = true, noremap = true, desc }
+end
+
+M.lazy_maps = function(maps)
+  return vim.tbl_map(function(map)
+    return M.lazy_map(unpack(map))
+  end, maps)
+end
+
 M.get_visual_selection = function()
   local mode = vim.fn.mode()
   if mode ~= 'v' and mode ~= 'V' then return nil end

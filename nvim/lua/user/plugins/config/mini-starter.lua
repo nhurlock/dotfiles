@@ -2,8 +2,6 @@ return {
   'echasnovski/mini.starter',
   version = false,
   config = function()
-    local telescope_builtin = require('telescope.builtin')
-
     require('mini.starter').setup({
       autoopen = true,
       silent = true,
@@ -22,35 +20,35 @@ return {
           section = "",
           name = "Find Files",
           action = function()
-            telescope_builtin.find_files({})
+            require('fzf-lua.providers.files').files({})
           end
         },
         {
           section = "",
           name = "Git Files",
           action = function()
-            telescope_builtin.git_files({})
+            require('fzf-lua.providers.git').files({})
           end
         },
         {
           section = "",
           name = "Git Branches",
           action = function()
-            telescope_builtin.git_branches({})
+            require('fzf-lua.providers.git').branches({})
           end
         },
         {
           section = "",
           name = "Git Commits",
           action = function()
-            telescope_builtin.git_commits({})
+            require('fzf-lua.providers.git').commits({})
           end
         },
         {
           section = "",
           name = "Live Grep",
           action = function()
-            telescope_builtin.live_grep({})
+            require('fzf-lua.providers.grep').live_grep({})
           end
         },
       },

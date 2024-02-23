@@ -1,7 +1,7 @@
 return {
   "stevearc/dressing.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim"
+    "ibhagwan/fzf-lua",
   },
   event = "BufWinEnter",
   opts = {
@@ -10,17 +10,6 @@ return {
       win_options = {
         winblend = 0
       }
-    },
-    select = {
-      get_config = function(opts)
-        if opts.kind == 'codeaction' then
-          return {
-            telescope = require("telescope.themes").get_cursor({
-              prompt_title = ""
-            })
-          }
-        end
-      end
     }
   }
 }

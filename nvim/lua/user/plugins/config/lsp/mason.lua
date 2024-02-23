@@ -16,8 +16,8 @@ local servers = {
   "dockerls",
   "zls",
   "rust_analyzer",
-  "docker_compose_language_service",
   "jdtls",
+  "docker_compose_language_service",
 }
 
 local settings = {
@@ -69,6 +69,13 @@ local setup_server = function(server_name)
 
   if server == "tsserver" then
     require("typescript-tools").setup(server_opts)
+  elseif server == "jdtls" then
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "java",
+      callback = function()
+        require("jdtls").start_or_attach(server_opts)
+      end
+    })
   else
     pcall(lspconfig[server].setup, server_opts)
   end
@@ -79,6 +86,5 @@ for _, server in pairs(custom_servers) do
 end
 
 for _, server in pairs(servers) do
-  if server == "jdtls" then return end
   pcall(setup_server, server)
 end

@@ -1,7 +1,3 @@
-local lsp_handlers = require("user.plugins.config.lsp.handlers")
-local on_attach = lsp_handlers.on_attach
-local capabilities = lsp_handlers.capabilities
-
 local status, jdtls = pcall(require, "jdtls")
 if not status then
   return
@@ -52,7 +48,7 @@ if not java_home or not java_version then
   return
 end
 
-local config = {
+return {
   cmd = {
     "java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -69,7 +65,6 @@ local config = {
     "-configuration", jdtls_dir .. "/config_" .. os_type,
     "-data", workspace_dir
   },
-  capabilities = capabilities,
   root_dir = root_dir,
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -141,17 +136,3 @@ local config = {
     bundles = {},
   },
 }
-
-config["on_attach"] = function(client, bufnr)
-  pcall(vim.lsp.codelens.refresh)
-  on_attach(client, bufnr)
-end
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.java" },
-  callback = function()
-    pcall(vim.lsp.codelens.refresh)
-  end,
-})
-
-jdtls.start_or_attach(config)

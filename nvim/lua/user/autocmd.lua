@@ -74,3 +74,11 @@ autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "Search" })
   end
 })
+
+-- start treesitter on help buffers
+autocmd("FileType", {
+  pattern = "help",
+  callback = function(opts)
+    vim.treesitter.start(opts.buf)
+  end
+})

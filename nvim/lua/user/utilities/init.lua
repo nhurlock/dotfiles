@@ -53,7 +53,7 @@ M.window_picker = require('user.utilities.window-picker')
 M.window_swap = function()
   local fromwin = vim.fn.win_getid()
   local towin = M.window_picker(fromwin)
-  if fromwin == nil or towin == nil or towin == -1 then
+  if fromwin == nil or towin == nil then
     return
   end
   local frombuf = vim.api.nvim_win_get_buf(fromwin)

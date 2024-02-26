@@ -66,7 +66,7 @@ local function pick_win_id(winid, filter)
   local selectable, not_selectable = usable_win_ids(winid, filter)
 
   if #selectable == 0 then
-    return -1
+    return nil
   end
   -- no need to pick a window if there's only one to select
   if #selectable == 1 then
@@ -127,7 +127,7 @@ local function pick_win_id(winid, filter)
 
   -- ensure user selected a char assigned to a win
   if not vim.tbl_contains(vim.split(window_picker_chars, ""), resp) then
-    return
+    return nil
   end
 
   return win_map[resp]

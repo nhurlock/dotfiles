@@ -4,9 +4,9 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   keys = utils.lazy_maps({
-    { "<leader>nl", "Noice last",      "n", "Noice show last" },
-    { "<leader>nh", "Noice history",   "n", "Noice view history" },
-    { "<leader>nd", "Noice dismiss",   "n", "Noice dismiss all" }
+    { "<leader>nl", "Noice last",    "n", "Noice show last" },
+    { "<leader>nh", "Noice history", "n", "Noice view history" },
+    { "<leader>nd", "Noice dismiss", "n", "Noice dismiss all" }
   }),
   dependencies = {
     "MunifTanjim/nui.nvim",
@@ -47,42 +47,25 @@ return {
         ["cmp.entry.get_documentation"] = true
       },
       -- these hover settings don't work with noice properly, have to modify noice, future PR to fix
+      -- issue: https://github.com/folke/noice.nvim/issues/592
       hover = {
         opts = {
           border = {
             style = "none",
-            padding = { 1, 1, 1, 1 }
+            padding = { 1, 2 }
           },
-          -- position = { row = 2, col = 1 }
+          position = { row = 2, col = 2 }
         }
       },
       signature = {
         opts = {
           border = {
             style = "none",
-            padding = { 1, 1, 1, 1 }
+            padding = { 1, 2 }
           },
-          -- position = { row = 2, col = 1 }
+          position = { row = 2, col = 2 }
         }
       }
-      -- hover = {
-      --   opts = {
-      --     border = {
-      --       style = "none",
-      --       padding = { 1, 2 }
-      --     },
-      --     position = { row = 2, col = 2 }
-      --   }
-      -- },
-      -- signature = {
-      --   opts = {
-      --     border = {
-      --       style = "none",
-      --       padding = { 1, 2 }
-      --     },
-      --     position = { row = 2, col = 2 }
-      --   }
-      -- }
     },
     presets = {
       bottom_search = true,         -- use a classic bottom cmdline for search

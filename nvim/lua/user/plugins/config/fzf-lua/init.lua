@@ -37,14 +37,15 @@ return {
     local actions = require("fzf-lua.actions")
     local fzf_utils = require("fzf-lua.utils")
     local quickfix = require('fzf-lua.providers.quickfix')
-    local palette = require("catppuccin.palettes.macchiato")
+    local palette = require("catppuccin.palettes").get_palette()
+    local colors = require("catppuccin.utils.colors")
 
-    -- guifg=#cad3f5 guibg=#1e2030
-    -- actualbg=#161723 is guibg with 5% less L (HSL)
-    -- actualfg=#232638 is guifg with 3% more L (HSL)
-    vim.api.nvim_set_hl(0, "NormalFloat", { fg = palette.text, bg = "#161723", force = true })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#232638", bg = "#161723", force = true })
-    vim.api.nvim_set_hl(0, "FloatTitle", { fg = palette.text, bg = "#161723", force = true })
+    local darkerbg = colors.darken(colors.bg, 0.03, palette.mantle)
+    local lighterfg = colors.lighten(colors.fg, 0.03, palette.text)
+
+    vim.api.nvim_set_hl(0, "NormalFloat", { fg = palette.text, bg = darkerbg, force = true })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = lighterfg, bg = darkerbg, force = true })
+    vim.api.nvim_set_hl(0, "FloatTitle", { fg = palette.text, bg = darkerbg, force = true })
 
     vim.api.nvim_set_hl(0, "FloatPreviewNormal", { link = "Normal", force = true })
     vim.api.nvim_set_hl(0, "FloatPreviewTitle", { link = "FloatTitle", force = true })

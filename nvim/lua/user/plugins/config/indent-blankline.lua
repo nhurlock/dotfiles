@@ -1,7 +1,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
   config = function()
-    local palette = require("catppuccin.palettes.macchiato")
+    local palette = require("catppuccin.palettes").get_palette()
 
     local hooks = require("ibl.hooks")
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()

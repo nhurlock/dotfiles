@@ -181,8 +181,8 @@ return {
           ["ctrl-d"] = "preview-half-page-down",
           ["ctrl-p"] = "toggle-preview",
           ["ctrl-z"] = "abort",
-          ["ctrl-U"] = "unix-line-discard",
-          ["ctrl-a"] = "beginning-of-line",
+          ["ctrl-w"] = "backward-kill-word",
+          ["ctrl-b"] = "beginning-of-line",
           ["ctrl-e"] = "end-of-line",
           ["alt-a"]  = "toggle-all",
         },
@@ -204,10 +204,11 @@ return {
         buffers = {
           -- providers that inherit these actions:
           --   buffers, tabs, lines, blines
-          ["default"] = actions.buf_edit,
+          ["default"] = actions.buf_edit_or_qf,
           ["ctrl-s"]  = actions.buf_split,
           ["ctrl-v"]  = actions.buf_vsplit,
-          ["ctrl-t"]  = actions.buf_tabedit,
+          ["alt-q"]   = actions.buf_sel_to_qf,
+          ["alt-l"]   = actions.buf_sel_to_ll,
         }
       },
     })

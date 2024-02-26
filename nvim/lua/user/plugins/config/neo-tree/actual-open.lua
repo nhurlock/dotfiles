@@ -10,7 +10,7 @@ local function open_in_new_window(winid, node_path, open_cmd)
 
   local win_ids = vim.api.nvim_list_wins()
   local create_new_window = #win_ids == 1
-  local new_window_side = "aboveleft"
+  local new_window_side = "belowright"
 
   local cmd
   if create_new_window or (open_cmd and string.match(open_cmd, "split")) then

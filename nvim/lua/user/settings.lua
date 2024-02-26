@@ -21,6 +21,7 @@ vim.opt.cursorline = true
 
 -- case-insensitive
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- smooth scroll
 vim.opt.smoothscroll = true
@@ -49,6 +50,21 @@ vim.opt.shortmess = "ltToOCFs"
 
 -- keep only a single statusline for current window
 vim.opt.laststatus = 3
+vim.opt.showmode = false
+
+-- save undo history
+vim.opt.undofile = true
+
+-- decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- more substitution preview
+vim.opt.inccommand = 'split'
 
 -- command line
 vim.opt.cmdheight = 0

@@ -51,7 +51,7 @@ local lsp_state = {}
 
 local function lsp_highlight_document(client, bufnr)
   -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.documentHighlight and not lsp_state[bufnr].highlight then
+  if client.server_capabilities.documentHighlightProvider and not lsp_state[bufnr].highlight then
     lsp_state[bufnr].highlight = true
     local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
     vim.api.nvim_create_autocmd("CursorHold", {

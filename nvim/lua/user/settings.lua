@@ -1,8 +1,17 @@
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
+-- neovide-specific settings
+if vim.g.neovide then
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_cursor_animation_length = 0.05
+  vim.g.neovide_cursor_trail_size = 0.3
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_input_macos_alt_is_meta = true
+end
+
 -- JetBrainsMono font
-vim.opt.guifont = { "JetBrainsMono Nerd Font Mono", "h17" }
+vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h17"
 
 -- disable continuation of comment when // is not the start of a line
 vim.opt.formatoptions:append('o/')

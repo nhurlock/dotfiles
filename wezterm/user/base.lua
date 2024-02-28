@@ -44,7 +44,39 @@ M.config.window_padding = {
 }
 
 M.config.allow_square_glyphs_to_overflow_width = "Never"
-M.config.font = wezterm.font('JetBrainsMono Nerd Font Mono', { weight = 'Light' })
+M.config.font = wezterm.font({ family = 'JetBrainsMono Nerd Font Mono' })
+M.config.font_rules = {
+  {
+    intensity = 'Half',
+    italic = false,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Thin", stretch = "Normal", style = "Normal" })
+  },
+  {
+    intensity = 'Half',
+    italic = true,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Thin", stretch = "Normal", style = "Italic" })
+  },
+  {
+    intensity = 'Normal',
+    italic = false,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Light", stretch = "Normal", style = "Normal" })
+  },
+  {
+    intensity = 'Normal',
+    italic = true,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Light", stretch = "Normal", style = "Italic" })
+  },
+  {
+    intensity = 'Bold',
+    italic = false,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", stretch = "Normal", style = "Normal" })
+  },
+  {
+    intensity = 'Bold',
+    italic = true,
+    font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", stretch = "Normal", style = "Italic" })
+  }
+}
 M.config.font_size = 17.0
 -- lower dpi on desktop
 if is_desktop then

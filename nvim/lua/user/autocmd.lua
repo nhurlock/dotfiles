@@ -60,11 +60,13 @@ autocmd("TermEnter", {
 autocmd("TermClose", {
   pattern = "term://*",
   callback = function(opts)
-    if vim.bo[opts.buf].filetype ~= "fzf" then
-      vim.schedule(function()
-        pcall(vim.api.nvim_buf_delete, opts.buf, {})
-      end)
-    end
+    pcall(function()
+      if vim.bo[opts.buf].filetype ~= "fzf" then
+        vim.schedule(function()
+          pcall(vim.api.nvim_buf_delete, opts.buf, {})
+        end)
+      end
+    end)
   end
 })
 

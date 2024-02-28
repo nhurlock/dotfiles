@@ -18,6 +18,13 @@ keymap("", "<space>", "<nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- support pasting text in neovide
+if vim.g.neovide then
+  keymap("n", "<D-v>", "\"+P", with_desc(opts, "Neovide paste in normal"))
+  keymap("v", "<D-v>", "\"+P", with_desc(opts, "Neovide paste in visual"))
+  keymap("c", "<D-v>", "<C-R>+", with_desc(opts, "Neovide paste in command"))
+end
+
 -- move lines
 keymap("n", "<M-j>", "<cmd>m .+1<cr>", with_desc(opts, "Move line down"))
 keymap("n", "<M-k>", "<cmd>m .-2<cr>", with_desc(opts, "Move line up"))

@@ -10,6 +10,11 @@ rm -rf ~/.config/nvim
 ln -s "$(pwd)/nvim" ~/.config/nvim
 
 
+# neovide
+rm -rf ~/.config/neovide
+ln -s "$(pwd)/neovide" ~/.config/neovide
+
+
 # wezterm
 rm -rf ~/.config/wezterm
 ln -s "$(pwd)/wezterm" ~/.config/wezterm

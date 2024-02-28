@@ -2,6 +2,7 @@ return {
   "3rd/image.nvim",
   build = "luarocks --local --lua-version=5.1 install magick",
   event = "VeryLazy",
+  enabled = not vim.g.neovide, -- neovide does not have image support atm
   opts = {
     backend = "kitty",
     kitty_method = "normal",

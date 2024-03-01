@@ -19,6 +19,7 @@ return {
         cmp = true,
         dap = true,
         dap_ui = true,
+        fidget = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = false

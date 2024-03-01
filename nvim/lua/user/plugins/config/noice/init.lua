@@ -20,6 +20,12 @@ return {
     }
   },
   opts = {
+    redirect = {
+      view = "fidget"
+    },
+    notify = {
+      view = "fidget"
+    },
     cmdline = {
       format = {
         search_down = { kind = "search", pattern = "^/", icon = "  ", lang = "regex" },
@@ -33,11 +39,14 @@ return {
           any = {
             { find = "%d+L, %d+B" },
             { find = "; after #%d+" },
-            { find = "; before #%d+" },
+            { find = "; before #%d+" }
           },
         },
-        view = "mini",
-      },
+        view = "fidget",
+        opts = {
+          timeout = 500
+        }
+      }
     },
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -65,6 +74,9 @@ return {
           },
           position = { row = 2, col = 2 }
         }
+      },
+      progress = {
+        enabled = false
       }
     },
     presets = {
@@ -74,5 +86,21 @@ return {
       inc_rename = false,           -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = false,       -- add a border to hover docs and signature help
     }
-  }
+  },
+  config = function(_, opts)
+    require("user.plugins.config.noice.backends.fidget")
+    require("noice").setup(opts)
+
+    vim.keymap.set({ "n", "i", "s" }, "<C-d>", function()
+      if not require("noice.lsp").scroll(4) then
+        return "<C-d>"
+      end
+    end, { silent = true, expr = true })
+
+    vim.keymap.set({ "n", "i", "s" }, "<C-u>", function()
+      if not require("noice.lsp").scroll(-4) then
+        return "<C-u>"
+      end
+    end, { silent = true, expr = true })
+  end
 }

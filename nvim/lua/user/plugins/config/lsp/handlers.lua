@@ -54,19 +54,15 @@ local function lsp_highlight_document(client, bufnr)
   if client.server_capabilities.documentHighlightProvider and not lsp_state[bufnr].highlight then
     lsp_state[bufnr].highlight = true
     local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
-    vim.api.nvim_create_autocmd("CursorHold", {
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
       group = group,
       buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.document_highlight()
-      end
+      callback = vim.lsp.buf.document_highlight
     })
-    vim.api.nvim_create_autocmd("CursorMoved", {
+    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
       group = group,
       buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end
+      callback = vim.lsp.buf.clear_references
     })
   end
   -- Maintain if buffer has formatting enabled

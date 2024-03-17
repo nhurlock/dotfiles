@@ -65,9 +65,9 @@ M.window_swap = function()
   local tobuf = vim.api.nvim_win_get_buf(towin)
   local toline = vim.fn.line('.')
   vim.cmd('buf +' .. fromline .. ' ' .. frombuf)
-  vim.fn.win_gotoid(fromwin)
-  vim.cmd('buf +' .. toline .. ' ' .. tobuf)
-  vim.fn.win_gotoid(towin)
+  vim.api.nvim_win_call(fromwin, function()
+    vim.cmd('buf +' .. toline .. ' ' .. tobuf)
+  end)
 end
 
 return M

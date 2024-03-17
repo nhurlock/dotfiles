@@ -173,15 +173,14 @@ return {
     }
   },
   config = function(_, opts)
-    local colors = require('catppuccin.palettes').get_palette()
+    local palette = require('catppuccin.palettes').get_palette()
     local actual_open = require("user.plugins.config.neo-tree.actual-open")
     opts.commands = { actual_open = actual_open }
     require("neo-tree").setup(opts)
 
     -- override default window finder with custom picker to mimic nvim-tree
-    local utils = require("neo-tree.utils")
-    ---@diagnostic disable-next-line: duplicate-set-field
-    utils.open_file = actual_open
+    local neotree_utils = require("neo-tree.utils")
+    neotree_utils.open_file = actual_open
 
     -- removes the "Window settings restored" message
     vim.api.nvim_del_augroup_by_name("NeoTree_BufLeave")
@@ -197,27 +196,24 @@ return {
       callback = bufenter,
     })
 
-    vim.cmd("highlight! NeoTreeWindowPicker guifg=" .. colors.base .. " guibg=" .. colors.mauve)
+    vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = palette.teal, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = palette.rosewater, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = palette.yellow, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitRenamed", { fg = palette.flamingo, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = palette.lavender, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { link = "Comment", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = palette.yellow, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitStaged", { fg = palette.green, force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeGitConflict", { fg = palette.red, force = true })
 
-    vim.cmd("highlight! NeoTreeGitAdded guifg=" .. colors.teal)
-    vim.cmd("highlight! NeoTreeGitDeleted guifg=" .. colors.rosewater)
-    vim.cmd("highlight! NeoTreeGitModified guifg=" .. colors.yellow)
-    vim.cmd("highlight! NeoTreeGitRenamed guifg=" .. colors.flamingo)
+    vim.api.nvim_set_hl(0, "NeoTreeHiddenByName", { link = "Comment", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeWindowsHidden", { link = "Comment", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeDimText", { link = "Comment", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeDotfile", { link = "Comment", force = true })
 
-    vim.cmd("highlight! NeoTreeGitUntracked guifg=" .. colors.lavender)
-    vim.cmd [[highlight! link NeoTreeGitIgnored Comment]]
-    vim.cmd("highlight! NeoTreeGitUnstaged guifg=" .. colors.yellow)
-    vim.cmd("highlight! NeoTreeGitStaged guifg=" .. colors.green)
-    vim.cmd("highlight! NeoTreeGitConflict guifg=" .. colors.red)
-
-    vim.cmd [[highlight! link NeoTreeHiddenByName Comment]]
-    vim.cmd [[highlight! link NeoTreeWindowsHidden Comment]]
-    vim.cmd [[highlight! link NeoTreeDimText Comment]]
-    vim.cmd [[highlight! link NeoTreeDotfile Comment]]
-
-    vim.cmd [[highlight! link NeoTreeTitleBar FloatTitle]]
-    vim.cmd [[highlight! link NeoTreeFloatBorder FloatBorder]]
-    vim.cmd [[highlight! link NeoTreeFloatTitle FloatTitle]]
-    vim.cmd [[highlight! link NeoTreeFloatNormal FloatNormal]]
+    vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { link = "FloatTitle", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeFloatBorder", { link = "FloatBorder", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { link = "FloatTitle", force = true })
+    vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { link = "FloatNormal", force = true })
   end
 }

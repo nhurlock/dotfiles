@@ -23,10 +23,10 @@ return {
         if frombuf == tobuf and fromwin == towin then
           return
         end
-        vim.cmd('buf +' .. fromline .. ' ' .. frombuf)
-        vim.fn.win_gotoid(fromwin)
         vim.cmd('buf +' .. toline .. ' ' .. tobuf)
-        vim.fn.win_gotoid(towin)
+        vim.api.nvim_win_call(fromwin, function()
+          vim.cmd('buf +' .. fromline .. ' ' .. frombuf)
+        end)
       end
     end
 

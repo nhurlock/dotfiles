@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -19,6 +20,7 @@ return {
       }
     }
   },
+  ---@type NoiceConfig
   opts = {
     redirect = {
       view = "fidget"
@@ -27,9 +29,13 @@ return {
       view = "fidget"
     },
     cmdline = {
+      view = "cmdline",
       format = {
         search_down = { kind = "search", pattern = "^/", icon = "  ", lang = "regex" },
-        search_up = { kind = "search", pattern = "^%?", icon = "  ", lang = "regex" }
+        search_up = { kind = "search", pattern = "^%?", icon = "  ", lang = "regex" },
+        cmdline = { pattern = "^:", icon = " ", lang = "vim" },
+        filter = { pattern = "^:%s*!", icon = " $", lang = "bash" },
+        lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " ", lang = "lua" },
       }
     },
     routes = {

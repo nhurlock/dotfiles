@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "lewis6991/gitsigns.nvim",
   keys = utils.lazy_maps({

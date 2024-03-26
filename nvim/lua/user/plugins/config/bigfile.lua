@@ -1,6 +1,5 @@
 ---@type LazyPluginSpec
 return {
-  "kylechui/nvim-surround",
-  version = "*",
+  "LunarVim/bigfile.nvim",
   config = true
 }

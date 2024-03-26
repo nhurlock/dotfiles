@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "akinsho/toggleterm.nvim",
   keys = utils.lazy_maps({

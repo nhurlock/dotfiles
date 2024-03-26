@@ -90,6 +90,7 @@ local function fmt_filename(fn)
   end
 end
 
+---@type LazyPluginSpec
 return {
   "nvim-lualine/lualine.nvim",
   opts = {

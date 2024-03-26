@@ -1,6 +1,7 @@
 local utils = require("user.utilities")
 local pickers = require("user.plugins.config.fzf-lua.pickers")
 
+---@type LazyPluginSpec
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },

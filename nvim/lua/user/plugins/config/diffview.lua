@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "sindrets/diffview.nvim",
   cmd = {

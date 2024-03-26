@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "nvimtools/hydra.nvim",
   init = function()

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "catppuccin/nvim",
   name = "catppuccin",
@@ -20,6 +21,7 @@ return {
         dap = true,
         dap_ui = true,
         fidget = true,
+        neotree = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = false
@@ -37,6 +39,6 @@ return {
         mini = true
       }
     })
-    vim.cmd([[colorscheme catppuccin]])
+    vim.cmd.colorscheme('catppuccin')
   end,
 }

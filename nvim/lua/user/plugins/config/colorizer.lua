@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   'norcalli/nvim-colorizer.lua',
   cmd = {

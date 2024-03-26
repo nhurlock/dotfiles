@@ -1,5 +1,7 @@
+---@type LazyPluginSpec
 return {
   'codethread/qmk.nvim',
+  ---@type qmk.UserConfig
   opts = {
     name = 'LAYOUT_65_ansi_blocker',
     variant = 'qmk',

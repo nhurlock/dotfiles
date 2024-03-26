@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "nhurlock/clownshow.nvim",
   dev = false,
@@ -12,5 +13,11 @@ return {
     { "<leader>tt", "JestWatchToggle",    "n", "Toggle Jest watch" },
     { "<leader>tl", "JestWatchLogToggle", "n", "Toggle Jest watch log view" },
   }),
-  config = true
+  config = function()
+    require("clownshow").setup({
+      jest_command = function(opts)
+        return "node --no-warnings --experimental-vm-modules " .. require("clownshow.config.defaults").jest_command(opts)
+      end
+    })
+  end
 }

@@ -15,36 +15,21 @@ end
 
 M.get_visual_selection = function()
   local mode = vim.fn.mode()
-  if mode ~= 'v' and mode ~= 'V' then return nil end
-  local startpos = vim.fn.getpos(".")
-  local endpos = vim.fn.getpos("v")
-  local csrow = startpos[2]
-  local cscol = startpos[3]
-  local cerow = endpos[2]
-  local cecol = endpos[3]
-  if cerow < csrow then
-    csrow, cerow, cscol, cecol = cerow, csrow, cecol, cscol
-  elseif csrow == cerow and cecol < cscol then
-    cscol, cecol = cecol, cscol - cecol + 1
-  elseif csrow == cerow then
-    cecol = cecol - cscol + 1
-  end
-  local lines = vim.fn.getline(csrow, cerow)
-  lines[1] = string.sub(lines[1], cscol)
-  lines[cerow - csrow + 1] = string.sub(lines[cerow - csrow + 1], 0, cecol)
-  return table.concat(lines, '\n')
+  if mode ~= 'v' and mode ~= 'V' and mode ~= '' then return nil end
+  vim.cmd("normal! \"xy")
+  return vim.fn.getreg('x')
 end
 
 M.run_in_node = function()
   local selection_text = M.get_visual_selection()
   local current_line = vim.api.nvim_get_current_line()
-  if not selection_text and not current_line then return nil end
+  if (not selection_text or #selection_text == 0) and (not current_line or #current_line == 0) then return nil end
   local command = 'node -e "(async () => ' ..
       (selection_text or current_line):gsub("[\\\"]", "\\%1") .. ')().then(console.log)"'
   local node_output = vim.fn.system(command)
   if vim.v.shell_error ~= 0 then return nil end
   local prefix_command = "0C"
-  if selection_text then prefix_command = "c" end
+  if selection_text then prefix_command = "gvda" end
   vim.api.nvim_input(prefix_command .. node_output:gsub("(.*)\n", "%1") .. "<esc>")
 end
 

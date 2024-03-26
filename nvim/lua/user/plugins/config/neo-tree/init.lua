@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -173,7 +174,6 @@ return {
     }
   },
   config = function(_, opts)
-    local palette = require('catppuccin.palettes').get_palette()
     local actual_open = require("user.plugins.config.neo-tree.actual-open")
     opts.commands = { actual_open = actual_open }
     require("neo-tree").setup(opts)
@@ -195,25 +195,5 @@ return {
       pattern = "neo-tree *",
       callback = bufenter,
     })
-
-    vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = palette.teal, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = palette.rosewater, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = palette.yellow, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitRenamed", { fg = palette.flamingo, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = palette.lavender, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { link = "Comment", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = palette.yellow, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitStaged", { fg = palette.green, force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeGitConflict", { fg = palette.red, force = true })
-
-    vim.api.nvim_set_hl(0, "NeoTreeHiddenByName", { link = "Comment", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeWindowsHidden", { link = "Comment", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeDimText", { link = "Comment", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeDotfile", { link = "Comment", force = true })
-
-    vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { link = "FloatTitle", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeFloatBorder", { link = "FloatBorder", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { link = "FloatTitle", force = true })
-    vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { link = "FloatNormal", force = true })
   end
 }

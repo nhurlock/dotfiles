@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec
 return {
   "mbbill/undotree",
   keys = utils.lazy_maps({

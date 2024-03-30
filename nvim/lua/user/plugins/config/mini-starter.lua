@@ -13,7 +13,7 @@ return {
         section = "",
         name = "File Browser",
         action = function()
-          require("neo-tree.command").execute({ action = "focus" })
+          require("mini.files").open()
         end
       },
       {

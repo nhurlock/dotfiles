@@ -60,7 +60,6 @@ return {
     "--add-modules=ALL-SYSTEM",
     "--add-opens", "java.base/java.util=ALL-UNNAMED",
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. jdtls_dir .. "/lombok.jar",
     "-jar", vim.fn.glob(jdtls_dir .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration", jdtls_dir .. "/config_" .. os_type,
     "-data", workspace_dir

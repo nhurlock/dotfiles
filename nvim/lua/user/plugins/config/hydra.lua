@@ -1,7 +1,8 @@
 ---@type LazyPluginSpec
 return {
   "nvimtools/hydra.nvim",
-  init = function()
+  keys = "<C-w>a",
+  config = function()
     local Hydra = require('hydra')
     local window_swap = require('user.utilities').window_swap
 

@@ -1,6 +1,3 @@
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
 -- neovide-specific settings
 if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.1

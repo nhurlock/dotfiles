@@ -53,17 +53,17 @@ local function lsp_highlight_document(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider and not lsp_state[bufnr].highlight then
     lsp_state[bufnr].highlight = true
-    local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-      group = group,
-      buffer = bufnr,
-      callback = vim.lsp.buf.document_highlight
-    })
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      group = group,
-      buffer = bufnr,
-      callback = vim.lsp.buf.clear_references
-    })
+    -- local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
+    -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --   group = group,
+    --   buffer = bufnr,
+    --   callback = vim.lsp.buf.document_highlight
+    -- })
+    -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --   group = group,
+    --   buffer = bufnr,
+    --   callback = vim.lsp.buf.clear_references
+    -- })
   end
   -- Maintain if buffer has formatting enabled
   if client.server_capabilities.documentFormattingProvider and not lsp_state[bufnr].formatting then
@@ -106,7 +106,8 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "]w",
     function() vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.WARN }) end,
     with_desc(opts, "LSP go to next warning diagnostic"))
-  vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, with_desc(opts, "LSP open diagnostic"))
+  vim.keymap.set("n", "gl", function() vim.diagnostic.open_float({ focusable = true }) end,
+    with_desc(opts, "LSP open diagnostic"))
   vim.keymap.set("n", "<leader>q", function() vim.diagnostic.setloclist() end,
     with_desc(opts, "LSP set in location list"))
   vim.keymap.set("n", "<leader>fi", function() vim.lsp.buf.format({ async = true }) end, with_desc(opts, "LSP format"))

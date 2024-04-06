@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "3rd/image.nvim",
-  build = "luarocks --local --lua-version=5.1 install magick",
+  dependencies = { "vhyrro/luarocks.nvim" },
   event = "VeryLazy",
   enabled = not vim.g.neovide, -- neovide does not have image support atm
   ---@type Options

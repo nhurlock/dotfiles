@@ -8,6 +8,7 @@ local servers = {
   "jsonls",
   "tsserver",
   "eslint",
+  "gopls",
   "yamlls",
   "cssls",
   "ansiblels",

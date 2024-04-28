@@ -21,6 +21,7 @@ return {
     { "<leader>fd",  "FzfLua diagnostics_workspace",                                                                "n", "FzfLua diagnostics" },
     { "<leader>fh",  "FzfLua help_tags",                                                                            "n", "FzfLua help tags" },
     { "<leader>fr",  "FzfLua lsp_references",                                                                       "n", "FzfLua LSP references" },
+    { "<leader>fy",  "FzfLua registers",                                                                            "n", "FzfLua registers" },
     { "<leader>fe",  "FzfLua resume",                                                                               "n", "FzfLua resume" },
     { "<leader>fj",  "FzfLua jumps",                                                                                "n", "FzfLua jumplist" },
     { "<leader>fm",  "FzfLua marks",                                                                                "n", "FzfLua marks" },
@@ -170,8 +171,8 @@ return {
           -- these are terminal maps
           ["<C-?>"] = "toggle-help",
           ["<C-=>"] = "toggle-fullscreen",
-          ["<C-u>"] = "preview-page-up",
-          ["<C-d>"] = "preview-page-down",
+          ["<C-u>"] = "preview-half-page-up",
+          ["<C-d>"] = "preview-half-page-down",
           ["<C-p>"] = "toggle-preview",
         },
         fzf = {

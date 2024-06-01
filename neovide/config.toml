@@ -3,5 +3,4 @@ normal = { family = "JetBrainsMono Nerd Font Mono", style = "Light" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Light Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Light Italic" }
-# test
-size = 17
+size = 14

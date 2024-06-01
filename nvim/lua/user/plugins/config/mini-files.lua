@@ -71,10 +71,19 @@ return {
       end
     end
 
+    local set_cwd = function()
+      local content = minifiles.get_fs_entry()
+      if content == nil then return end
+      if content.fs_type == "directory" then
+        return vim.fn.chdir(content.path)
+      end
+    end
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesBufferCreate",
       callback = function(args)
         local buf_id = args.data.buf_id
+        vim.keymap.set("n", "<C-=>", set_cwd, { buffer = buf_id })
         vim.keymap.set("n", "<C-h>", toggle_dotfiles, { buffer = buf_id })
         vim.keymap.set("n", "l", function() actual_open(false) end, { buffer = buf_id })
         vim.keymap.set("n", "\\", function() actual_open(true, true) end, { buffer = buf_id })

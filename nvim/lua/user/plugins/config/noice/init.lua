@@ -22,6 +22,9 @@ return {
   },
   ---@type NoiceConfig
   opts = {
+    messages = {
+      view = "fidget",
+    },
     redirect = {
       view = "fidget"
     },

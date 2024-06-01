@@ -18,6 +18,8 @@ local servers = {
   "zls",
   "rust_analyzer",
   "jdtls",
+  "sqlls",
+  "lemminx",
   "docker_compose_language_service",
 }
 

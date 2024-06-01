@@ -33,7 +33,9 @@ return {
     { "gi",          "FzfLua lsp_implementations jump_to_single_result=true",                                       "n", "FzfLua LSP go to implementation" },
     { "gt",          "FzfLua lsp_typedefs jump_to_single_result=true",                                              "n", "FzfLua LSP go to type definition" },
     { "<leader>sl",  function() require('fzf-lua').complete_line({ search = vim.api.nvim_get_current_line() }) end, "n", "FzfLua complete line" },
+    { "<C-x><C-l>",  function() require('fzf-lua').complete_line({ search = vim.api.nvim_get_current_line() }) end, "i", "FzfLua complete line" },
     { "<leader>sf",  function() require('fzf-lua').complete_path() end,                                             "n", "FzfLua complete path" },
+    { "<C-x><C-f>",  function() require('fzf-lua').complete_path() end,                                             "i", "FzfLua complete path" },
   }),
   config = function()
     local actions = require("fzf-lua.actions")

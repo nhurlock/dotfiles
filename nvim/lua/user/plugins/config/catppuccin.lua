@@ -20,6 +20,7 @@ return {
       cmp = true,
       dap = true,
       dap_ui = true,
+      diffview = true,
       fidget = true,
       neotree = true,
       indent_blankline = {

@@ -28,25 +28,60 @@ end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-local java_properties = vim.fn.systemlist("java -XshowSettings:properties -version", nil, true)
+local versions_ok, jenv_versions = pcall(vim.fn.systemlist, "jenv versions", nil, 0)
+local paths_ok, java_home_paths = pcall(vim.fn.systemlist, "readlink -f ~/.jenv/versions/*", nil, 0)
 
-if not java_properties then
+if not (versions_ok and paths_ok) then
   return
 end
 
-local java_home
-local java_version
-for _, line in ipairs(java_properties) do
-  if line:match("java%.home") then
-    java_home = line:gsub(".*java%.home = ", "")
-  elseif line:match("java%.specification%.version") then
-    java_version = line:gsub(".*java%.specification%.version = ", "")
+local runtimeI = -1 -- offset by 1 due to 'system'
+local java_home_map = {}
+local java_runtime = nil
+local java_runtime_map = vim.fn.reduce(jenv_versions, function(acc, value)
+  runtimeI = runtimeI + 1
+  local parts = vim.fn.split(value, " ", 0)
+  local default = false
+  local runtime
+  if #parts >= 2 and string.match(value, "%* ") ~= nil then
+    default = true
+    runtime = parts[2]
+    java_runtime = runtime
+  else
+    runtime = parts[1]
   end
+  if string.match(runtime, "^[0-9.]+$") then
+    local java_home = java_home_paths[runtimeI]
+    if java_home ~= nil then
+      java_home = vim.fn.trim(java_home)
+      java_home_map[runtime] = java_home
+      local name = "JavaSE-" .. runtime
+      if not acc[java_home] then
+        acc[java_home] = {
+          name = name,
+          path = java_home,
+          default = default
+        }
+      else
+        if #name < #acc[java_home].name then
+          acc[java_home].name = name
+        end
+        if default then
+          acc[java_home].default = true
+        end
+      end
+    end
+  end
+  return acc
+end, {})
+
+if java_runtime == "system" then
+  local highest_java_runtime = vim.fn.max(vim.fn.keys(java_home_map))
+  java_runtime = highest_java_runtime
+  java_runtime_map[java_home_map[tostring(highest_java_runtime)]].default = true
 end
 
-if not java_home or not java_version then
-  return
-end
+local java_runtimes = vim.fn.values(java_runtime_map)
 
 return {
   cmd = {
@@ -76,12 +111,8 @@ return {
       },
       configuration = {
         updateBuildConfiguration = "interactive",
-        runtimes = {
-          -- {
-          --   name = "JavaSE-" .. java_version,
-          --   path = java_home
-          -- }
-        },
+        detectJdksAtStart = true,
+        runtimes = java_runtimes,
       },
       maven = {
         downloadSources = true,
@@ -102,6 +133,13 @@ return {
       },
       format = {
         enabled = true,
+        onType = {
+          enabled = true
+        },
+        settings = {
+          profile = "GoogleStyle",
+          url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+        }
       },
       import = {
         maven = {

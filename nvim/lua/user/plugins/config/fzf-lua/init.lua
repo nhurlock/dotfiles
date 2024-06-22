@@ -17,6 +17,7 @@ return {
     { "<leader>fgs", "FzfLua git_status",                                                                           "n", "FzfLua git status" },
     { "<leader>fgt", "FzfLua git_stash",                                                                            "n", "FzfLua git buffer status" },
     { "<leader>fl",  "FzfLua live_grep",                                                                            "n", "FzfLua live grep" },
+    { "<leader>flg", "FzfLua live_grep_glob",                                                                       "n", "FzfLua live grep glob" },
     { "<leader>fb",  "FzfLua buffers",                                                                              "n", "FzfLua buffers" },
     { "<leader>fd",  "FzfLua diagnostics_workspace",                                                                "n", "FzfLua diagnostics" },
     { "<leader>fh",  "FzfLua help_tags",                                                                            "n", "FzfLua help tags" },

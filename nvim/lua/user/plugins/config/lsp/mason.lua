@@ -6,6 +6,7 @@ local servers = {
   "lua_ls",
   "pyright",
   "jsonls",
+  -- "vtsls",
   "tsserver",
   "eslint",
   "gopls",

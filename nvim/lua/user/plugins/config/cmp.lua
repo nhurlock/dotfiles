@@ -9,6 +9,7 @@ return {
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp-signature-help", -- signature completions
     "saadparwaiz1/cmp_luasnip",            -- snippet completions
+    -- "zbirenbaum/copilot-cmp",              -- copilot completions
 
     -- snippets
     "L3MON4D3/LuaSnip",             --snippet engine
@@ -21,6 +22,7 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    -- require("copilot_cmp").setup()
 
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
@@ -129,6 +131,7 @@ return {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
       }, {
+        -- { name = "copilot", group_index = 2 },
         { name = "buffer", group_index = 2 },
       }, {
         { name = "luasnip", group_index = 3 },

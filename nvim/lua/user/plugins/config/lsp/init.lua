@@ -13,10 +13,10 @@ return {
         },
       },
     },
-    { "Bilal2453/luvit-meta",         lazy = true },               -- optional `vim.uv` typings
-    { "notomo/typescript-tools.nvim", branch = "fix-deprecated" }, -- javascript/typescript-specific lsp helpers
-    "yioneko/nvim-vtsls",                                          -- javascript/typescript-specific lsp helpers
-    "mfussenegger/nvim-jdtls",                                     -- java-specific lsp helpers
+    { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+    "pmizio/typescript-tools.nvim",          -- javascript/typescript-specific lsp helpers
+    "yioneko/nvim-vtsls",                    -- javascript/typescript-specific lsp helpers
+    "mfussenegger/nvim-jdtls",               -- java-specific lsp helpers
   },
   config = function()
     require("lspconfig")

@@ -16,7 +16,7 @@ local function usable_win_ids(winid, filter)
         win_config.focusable and
         not win_config.external and
         ((buf_type ~= "nofile" and buf_type ~= "prompt") or
-          (buf_filetype == "starter")) and (filter == nil or filter(buf)) then
+          (buf_filetype == "ministarter")) and (filter == nil or filter(buf)) then
       table.insert(usable, id)
     else
       table.insert(unusable, id)

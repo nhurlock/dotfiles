@@ -22,6 +22,7 @@ return {
       dap_ui = true,
       diffview = true,
       fidget = true,
+      fzf = true,
       neotree = true,
       indent_blankline = {
         enabled = true,

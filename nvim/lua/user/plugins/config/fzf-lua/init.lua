@@ -21,6 +21,8 @@ return {
     { "<leader>fb",  "FzfLua buffers",                                                                              "n", "FzfLua buffers" },
     { "<leader>fd",  "FzfLua diagnostics_workspace",                                                                "n", "FzfLua diagnostics" },
     { "<leader>fh",  "FzfLua help_tags",                                                                            "n", "FzfLua help tags" },
+    { "<leader>fws", "FzfLua lsp_workspace_symbols",                                                                "n", "FzfLua LSP workspace symbols" },
+    { "<leader>fds", "FzfLua lsp_document_symbols",                                                                 "n", "FzfLua LSP document symbols" },
     { "<leader>fr",  "FzfLua lsp_references",                                                                       "n", "FzfLua LSP references" },
     { "<leader>fy",  "FzfLua registers",                                                                            "n", "FzfLua registers" },
     { "<leader>fe",  "FzfLua resume",                                                                               "n", "FzfLua resume" },
@@ -85,6 +87,17 @@ return {
         ["--layout"] = "default"
       }
     }
+    local vertical_rev_custom = {
+      winopts = {
+        preview = {
+          layout = "vertical",
+          vertical = "down:60%"
+        }
+      },
+      fzf_opts = {
+        ["--info"] = "inline-right"
+      }
+    }
     local cursor_custom = {
       prompt = "",
       previewer = false,
@@ -130,6 +143,7 @@ return {
       fzf_opts      = {
         ["--info"] = "inline-right",
         ["--padding"] = "1",
+        ["--wrap"] = true
       },
       files         = {
         fzf_opts = {
@@ -168,6 +182,8 @@ return {
       spell_suggest = cursor_custom,
       lsp           = {
         code_actions = cursor_custom,
+        diagnostics = vertical_custom,
+        symbols = vertical_rev_custom,
       },
       keymap        = {
         builtin = {

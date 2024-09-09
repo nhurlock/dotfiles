@@ -93,64 +93,78 @@ end
 ---@type LazyPluginSpec
 return {
   "nvim-lualine/lualine.nvim",
-  opts = {
-    options = {
-      globalstatus = true,
-      -- component_separators = { left = '', right = '' },
-      -- section_separators = { left = '', right = '' },
-      component_separators = { left = '', right = '' },
-      section_separators = { left = '', right = '' },
-    },
-    sections = {
-      lualine_a = { mode },
-      lualine_b = {
-        { 'branch', icon = '' },
-        'diff',
-        'diagnostics'
+  dependencies = {
+    'AndreM222/copilot-lualine'
+  },
+  config = function()
+    require("lualine").setup({
+      options = {
+        globalstatus = true,
+        -- component_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
-      lualine_c = {
-        {
-          'filetype',
-          icon_only = true,
-          separator = ''
+      sections = {
+        lualine_a = { mode },
+        lualine_b = {
+          { 'branch', icon = '' },
+          'diff',
+          'diagnostics'
         },
-        {
-          'filename',
-          separator = '',
-          newfile_status = false,
-          symbols = {
-            modified = '●',
-            readonly = '',
-            unnamed = '[No Name]',
-            newfile = '[New]',
+        lualine_c = {
+          {
+            'filetype',
+            icon_only = true,
+            separator = ''
           },
-          fmt = fmt_filename
-        }
-      },
-      lualine_x = {
-        show_macro_recording,
-        search_results,
-        {
-          'encoding',
-          fmt = fmt_encoding
-        },
-        {
-          'fileformat',
-          symbols = {
-            unix = ''
+          {
+            'filename',
+            separator = '',
+            newfile_status = false,
+            symbols = {
+              modified = '●',
+              readonly = '',
+              unnamed = '[No Name]',
+              newfile = '[New]',
+            },
+            fmt = fmt_filename
           }
-        }
+        },
+        lualine_x = {
+          show_macro_recording,
+          search_results,
+          {
+            'encoding',
+            fmt = fmt_encoding
+          },
+          {
+            'fileformat',
+            symbols = {
+              unix = ''
+            }
+          }
+        },
+        lualine_y = {
+          {
+            'copilot',
+            show_colors = true,
+            symbols = {
+              spinners = require("copilot-lualine.spinners").bouncing_bar
+            }
+          },
+          'progress'
+        },
+        lualine_z = { 'location' }
       },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location' }
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { 'filename' },
-      lualine_x = { 'location' },
-      lualine_y = {},
-      lualine_z = {}
-    }
-  }
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+      }
+    })
+  end
 }

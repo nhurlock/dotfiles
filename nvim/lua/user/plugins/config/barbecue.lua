@@ -9,6 +9,6 @@ return {
   ---@type barbecue.Config
   opts = {
     show_modified = true,
-    exclude_filetypes = { "starter", "toggleterm", "netrw" }
+    exclude_filetypes = { "ministarter", "toggleterm", "netrw" }
   }
 }

@@ -18,3 +18,8 @@ ln -s "$(pwd)/neovide" ~/.config/neovide
 # wezterm
 rm -rf ~/.config/wezterm
 ln -s "$(pwd)/wezterm" ~/.config/wezterm
+
+
+# aerospace
+rm ~/.aerospace.toml
+ln -s "$(pwd)/aerospace/.aerospace.toml" ~/.aerospace.toml

@@ -166,8 +166,8 @@ shift-space = ['layout floating tiling', 'mode main']
 esc = 'mode main'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-shift-minus = 'resize smart -50'
-shift-equal = 'resize smart +50'
+minus = 'resize smart -50'
+equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#balance-sizes
-equal = 'balance-sizes'
+shift-equal = ['balance-sizes', 'mode main']

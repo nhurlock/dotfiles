@@ -1,5 +1,6 @@
 local utils = require("user.utilities")
 
+---@type LazyPluginSpec[]
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -17,6 +18,7 @@ return {
         end
       end, "i", "Copilot suggestion" },
     }),
+    ---@type copilot_config
     opts = {
       suggestion = {
         enabled = true,

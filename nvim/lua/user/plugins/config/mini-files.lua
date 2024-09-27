@@ -13,8 +13,14 @@ return {
   version = false,
   lazy = false,
   keys = utils.lazy_maps({
-    { "<leader>v", function() toggle_minifiles(nil, false) end,                   "n", "MiniFiles open" },
-    { "<leader>V", function() toggle_minifiles(vim.api.nvim_buf_get_name(0)) end, "n", "MiniFiles open current file" },
+    { "<leader>v", function() toggle_minifiles(nil, false) end, "n", "MiniFiles open" },
+    { "<leader>V", function()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      if vim.bo.buftype == "nofile" then
+        return toggle_minifiles(nil, false)
+      end
+      return toggle_minifiles(bufname)
+    end, "n", "MiniFiles open current file" },
   }),
   opts = {
     mappings = {

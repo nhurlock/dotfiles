@@ -131,6 +131,7 @@ alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
+f = ['fullscreen', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#split
 # backwards from logic??

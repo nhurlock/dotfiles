@@ -60,6 +60,13 @@ keymap("n", "<C-w>x", "<cmd>bdelete<cr>", with_desc(opts, "Delete current buffer
 -- window swap
 keymap("n", "<C-w>s", utilities.window_swap, with_desc(opts, "Swap window with another"))
 
+-- tab mappings
+keymap("n", "<C-t>h", "<cmd>tabprev<cr>", with_desc(opts, "Prev tab"))
+keymap("n", "<C-t>l", "<cmd>tabnext<cr>", with_desc(opts, "Next tab"))
+keymap("n", "<C-t>c", "<cmd>tab split<cr>", with_desc(opts, "Create tab"))
+keymap("n", "<C-t>x", "<cmd>tabclose<cr>", with_desc(opts, "Close tab"))
+keymap("n", "<C-t>X", "<cmd>tabonly<cr>", with_desc(opts, "Close other tabs"))
+
 -- replace word under cursor
 keymap("n", "<leader>re", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gcI<left><left><left><left>",
   with_desc(opts, "Replace word under cursor"))

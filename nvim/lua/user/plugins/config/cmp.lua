@@ -9,11 +9,13 @@ return {
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp-signature-help", -- signature completions
     "saadparwaiz1/cmp_luasnip",            -- snippet completions
-    -- "zbirenbaum/copilot-cmp",              -- copilot completions
+    "zbirenbaum/copilot-cmp",              -- copilot completions
 
     -- snippets
-    "L3MON4D3/LuaSnip",             --snippet engine
-    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+    "L3MON4D3/LuaSnip",                         --snippet engine
+    "rafamadriz/friendly-snippets",             -- a bunch of snippets to use
+
+    { "nhurlock/jira-issues.nvim", dev = true } -- work-only
   },
   init = function()
     require("luasnip/loaders/from_vscode").lazy_load()
@@ -22,9 +24,21 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    -- require("copilot_cmp").setup()
+    require("copilot_cmp").setup()
+
+    local jira_issues_source_ok, jira_issues_source = pcall(require, "jira-issues.completion.cmp")
+    local jira_config_ok, jira_config = pcall(require, "user.config.jira")
+    if jira_config_ok and jira_issues_source_ok then
+      cmp.register_source("jira_issues", jira_issues_source.new(jira_config))
+    end
 
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    cmp.event:on("menu_opened", function()
+      vim.b.copilot_suggestion_hidden = true
+    end)
+    cmp.event:on("menu_closed", function()
+      vim.b.copilot_suggestion_hidden = false
+    end)
 
     local kind_icons = {
       Text = "󰉿",
@@ -54,6 +68,7 @@ return {
       TypeParameter = "󰊄",
       Codeium = "󰚩",
       Copilot = "",
+      Jira = "󰌃",
       AWS = "󰸏"
     }
 
@@ -115,6 +130,9 @@ return {
               end
             end)
           end
+          if entry.source.name == "jira_issues" then
+            vim_item.kind = kind_icons.Jira
+          end
           -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
           -- vim_item.menu = ({
           --       nvim_lsp = "[LSP]",
@@ -128,10 +146,11 @@ return {
       },
       sources = cmp.config.sources({
         -- { name = "nvim_lsp_signature_help" },
+        { name = "jira_issues", max_item_count = 10 },
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
       }, {
-        -- { name = "copilot", group_index = 2 },
         { name = "buffer", group_index = 2 },
       }, {
         { name = "luasnip", group_index = 3 },
@@ -162,6 +181,7 @@ return {
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
+        { name = "jira_issues", max_item_count = 10 },
         { name = 'path' }
       }, {
         { name = 'cmdline' }

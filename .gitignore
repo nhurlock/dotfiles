@@ -1,1 +1,4 @@
 lazygit/state.yml
+node_modules
+dist
+env.lua

@@ -1,5 +1,6 @@
 local util = require('lspconfig.util')
 
+---@type lspconfig.Config
 return {
   default_config = {
     cmd = { 'cfn-lsp-extra' },

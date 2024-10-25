@@ -2,6 +2,7 @@ vim.filetype.add {
   pattern = {
     ['.*/tasks/.*%.ya?ml'] = 'yaml.ansible',
     ['.*/playbooks/.*%.ya?ml'] = 'yaml.ansible',
+    ['.*/.github/workflows/.*%.ya?ml'] = 'yaml.git_actions',
     ['.*%.ya?ml'] = {
       priority = math.huge,
       function(_, bufnr)

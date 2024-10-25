@@ -7,6 +7,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   keys = utils.lazy_maps({
+    { "<leader>ji",  pickers.jira_issues,                                                                           "n", "FzfLua find Jira issues" },
     { "<leader>fp",  pickers.projects,                                                                              "n", "FzfLua find projects" },
     { "<leader>ff",  "FzfLua files",                                                                                "n", "FzfLua find files" },
     { "<leader>fF",  function() require("fzf-lua.providers.files").files({ cwd = vim.fn.expand("%:h") }) end,       "n", "FzfLua find files in current directory" },

@@ -20,13 +20,3 @@ gui:
       - red # Red
 os:
   editPreset: 'nvim'
-git:
-  paging:
-    colorArg: always
-    # pager: 'delta --dark --paging=never --diff-so-fancy --features=interactive'
-keybinding:
-  universal:
-    scrollUpMain: '<pgup>' # main panel scroll up
-    scrollDownMain: '<pgdown>' # main panel scroll down
-    scrollUpMain-alt1: 'K' # main panel scroll up
-    scrollDownMain-alt1: 'J' # main panel scroll down

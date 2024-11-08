@@ -104,8 +104,8 @@ return {
       previewer = false,
       winopts = {
         relative = "cursor",
-        width = 0.30,
-        height = 0.10,
+        width = 60,
+        height = 6,
         row = 1,
         col = 1,
       },

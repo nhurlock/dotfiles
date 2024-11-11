@@ -10,7 +10,7 @@ local get_batt_level = (function()
 
   local function refresh_batt_level()
     local wezterm_battery_info = wezterm.battery_info()
-    if not wezterm_battery_info or not wezterm_battery_info[1] then
+    if not wezterm_battery_info or not wezterm_battery_info[1] or wezterm_battery_info[1].state_of_charge ~= wezterm_battery_info[1].state_of_charge then
       return wezterm.nerdfonts.fa_bolt
     end
     local battery_info = wezterm_battery_info[1]

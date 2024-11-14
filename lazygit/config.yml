@@ -18,5 +18,8 @@ gui:
       - "#8aadf4" # Blue
     unstagedChangesColor:
       - red # Red
+git:
+  paging:
+    pager: delta --paging=never --diff-so-fancy  --features="interactive catppuccin-macchiato"
 os:
   editPreset: 'nvim'

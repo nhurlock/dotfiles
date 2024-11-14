@@ -28,7 +28,8 @@ end
 -- use discrete graphics
 M.config.front_end = "WebGpu"
 M.config.webgpu_power_preference = "HighPerformance"
-M.config.animation_fps = 60
+M.config.webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[1]
+M.config.animation_fps = 10
 M.config.max_fps = 120
 
 M.config.use_fancy_tab_bar = false

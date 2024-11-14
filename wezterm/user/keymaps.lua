@@ -146,9 +146,13 @@ M.config.keys = {
     }),
   },
 
+  -- term
+  { key = "u", mods = "CTRL|SHIFT", action = act.ScrollByPage(-0.25) },
+  { key = "d", mods = "CTRL|SHIFT", action = act.ScrollByPage(0.25) },
+
   -- misc
-  { key = "n", mods = "LEADER", action = act.ToggleFullScreen },
-  { key = ",", mods = "LEADER", action = act.ShowDebugOverlay }
+  { key = "n", mods = "LEADER",     action = act.ToggleFullScreen },
+  { key = ",", mods = "LEADER",     action = act.ShowDebugOverlay }
 }
 
 M.config.key_tables = {
@@ -179,7 +183,16 @@ M.config.key_tables = {
     { key = "l",      action = act.MoveTabRelative(1) },
     { key = "Escape", action = act.PopKeyTable }
   },
+  search_mode = {
+    { key = "r",      mods = "CTRL",                 action = act.CopyMode("CycleMatchType") },
+    { key = "u",      mods = "CTRL",                 action = act.CopyMode("ClearPattern") },
+    { key = "Enter",  action = act.ActivateCopyMode },
+    { key = "Escape", action = act.CopyMode("Close") },
+  },
   copy_mode = {
+    { key = "/",      action = act.Search("CurrentSelectionOrEmptyString") },
+    { key = "n",      action = act.CopyMode("NextMatch") },
+    { key = "N",      mods = "SHIFT",                                                action = act.CopyMode("PriorMatch") },
     { key = "w",      action = act.CopyMode("MoveForwardWord") },
     { key = "b",      action = act.CopyMode("MoveBackwardWord") },
     { key = "e",      action = act.CopyMode("MoveForwardWordEnd") },
@@ -208,14 +221,22 @@ M.config.key_tables = {
     { key = "j",      action = act.CopyMode("MoveDown") },
     { key = "k",      action = act.CopyMode("MoveUp") },
     { key = "l",      action = act.CopyMode("MoveRight") },
-    { key = "Escape", action = act.ClearSelection },
     { key = "c",      mods = "CTRL",                                                 action = act.CopyMode("Close"), },
     { key = "q",      action = act.CopyMode("Close") },
+    { key = "Escape", action = act.CopyMode("Close") },
     {
       key = "y",
       action = act.Multiple({
         { CopyTo = "ClipboardAndPrimarySelection" },
         { CopyMode = "Close" }
+      })
+    },
+    {
+      key = "p",
+      action = act.Multiple({
+        { CopyTo = "PrimarySelection" },
+        { CopyMode = "Close" },
+        { PasteFrom = "PrimarySelection" },
       })
     }
   },

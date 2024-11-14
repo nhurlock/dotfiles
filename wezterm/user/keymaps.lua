@@ -1,5 +1,9 @@
 local wezterm = require("wezterm")
 local colors = require("user.colors")
+local env_ok, env = pcall(require, "user.env")
+if not env_ok then
+  env = {}
+end
 
 local act = wezterm.action
 
@@ -122,6 +126,22 @@ M.config.keys = {
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
         wezterm.open_with(url)
+      end),
+    }),
+  },
+  {
+    key = "J",
+    mods = "LEADER|SHIFT",
+    action = act.QuickSelectArgs({
+      label = "open jira issue",
+      patterns = {
+        "[A-Z]{3,10}-[0-9]{1,10}",
+      },
+      action = wezterm.action_callback(function(window, pane)
+        if env.open_jira_issue ~= nil then
+          local jira_issue = window:get_selection_text_for_pane(pane)
+          env.open_jira_issue(wezterm.open_with, jira_issue)
+        end
       end),
     }),
   },

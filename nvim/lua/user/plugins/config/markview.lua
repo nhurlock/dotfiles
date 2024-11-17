@@ -1,8 +1,10 @@
 return {
   "OXY2DEV/markview.nvim",
-  ft = "markdown",
+  lazy = false,
   opts = {
     modes = { "n", "i" },
-    hybrid_modes = { "i" }
+    hybrid_modes = { "i" },
+    filetypes = { "markdown", "codecompanion" },
+    buf_ignore = {}
   }
 }

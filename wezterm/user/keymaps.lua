@@ -123,6 +123,7 @@ M.config.keys = {
       patterns = {
         "https?://\\S+",
       },
+      -- paste_performs_action = false,
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
         wezterm.open_with(url)
@@ -147,8 +148,10 @@ M.config.keys = {
   },
 
   -- term
-  { key = "u", mods = "CTRL|SHIFT", action = act.ScrollByPage(-0.25) },
-  { key = "d", mods = "CTRL|SHIFT", action = act.ScrollByPage(0.25) },
+  { key = "u", mods = "CTRL|SHIFT", action = act.ScrollByPage(-0.5) },
+  { key = "d", mods = "CTRL|SHIFT", action = act.ScrollByPage(0.5) },
+  { key = "k", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(-1) },
+  { key = "j", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(1) },
 
   -- misc
   { key = "n", mods = "LEADER",     action = act.ToggleFullScreen },

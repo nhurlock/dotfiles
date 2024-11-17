@@ -4,6 +4,7 @@ local utils = require("user.utilities")
 return {
   {
     "zbirenbaum/copilot.lua",
+    enabled = vim.env.USER ~= "nhurlock",
     cmd = "Copilot",
     event = "InsertEnter",
     keys = utils.lazy_maps({
@@ -47,6 +48,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = vim.env.USER ~= "nhurlock",
     branch = "canary",
     config = true
   },

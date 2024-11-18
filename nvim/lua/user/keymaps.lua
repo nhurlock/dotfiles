@@ -123,6 +123,10 @@ keymap("n", "<leader>xq", function()
   pcall(vim.cmd.copen)
 end, with_desc(opts, "Open quickfix list"))
 
+-- tab rotate
+keymap("n", "[t", vim.cmd.tabprev, with_desc(opts, "Go to prev tab"))
+keymap("n", "]t", vim.cmd.tabnext, with_desc(opts, "Go to next next"))
+
 -- buffer rotate
 keymap("n", "[b", vim.cmd.bprevious, with_desc(opts, "Go to prev buffer"))
 keymap("n", "]b", vim.cmd.bnext, with_desc(opts, "Go to next buffer"))
@@ -147,10 +151,10 @@ keymap({ "n", "v" }, "<leader>rin", utilities.run_in_node, with_desc(opts, "Run 
 -- terminal keymaps
 keymap("t", "<C-q>", "<esc>", with_desc(opts, "Terminal normal mode"))
 keymap("t", "<esc>", "<C-\\><C-n>", with_desc(opts, "Terminal escape"))
-keymap("t", "<C-h>", "<C-\\><C-n><C-W>h", with_desc(opts, "Terminal focus window left"))
-keymap("t", "<C-j>", "<C-\\><C-n><C-W>j", with_desc(opts, "Terminal focus window below"))
-keymap("t", "<C-k>", "<C-\\><C-n><C-W>k", with_desc(opts, "Terminal focus window above"))
-keymap("t", "<C-l>", "<C-\\><C-n><C-W>l", with_desc(opts, "Terminal focus window right"))
+keymap("t", "<C-w>h", "<C-\\><C-n><C-W>h", with_desc(opts, "Terminal focus window left"))
+keymap("t", "<C-w>j", "<C-\\><C-n><C-W>j", with_desc(opts, "Terminal focus window below"))
+keymap("t", "<C-w>k", "<C-\\><C-n><C-W>k", with_desc(opts, "Terminal focus window above"))
+keymap("t", "<C-w>l", "<C-\\><C-n><C-W>l", with_desc(opts, "Terminal focus window right"))
 keymap("t", "<S-BS>", "<BS>", opts)
 
 -- relative line number toggle

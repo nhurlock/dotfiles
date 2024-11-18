@@ -28,7 +28,7 @@ autocmd("BufEnter", {
 })
 
 -- always default to insert mode when entering a terminal
-autocmd("TermOpen", {
+autocmd("BufEnter", {
   pattern = "term://*",
   command = "startinsert"
 })

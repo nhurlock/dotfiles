@@ -79,6 +79,10 @@ local function update_right_status(window)
     merge_tables(right_status, to_right_status_part(window:active_key_table(), colors.bright_red))
   end
 
+  if window:leader_is_active() then
+    merge_tables(right_status, to_right_status_part("L", colors.yellow))
+  end
+
   if wezterm.mux.get_active_workspace() ~= "default" then
     merge_tables(right_status, to_right_status_part(wezterm.mux.get_active_workspace(), colors.purple))
   end

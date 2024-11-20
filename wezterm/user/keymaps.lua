@@ -17,18 +17,34 @@ M.config.disable_default_key_bindings = true
 
 M.config.keys = {
   -- panes
-  { key = "a",   mods = "LEADER",       action = act.ActivateKeyTable({ name = "adjust_pane", one_shot = false }) },
-  { key = "h",   mods = "LEADER",       action = act.ActivatePaneDirection("Left") },
-  { key = "j",   mods = "LEADER",       action = act.ActivatePaneDirection("Down") },
-  { key = "k",   mods = "LEADER",       action = act.ActivatePaneDirection("Up") },
-  { key = "l",   mods = "LEADER",       action = act.ActivatePaneDirection("Right") },
-  { key = "H",   mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Left", 5 }) },
-  { key = "J",   mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Down", 5 }) },
-  { key = "K",   mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) },
-  { key = "L",   mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) },
-  { key = "x",   mods = "LEADER",       action = act.CloseCurrentPane({ confirm = true }) },
-  { key = "s",   mods = "LEADER",       action = act.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
-  { key = "z",   mods = "LEADER",       action = act.TogglePaneZoomState },
+  { key = "a", mods = "LEADER",       action = act.ActivateKeyTable({ name = "adjust_pane", one_shot = false }) },
+  { key = "h", mods = "LEADER",       action = act.ActivatePaneDirection("Left") },
+  { key = "j", mods = "LEADER",       action = act.ActivatePaneDirection("Down") },
+  { key = "k", mods = "LEADER",       action = act.ActivatePaneDirection("Up") },
+  { key = "l", mods = "LEADER",       action = act.ActivatePaneDirection("Right") },
+  { key = "H", mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Left", 5 }) },
+  { key = "J", mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Down", 5 }) },
+  { key = "K", mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) },
+  { key = "L", mods = "LEADER|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) },
+  { key = "x", mods = "LEADER",       action = act.CloseCurrentPane({ confirm = true }) },
+  { key = "s", mods = "LEADER",       action = act.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
+  { key = "z", mods = "LEADER",       action = act.TogglePaneZoomState },
+  {
+    key = '_',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local tab, _ = pane:move_to_new_tab()
+      tab:activate()
+    end),
+  },
+  {
+    key = '|',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local _, new_window = pane:move_to_new_window()
+      new_window:focus()
+    end),
+  },
 
   -- splits
   { key = "-",   mods = "LEADER",       action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },

@@ -46,6 +46,7 @@ M.config.window_padding = {
 
 M.config.allow_square_glyphs_to_overflow_width = "Never"
 M.config.font = wezterm.font({ family = 'JetBrainsMono Nerd Font Mono' })
+M.config.font_size = 14.0
 M.config.font_rules = {
   {
     intensity = 'Half',
@@ -78,10 +79,5 @@ M.config.font_rules = {
     font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", stretch = "Normal", style = "Italic" })
   }
 }
-M.config.font_size = 17.0
--- lower dpi on desktop
-if is_desktop then
-  M.config.font_size = 14.0
-end
 
 return M

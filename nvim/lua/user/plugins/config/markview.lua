@@ -4,7 +4,7 @@ return {
   opts = {
     modes = { "n", "i" },
     hybrid_modes = { "i" },
-    filetypes = { "markdown", "codecompanion" },
+    filetypes = { "markdown", "codecompanion", "copilot-chat" },
     buf_ignore = {}
   }
 }

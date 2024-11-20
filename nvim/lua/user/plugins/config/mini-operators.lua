@@ -1,6 +1,5 @@
 ---@type LazyPluginSpec
 return {
-  "kylechui/nvim-surround",
-  version = "*",
+  "echasnovski/mini.operators",
   config = true
 }

@@ -146,6 +146,20 @@ M.config.keys = {
       end),
     }),
   },
+  {
+    key = "N",
+    mods = "LEADER|SHIFT",
+    action = act.QuickSelectArgs({
+      label = "open user lookup",
+      patterns = {
+        "[nNaA][0-9]{7}"
+      },
+      action = wezterm.action_callback(function(window, pane)
+        local n_number = 'n' .. window:get_selection_text_for_pane(pane):sub(2)
+        env.open_nnumber_lookup(wezterm.open_with, n_number)
+      end),
+    })
+  },
 
   -- term
   { key = "u", mods = "CTRL|SHIFT", action = act.ScrollByPage(-0.5) },

@@ -190,3 +190,6 @@ end
 -- textobjects - document
 keymap("x", "ad", "0ggoG$", opts)
 keymap("o", "ad", "<cmd>normal vad<cr>", opts)
+
+-- remap adding surrounding to visual mode selection
+keymap('x', 'S', ":<C-u>lua MiniSurround.add('visual')<CR>", { noremap = true })

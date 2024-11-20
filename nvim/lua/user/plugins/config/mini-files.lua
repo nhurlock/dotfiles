@@ -87,13 +87,20 @@ return {
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesBufferCreate",
-      callback = function(args)
-        local buf_id = args.data.buf_id
+      callback = function(event)
+        local buf_id = event.data.buf_id
         vim.keymap.set("n", "<C-=>", set_cwd, { buffer = buf_id })
         vim.keymap.set("n", "<C-h>", toggle_dotfiles, { buffer = buf_id })
         vim.keymap.set("n", "l", function() actual_open(false) end, { buffer = buf_id })
         vim.keymap.set("n", "\\", function() actual_open(true, true) end, { buffer = buf_id })
         vim.keymap.set("n", "-", function() actual_open(true, false) end, { buffer = buf_id })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesActionRename",
+      callback = function(event)
+        Snacks.rename.on_rename_file(event.data.from, event.data.to)
       end,
     })
   end

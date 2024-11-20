@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "echasnovski/mini.surround",
+  version = false,
   opts = {
     mappings = {
       add = 'ys',          -- Add surrounding in Normal and Visual modes

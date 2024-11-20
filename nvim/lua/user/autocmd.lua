@@ -47,6 +47,7 @@ autocmd("TermEnter", {
   pattern = "term://*",
   callback = function(opts)
     if vim.bo[opts.buf].filetype == "fzf" then
+      vim.b.miniindentscope_disable = true
       vim.keymap.set("t", "<C-h>", "<C-h>", { noremap = true, silent = true, buffer = true })
       vim.keymap.set("t", "<C-j>", "<C-j>", { noremap = true, silent = true, buffer = true })
       vim.keymap.set("t", "<C-k>", "<C-k>", { noremap = true, silent = true, buffer = true })

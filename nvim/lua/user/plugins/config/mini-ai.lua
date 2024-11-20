@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "echasnovski/mini.ai",
+  version = false,
   opts = {
     mappings = {
       -- Main textobject prefixes

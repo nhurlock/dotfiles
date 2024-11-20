@@ -33,14 +33,6 @@ if vim.g.neovide then
   )
 end
 
--- move lines
-keymap("n", "<M-j>", "<cmd>m .+1<cr>", with_desc(opts, "Move line down"))
-keymap("n", "<M-k>", "<cmd>m .-2<cr>", with_desc(opts, "Move line up"))
-keymap("i", "<M-j>", "<esc><cmd>m .+1<cr>gi", with_desc(opts, "Move line down"))
-keymap("i", "<M-k>", "<esc><cmd>m .-2<cr>gi", with_desc(opts, "Move line up"))
-keymap("v", "<M-j>", "@='xp`[V`]'<cr>", with_desc(opts, "Move lines down"))
-keymap("v", "<M-k>", "@='xkP`[V`]'<cr>", with_desc(opts, "Move lines up"))
-
 -- easier window resize
 keymap("", "<M-left>", "<cmd>vertical resize -3<cr>", with_desc(opts, "Resize window width smaller"))
 keymap("", "<M-right>", "<cmd>vertical resize +3<cr>", with_desc(opts, "Resize window width larger"))

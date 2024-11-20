@@ -1,5 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  'numToStr/Comment.nvim',
+  "echasnovski/mini.move",
+  version = false,
   config = true
 }

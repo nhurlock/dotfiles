@@ -85,3 +85,11 @@ autocmd("FileType", {
     vim.treesitter.start(opts.buf)
   end
 })
+
+-- disable mini.indentscope on lazy buffers
+autocmd("FileType", {
+  pattern = "lazy",
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end
+})

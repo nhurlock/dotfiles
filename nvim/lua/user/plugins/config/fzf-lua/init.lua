@@ -43,6 +43,7 @@ return {
   }),
   config = function()
     local actions = require("fzf-lua.actions")
+    local path = require("fzf-lua.path")
     local fzf_utils = require("fzf-lua.utils")
     local quickfix = require('fzf-lua.providers.quickfix')
     local palette = require("catppuccin.palettes").get_palette()
@@ -221,6 +222,9 @@ return {
           ["ctrl-s"]  = actions.file_split,
           ["ctrl-v"]  = actions.file_vsplit,
           ["ctrl-t"]  = actions.file_tabedit,
+          ["ctrl-y"]  = function(selected, opts)
+            vim.fn.setreg('+', path.entry_to_file(selected[1], opts).path)
+          end,
           ["alt-q"]   = actions.file_sel_to_qf,
           ["alt-l"]   = actions.file_sel_to_ll,
         },
@@ -231,6 +235,9 @@ return {
           ["ctrl-s"]  = actions.buf_split,
           ["ctrl-v"]  = actions.buf_vsplit,
           ["ctrl-t"]  = actions.buf_tabedit,
+          ["ctrl-y"]  = function(selected, opts)
+            vim.fn.setreg('+', path.entry_to_file(selected[1], opts).path)
+          end,
           ["alt-q"]   = actions.buf_sel_to_qf,
           ["alt-l"]   = actions.buf_sel_to_ll,
         }

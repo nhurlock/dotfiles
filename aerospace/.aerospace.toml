@@ -43,6 +43,12 @@ default-root-container-orientation = 'horizontal'
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 key-mapping.preset = 'qwerty'
 
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE']
+
+# Notify Sketchybar about focus change
+on-focus-changed = ['exec-and-forget /bin/bash -c "sketchybar --trigger aerospace_focus_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"']
+
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
@@ -61,7 +67,7 @@ inner.horizontal = 5
 inner.vertical =   5
 outer.left =       0
 outer.bottom =     0
-outer.top =        0
+outer.top =        30
 outer.right =      0
 
 [[on-window-detected]]

@@ -90,7 +90,8 @@ local function update_right_status(window)
   merge_tables(right_status, to_right_status_part(get_batt_level()))
   merge_tables(right_status, to_right_status_part(get_date_time(), colors.blue))
 
-  window:set_right_status(wezterm.format(right_status))
+  -- window:set_right_status(wezterm.format(right_status))
+  window:set_right_status('')
 end
 
 wezterm.on("update-right-status", update_right_status)

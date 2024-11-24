@@ -23,3 +23,8 @@ ln -s "$(pwd)/wezterm" ~/.config/wezterm
 # aerospace
 rm ~/.aerospace.toml
 ln -s "$(pwd)/aerospace/.aerospace.toml" ~/.aerospace.toml
+
+
+# sketchybar
+rm -rf ~/.config/sketchybar
+ln -s "$(pwd)/sketchybar" ~/.config/sketchybar

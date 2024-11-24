@@ -1,0 +1,30 @@
+source ./colors.sh
+
+FONT="JetBrainsMono Nerd Font Mono"
+
+sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_focus_change
+
+# main bar
+sketchybar --bar \
+  height=30 \
+  margin=3 \
+  y_offset=0 \
+  padding_left=0 \
+  padding_right=0 \
+  color=$TRANSPARENT
+
+sketchybar --default \
+  updates=when_shown \
+  background.color=$TRANSPARENT \
+  icon.color=$FG \
+  icon.font="$FONT:Thin:16.0" \
+  label.font="$FONT:Thin:10.0" \
+  y_offset=0
+
+source ./left.sh
+source ./right.sh
+
+# finish config
+sketchybar --hotload on
+sketchybar --update

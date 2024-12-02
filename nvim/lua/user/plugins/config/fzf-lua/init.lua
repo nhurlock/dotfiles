@@ -195,20 +195,7 @@ return {
           ["<C-u>"] = "preview-half-page-up",
           ["<C-d>"] = "preview-half-page-down",
           ["<C-p>"] = "toggle-preview",
-        },
-        fzf = {
-          -- fzf '--bind=' options
-          ["ctrl-j"] = "down",
-          ["ctrl-k"] = "up",
-          ["ctrl-u"] = "preview-half-page-up",
-          ["ctrl-d"] = "preview-half-page-down",
-          ["ctrl-p"] = "toggle-preview",
-          ["ctrl-z"] = "abort",
-          ["ctrl-w"] = "backward-kill-word",
-          ["ctrl-b"] = "beginning-of-line",
-          ["ctrl-e"] = "end-of-line",
-          ["alt-a"]  = "toggle-all",
-        },
+        }
       },
       actions       = {
         files = {

@@ -5,6 +5,8 @@ local M = {}
 
 M.config = {}
 
+M.config.term = 'wezterm'
+
 -- remove the title bar from the term window, add integrated buttons
 M.config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 M.config.integrated_title_button_style = "Windows"

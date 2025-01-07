@@ -162,6 +162,9 @@ f = ['fullscreen', 'mode main']
 backslash = ['split horizontal', 'mode main']
 minus = ['split vertical', 'mode main']
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#balance-sizes
+equal = ['balance-sizes', 'mode main']
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#close
 x = ['close', 'mode main']
 

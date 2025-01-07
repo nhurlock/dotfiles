@@ -49,7 +49,6 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     enabled = vim.env.USER ~= "nhurlock",
-    branch = "canary",
     config = true
   },
 }

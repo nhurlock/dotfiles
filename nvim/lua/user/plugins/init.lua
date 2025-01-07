@@ -19,7 +19,7 @@ end
 
 lazy.setup("user.plugins.config", {
   dev = {
-    path = "$dev",
+    path = vim.env.dev,
     patterns = { "nhurlock" }
   },
   install = { colorscheme = { "catppuccin" } },

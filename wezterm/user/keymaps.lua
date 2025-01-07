@@ -128,6 +128,9 @@ M.config.keys = {
     })
   },
 
+  -- windows
+  { key = "n", mods = "SUPER",        action = act.SpawnWindow },
+
   -- modes
   { key = "C", mods = "LEADER|SHIFT", action = act.ActivateCopyMode },
   { key = "q", mods = "LEADER",       action = act.QuickSelect },

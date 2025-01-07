@@ -1,12 +1,15 @@
 local util = require('lspconfig.util')
 
----@type lspconfig.Config
 return {
+  ---@type lspconfig.Config
   default_config = {
     cmd = { 'cfn-lsp-extra' },
     filetypes = { 'yaml.cloudformation', 'json.cloudformation' },
     root_dir = util.root_pattern('.git'),
-    single_file_support = true
+    single_file_support = true,
+    settings = {
+      documentFormatting = false
+    }
   },
   docs = {
     description = [[

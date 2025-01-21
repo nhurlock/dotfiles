@@ -66,6 +66,15 @@ local function search_results()
   return ''
 end
 
+-- custom extension to get the root
+local function show_root()
+  local root = vim.fs.root(0, ".git")
+  if root == nil then
+    root = vim.fn.getcwd()
+  end
+  return vim.fn.fnamemodify(root, ':t')
+end
+
 -- extension formater for file encoding
 local function fmt_encoding(ft)
   if ft == "utf-8" then
@@ -108,6 +117,7 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = {
+          show_root,
           { 'branch', icon = '' },
           'diff',
           'diagnostics'

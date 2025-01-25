@@ -206,7 +206,7 @@ return {
           -- default action opens a single selection
           -- or sends multiple selection to quickfix
           ["default"] = actions.file_edit_or_qf,
-          ["ctrl-s"]  = actions.file_split,
+          ["ctrl-h"]  = actions.file_split,
           ["ctrl-v"]  = actions.file_vsplit,
           ["ctrl-t"]  = actions.file_tabedit,
           ["ctrl-y"]  = function(selected, opts)
@@ -219,7 +219,7 @@ return {
           -- providers that inherit these actions:
           --   buffers, tabs, lines, blines
           ["default"] = actions.buf_edit_or_qf,
-          ["ctrl-s"]  = actions.buf_split,
+          ["ctrl-h"]  = actions.buf_split,
           ["ctrl-v"]  = actions.buf_vsplit,
           ["ctrl-t"]  = actions.buf_tabedit,
           ["ctrl-y"]  = function(selected, opts)

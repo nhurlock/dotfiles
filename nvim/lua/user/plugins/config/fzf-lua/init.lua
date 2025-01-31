@@ -9,6 +9,7 @@ return {
   keys = utils.lazy_maps({
     { "<leader>ji",  pickers.jira_issues,                                                                           "n", "FzfLua find Jira issues" },
     { "<leader>fp",  pickers.projects,                                                                              "n", "FzfLua find projects" },
+    { "<leader>hi",  pickers.fidget,                                                                                "n", "FzfLua Fidget history" },
     { "<leader>ff",  "FzfLua files",                                                                                "n", "FzfLua find files" },
     { "<leader>fF",  function() require("fzf-lua.providers.files").files({ cwd = vim.fn.expand("%:h") }) end,       "n", "FzfLua find files in current directory" },
     { "<leader>fgf", "FzfLua git_files",                                                                            "n", "FzfLua git files" },
@@ -191,10 +192,15 @@ return {
         builtin = {
           -- these are terminal maps
           ["<C-?>"] = "toggle-help",
-          ["<C-=>"] = "toggle-fullscreen",
+          ["<C-f>"] = "toggle-fullscreen",
           ["<C-u>"] = "preview-half-page-up",
           ["<C-d>"] = "preview-half-page-down",
           ["<C-p>"] = "toggle-preview",
+        },
+        fzf = {
+          ["ctrl-u"] = "preview-half-page-up",
+          ["ctrl-d"] = "preview-half-page-down",
+          ["ctrl-p"] = "toggle-preview",
         }
       },
       actions       = {
@@ -206,8 +212,8 @@ return {
           -- default action opens a single selection
           -- or sends multiple selection to quickfix
           ["default"] = actions.file_edit_or_qf,
-          ["ctrl-h"]  = actions.file_split,
-          ["ctrl-v"]  = actions.file_vsplit,
+          ["ctrl-_"]  = actions.file_split,
+          ["ctrl-v"]  = actions.file_vsplit, -- terminal maps <C-\> is taken
           ["ctrl-t"]  = actions.file_tabedit,
           ["ctrl-y"]  = function(selected, opts)
             vim.fn.setreg('+', path.entry_to_file(selected[1], opts).path)
@@ -219,8 +225,8 @@ return {
           -- providers that inherit these actions:
           --   buffers, tabs, lines, blines
           ["default"] = actions.buf_edit_or_qf,
-          ["ctrl-h"]  = actions.buf_split,
-          ["ctrl-v"]  = actions.buf_vsplit,
+          ["ctrl-_"]  = actions.buf_split,
+          ["ctrl-v"]  = actions.buf_vsplit, -- terminal maps <C-\> is taken
           ["ctrl-t"]  = actions.buf_tabedit,
           ["ctrl-y"]  = function(selected, opts)
             vim.fn.setreg('+', path.entry_to_file(selected[1], opts).path)

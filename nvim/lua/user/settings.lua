@@ -11,6 +11,9 @@ end
 -- JetBrainsMono font
 vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h17"
 
+-- cursor config (overwrites default term and cmd cursor - to 'beam')
+vim.opt.guicursor = "n-v-sm:block,i-c-ci-ve-t:ver25,r-cr-o:hor20"
+
 -- disable continuation of comment when // is not the start of a line
 vim.opt.formatoptions:append('o/')
 

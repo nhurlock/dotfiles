@@ -24,13 +24,13 @@ M.setup = function()
     }
   })
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.buf.hover({
     border = "solid",
     pad_top = 0,
     pad_bottom = 0
   })
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({
     border = "solid",
     pad_top = 0,
     pad_bottom = 0
@@ -80,21 +80,21 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, with_desc(opts, "LSP rename"))
   -- vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>.", function() vim.lsp.buf.code_action() end, with_desc(opts, "LSP code actions"))
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ border = "rounded" }) end,
+  vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, border = "rounded" }) end,
     with_desc(opts, "LSP go to prev diagnostic"))
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ border = "rounded" }) end,
+  vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, border = "rounded" }) end,
     with_desc(opts, "LSP go to next diagnostic"))
   vim.keymap.set("n", "[e",
-    function() vim.diagnostic.goto_prev({ border = "rounded", severity = vim.diagnostic.severity.ERROR }) end,
+    function() vim.diagnostic.jump({ count = -1, border = "rounded", severity = vim.diagnostic.severity.ERROR }) end,
     with_desc(opts, "LSP go to prev error diagnostic"))
   vim.keymap.set("n", "]e",
-    function() vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR }) end,
+    function() vim.diagnostic.jump({ count = 1, border = "rounded", severity = vim.diagnostic.severity.ERROR }) end,
     with_desc(opts, "LSP go to next error diagnostic"))
   vim.keymap.set("n", "[w",
-    function() vim.diagnostic.goto_prev({ border = "rounded", severity = vim.diagnostic.severity.WARN }) end,
+    function() vim.diagnostic.jump({ count = -1, border = "rounded", severity = vim.diagnostic.severity.WARN }) end,
     with_desc(opts, "LSP go to prev warning diagnostic"))
   vim.keymap.set("n", "]w",
-    function() vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.WARN }) end,
+    function() vim.diagnostic.jump({ count = 1, border = "rounded", severity = vim.diagnostic.severity.WARN }) end,
     with_desc(opts, "LSP go to next warning diagnostic"))
   vim.keymap.set("n", "gl", function() vim.diagnostic.open_float({ focusable = true }) end,
     with_desc(opts, "LSP open diagnostic"))

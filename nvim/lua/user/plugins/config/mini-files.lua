@@ -27,7 +27,7 @@ return {
       close       = 'q',
       go_in       = '',
       go_in_plus  = '',
-      go_out      = 'h',
+      go_out      = '',
       go_out_plus = '',
       reset       = '<BS>',
       reveal_cwd  = '@',
@@ -85,15 +85,59 @@ return {
       end
     end
 
+    local function keymap_set(buf_id)
+      return function(maps)
+        for _, map in ipairs(maps) do
+          vim.keymap.set(map[1], map[2], map[3], { buffer = buf_id })
+        end
+      end
+    end
+
+    local function keymap_del(buf_id)
+      return function(maps)
+        for _, map in ipairs(maps) do
+          vim.keymap.del(map[1], map[2], { buffer = buf_id })
+        end
+      end
+    end
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesBufferCreate",
       callback = function(event)
         local buf_id = event.data.buf_id
-        vim.keymap.set("n", "<C-=>", set_cwd, { buffer = buf_id })
-        vim.keymap.set("n", "<C-h>", toggle_dotfiles, { buffer = buf_id })
-        vim.keymap.set("n", "l", function() actual_open(false) end, { buffer = buf_id })
-        vim.keymap.set("n", "\\", function() actual_open(true, true) end, { buffer = buf_id })
-        vim.keymap.set("n", "-", function() actual_open(true, false) end, { buffer = buf_id })
+        local keyset = keymap_set(buf_id)
+        local keydel = keymap_del(buf_id)
+        local default_in_out_maps = {
+          { "n", "h", minifiles.go_out },
+          { "n", "l", function() actual_open(false) end },
+        }
+        local edit_in_out_maps = {
+          { "n", "<C-j>", function() vim.fn.feedkeys("j", "n") end },
+          { "n", "<C-k>", function() vim.fn.feedkeys("k", "n") end },
+          { "n", "<C-h>", minifiles.go_out },
+          { "n", "<C-l>", function() actual_open(false) end },
+        }
+
+        local edit_mode = false
+        local function toggle_edit_mode()
+          edit_mode = not edit_mode
+          if edit_mode then
+            keydel(default_in_out_maps)
+            keyset(edit_in_out_maps)
+          else
+            keydel(edit_in_out_maps)
+            keyset(default_in_out_maps)
+          end
+        end
+
+        keyset(default_in_out_maps)
+        keyset({
+          { "n", "<C-d>",  set_cwd },
+          { "n", "<C-e>",  toggle_edit_mode },
+          { "n", "<C-.>",  toggle_dotfiles },
+          { "n", "<C-\\>", function() actual_open(true, true) end },
+          { "n", "<C-_>",  function() actual_open(true, false) end },
+        })
       end,
     })
 

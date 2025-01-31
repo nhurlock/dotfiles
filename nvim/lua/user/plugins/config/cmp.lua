@@ -12,10 +12,10 @@ return {
     "zbirenbaum/copilot-cmp",              -- copilot completions
 
     -- snippets
-    "L3MON4D3/LuaSnip",                         --snippet engine
-    "rafamadriz/friendly-snippets",             -- a bunch of snippets to use
+    "L3MON4D3/LuaSnip",                                                               --snippet engine
+    "rafamadriz/friendly-snippets",                                                   -- a bunch of snippets to use
 
-    { "nhurlock/jira-issues.nvim", dev = true } -- work-only
+    { "nhurlock/jira-issues.nvim", enabled = vim.env.USER ~= "nhurlock", dev = true } -- work-only
   },
   init = function()
     require("luasnip/loaders/from_vscode").lazy_load()

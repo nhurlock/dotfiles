@@ -142,7 +142,7 @@ M.config.keys = {
       patterns = {
         "https?://\\S+",
       },
-      -- paste_performs_action = false,
+      skip_action_on_paste = false,
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
         wezterm.open_with(url)

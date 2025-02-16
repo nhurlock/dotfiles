@@ -10,9 +10,10 @@ return {
     { 'L3MON4D3/LuaSnip',    version = 'v2.*' }, -- snippet engine
     "rafamadriz/friendly-snippets",              -- a bunch of snippets to use
 
+    "giuxtaposition/blink-cmp-copilot",          -- copilot completions
+
     -- nvim_cmp sources, to be replaced/updated
     "hrsh7th/cmp-cmdline",                                                            -- cmdline completions
-    "zbirenbaum/copilot-cmp",                                                         -- copilot completions
     { "nhurlock/jira-issues.nvim", enabled = vim.env.USER ~= "nhurlock", dev = true } -- work-only
   },
   config = function()
@@ -56,7 +57,6 @@ return {
       AWS = "󰸏"
     }
 
-    require("copilot_cmp").setup()
     vim.api.nvim_create_autocmd('User', {
       pattern = 'BlinkCmpMenuOpen',
       callback = function()
@@ -93,7 +93,9 @@ return {
         providers = {
           copilot = {
             name = "copilot",
-            module = "blink.compat.source"
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
           },
           cmdline = {
             name = "cmdline",
@@ -131,6 +133,9 @@ return {
               kind_icon = {
                 ellipsis = false,
                 text = function(ctx)
+                  if ctx.source_name == "copilot" then
+                    return kind_icons.Copilot
+                  end
                   if ctx.source_name == "jira_issues" then
                     return kind_icons.Jira
                   end

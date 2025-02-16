@@ -11,14 +11,7 @@ return {
   }),
   dependencies = {
     "MunifTanjim/nui.nvim",
-    {
-      "rcarriga/nvim-notify",
-      opts = {
-        render = "compact",
-        stages = require('user.plugins.config.noice.stages.fade')(),
-        timeout = 500
-      }
-    }
+    "folke/snacks.nvim"
   },
   ---@type NoiceConfig
   opts = {

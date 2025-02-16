@@ -8,6 +8,7 @@ return {
   },
   ---@type barbecue.Config
   opts = {
+    theme = "catppuccin-macchiato",
     show_modified = true,
     exclude_filetypes = { "ministarter", "toggleterm", "netrw" }
   }

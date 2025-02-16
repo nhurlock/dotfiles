@@ -9,8 +9,20 @@ return {
   }),
   ---@type snacks.Config
   opts = {
+    styles = {
+      input = {
+        title_pos = "left",
+        relative = "cursor",
+        row = -3,
+        col = 0,
+      }
+    },
     rename = { enabled = true },
     gitbrowse = { enabled = true },
+    input = {
+      enabled = true,
+      prompt_pos = "left",
+    },
     zen = {
       enabled = true,
       toggles = { dim = false },
@@ -21,5 +33,15 @@ return {
         }
       }
     }
-  }
+  },
+  config = function(_, opts)
+    require('snacks').setup(opts)
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesActionRename",
+      callback = function(event)
+        Snacks.rename.on_rename_file(event.data.from, event.data.to)
+      end,
+    })
+  end
 }

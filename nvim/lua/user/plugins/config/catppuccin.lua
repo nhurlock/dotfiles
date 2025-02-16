@@ -11,6 +11,7 @@ return {
       enabled = false
     },
     integrations = {
+      blink_cmp = false,
       barbecue = {
         dim_dirname = true
       },
@@ -23,22 +24,17 @@ return {
       diffview = true,
       fidget = true,
       fzf = true,
-      neotree = true,
-      indent_blankline = {
-        enabled = true,
-        colored_indent_levels = false
-      },
       native_lsp = {
         enabled = true
       },
       noice = true,
-      notify = true,
+      semantic_tokens = true,
+      snacks = true,
       treesitter = true,
       treesitter_context = true,
-      telescope = {
+      mini = {
         enabled = true
-      },
-      mini = true
+      }
     }
   },
   config = function(_, opts)

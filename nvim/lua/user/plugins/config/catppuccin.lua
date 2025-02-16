@@ -11,14 +11,13 @@ return {
       enabled = false
     },
     integrations = {
-      blink_cmp = false,
+      blink_cmp = true,
       barbecue = {
         dim_dirname = true
       },
       gitsigns = true,
       mason = true,
       markdown = true,
-      cmp = true,
       dap = true,
       dap_ui = true,
       diffview = true,

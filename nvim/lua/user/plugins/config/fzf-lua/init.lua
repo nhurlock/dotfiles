@@ -26,6 +26,7 @@ return {
     { "<leader>fws", "FzfLua lsp_workspace_symbols",                                                                "n", "FzfLua LSP workspace symbols" },
     { "<leader>fds", "FzfLua lsp_document_symbols",                                                                 "n", "FzfLua LSP document symbols" },
     { "<leader>fr",  "FzfLua lsp_references",                                                                       "n", "FzfLua LSP references" },
+    { "<leader>f?",  "FzfLua lsp_finder",                                                                           "n", "FzfLua LSP finder" },
     { "<leader>fy",  "FzfLua registers",                                                                            "n", "FzfLua registers" },
     { "<leader>fe",  "FzfLua resume",                                                                               "n", "FzfLua resume" },
     { "<leader>fj",  "FzfLua jumps",                                                                                "n", "FzfLua jumplist" },
@@ -236,5 +237,6 @@ return {
         }
       },
     })
+    vim.cmd([[FzfLua register_ui_select]])
   end
 }

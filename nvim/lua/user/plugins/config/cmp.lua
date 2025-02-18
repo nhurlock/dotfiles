@@ -2,6 +2,7 @@
 return {
   "saghen/blink.cmp",
   version = '*',
+  event = 'InsertEnter',
   build = 'cargo build --release',
   dependencies = {
     { "saghen/blink.compat", version = "*",   lazy = true, opts = {} },
@@ -89,7 +90,16 @@ return {
         ["<C-e>"] = { "hide", "fallback" }
       },
       sources = {
-        default = { 'copilot', 'lsp', 'buffer', 'snippets', 'path' },
+        default = {
+          'copilot',
+          'lsp',
+          'buffer',
+          'snippets',
+          'path',
+          'avante_commands',
+          'avante_mentions',
+          'avante_files'
+        },
         providers = {
           copilot = {
             name = "copilot",
@@ -100,6 +110,24 @@ return {
           cmdline = {
             name = "cmdline",
             module = "blink.compat.source"
+          },
+          avante_commands = {
+            name = "avante_commands",
+            module = "blink.compat.source",
+            score_offset = 100,
+            opts = {},
+          },
+          avante_files = {
+            name = "avante_files",
+            module = "blink.compat.source",
+            score_offset = 101,
+            opts = {},
+          },
+          avante_mentions = {
+            name = "avante_mentions",
+            module = "blink.compat.source",
+            score_offset = 1000,
+            opts = {},
           }
         }
       },

@@ -74,7 +74,7 @@ autocmd("TermClose", {
 -- highlight text yank
 autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ higroup = "Search" })
+    vim.highlight.on_yank({ higroup = "Search", priority = 250 })
   end
 })
 

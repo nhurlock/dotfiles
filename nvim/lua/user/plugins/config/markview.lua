@@ -5,7 +5,7 @@ return {
     preview = {
       modes = { "n", "i" },
       hybrid_modes = { "i" },
-      filetypes = { "markdown", "codecompanion", "copilot-chat" },
+      filetypes = { "markdown", "codecompanion", "copilot-chat", "Avante" },
       buf_ignore = {}
     }
   }

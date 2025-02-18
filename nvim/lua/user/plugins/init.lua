@@ -23,9 +23,17 @@ lazy.setup("user.plugins.config", {
     patterns = { "nhurlock" }
   },
   install = { colorscheme = { "catppuccin" } },
+  change_detection = { notify = false },
   performance = {
     rtp = {
       disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
         "matchit"
       }
     }

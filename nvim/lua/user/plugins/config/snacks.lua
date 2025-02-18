@@ -5,7 +5,8 @@ return {
   "folke/snacks.nvim",
   keys = utils.lazy_maps({
     { "<leader>go", function() Snacks.gitbrowse.open() end, "n", "Git browse open" },
-    { "<leader>z",  function() Snacks.zen() end,            "n", "Zen Mode" }
+    { "<leader>z",  function() Snacks.zen() end,            "n", "Zen mode" },
+    { "<leader>i",  function() Snacks.image.hover() end,    "n", "Show image at cursor" }
   }),
   ---@type snacks.Config
   opts = {
@@ -22,6 +23,14 @@ return {
     input = {
       enabled = true,
       prompt_pos = "left",
+    },
+    image = {
+      enabled = true,
+      doc = {
+        enabled = true,
+        inline = true,
+        float = false
+      }
     },
     zen = {
       enabled = true,

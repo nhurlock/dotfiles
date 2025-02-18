@@ -88,6 +88,10 @@ keymap("n", "<leader>xo", function()
   end)
 end, with_desc(opts, "Go to file and line number in copy register"))
 
+-- word wrap movement
+keymap("n", "j", [[(v:count > 1 ? "m`" . v:count : "g") . "j"]], { expr = true })
+keymap("n", "k", [[(v:count > 1 ? "m`" . v:count : "g") . "k"]], { expr = true })
+
 -- clear search highlight on esc
 keymap("n", "<esc>", "<esc><cmd>noh<cr>", with_desc(opts, "Escape and clear highlight"))
 
@@ -108,12 +112,8 @@ keymap("n", "<leader>Y", "\"+Y", with_desc(opts, "Yank line to system clipboard"
 keymap("v", "<leader>y", "\"+y", with_desc(opts, "Yank selection to system clipboard"))
 
 -- lists
-keymap("n", "<leader>xl", function()
-  pcall(vim.cmd.lopen)
-end, with_desc(opts, "Open location list"))
-keymap("n", "<leader>xq", function()
-  pcall(vim.cmd.copen)
-end, with_desc(opts, "Open quickfix list"))
+keymap("n", "<leader>xl", function() pcall(vim.cmd.lopen) end, with_desc(opts, "Open location list"))
+keymap("n", "<leader>xq", function() pcall(vim.cmd.copen) end, with_desc(opts, "Open quickfix list"))
 
 -- tab rotate
 keymap("n", "[t", vim.cmd.tabprev, with_desc(opts, "Go to prev tab"))

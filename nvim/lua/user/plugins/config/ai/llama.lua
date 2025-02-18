@@ -6,7 +6,7 @@
 ---@type LazyPluginSpec
 return {
   "ggml-org/llama.vim",
-  enabled = vim.env.USER == "nhurlock",
+  enabled = vim.g.ai_provider == "llama",
   init = function()
     vim.g.llama_config = {
       show_info = 0

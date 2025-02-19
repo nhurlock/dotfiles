@@ -50,5 +50,32 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     enabled = vim.g.ai_provider == "copilot",
     config = true
+  },
+  {
+    "giuxtaposition/blink-cmp-copilot",
+    enabled = vim.g.ai_provider == "copilot"
+  },
+  {
+    "yetone/avante.nvim",
+    enabled = vim.g.ai_provider == "copilot",
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    build = "make",
+    opts = {
+      provider = "copilot",
+      file_selector = {
+        provider = "fzf",
+      },
+      behaviour = {
+        auto_suggestions = false, -- provided by copilot.lua
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+        minimize_diff = true,
+        enable_token_counting = false
+      }
+    }
   }
 }

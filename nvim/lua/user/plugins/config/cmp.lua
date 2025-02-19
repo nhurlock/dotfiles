@@ -11,8 +11,6 @@ return {
     { 'L3MON4D3/LuaSnip',    version = 'v2.*' }, -- snippet engine
     "rafamadriz/friendly-snippets",              -- a bunch of snippets to use
 
-    "giuxtaposition/blink-cmp-copilot",          -- copilot completions
-
     -- nvim_cmp sources, to be replaced/updated
     "hrsh7th/cmp-cmdline",                                                            -- cmdline completions
     { "nhurlock/jira-issues.nvim", enabled = vim.env.USER ~= "nhurlock", dev = true } -- work-only
@@ -76,7 +74,7 @@ return {
     --  - jira_issues provider
     --  - handle cfn_lsp case for custom 'AWS' kind icon
 
-    cmp.setup({
+    local opts = {
       keymap = {
         preset = "none",
         ["<C-k>"] = { "select_prev", "fallback" },
@@ -91,43 +89,15 @@ return {
       },
       sources = {
         default = {
-          'copilot',
           'lsp',
           'buffer',
           'snippets',
-          'path',
-          'avante_commands',
-          'avante_mentions',
-          'avante_files'
+          'path'
         },
         providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-cmp-copilot",
-            score_offset = 100,
-            async = true,
-          },
           cmdline = {
             name = "cmdline",
             module = "blink.compat.source"
-          },
-          avante_commands = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 100,
-            opts = {},
-          },
-          avante_files = {
-            name = "avante_files",
-            module = "blink.compat.source",
-            score_offset = 101,
-            opts = {},
-          },
-          avante_mentions = {
-            name = "avante_mentions",
-            module = "blink.compat.source",
-            score_offset = 1000,
-            opts = {},
           }
         }
       },
@@ -187,6 +157,42 @@ return {
       appearance = {
         kind_icons = kind_icons
       }
-    })
+    }
+
+    if vim.g.ai_provider == "copilot" then
+      -- configure copilot
+      opts.sources.default:append("copilot")
+      opts.sources.providers.copilot = {
+        name = "copilot",
+        module = "blink-cmp-copilot",
+        score_offset = 100,
+        async = true
+      }
+
+      -- configure avante
+      opts.sources.default:append('avante_commands')
+      opts.sources.default:append('avante_mentions')
+      opts.sources.default:append('avante_files')
+      opts.sources.providers.avante_commands = {
+        name = "avante_commands",
+        module = "blink.compat.source",
+        score_offset = 100,
+        opts = {}
+      }
+      opts.sources.providers.avante_files = {
+        name = "avante_files",
+        module = "blink.compat.source",
+        score_offset = 101,
+        opts = {}
+      }
+      opts.sources.providers.avante_mentions = {
+        name = "avante_mentions",
+        module = "blink.compat.source",
+        score_offset = 1000,
+        opts = {}
+      }
+    end
+
+    cmp.setup(opts)
   end
 }

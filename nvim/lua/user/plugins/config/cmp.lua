@@ -50,8 +50,8 @@ return {
       Operator = "󰆕",
       TypeParameter = "󰊄",
 
-      Codeium = "󰚩",
       Copilot = "",
+      AI = "󰚩",
       Jira = "󰌃",
       AWS = "󰸏"
     }
@@ -131,6 +131,9 @@ return {
               kind_icon = {
                 ellipsis = false,
                 text = function(ctx)
+                  if ctx.source_name == "minuet" then
+                    return kind_icons.AI
+                  end
                   if ctx.source_name == "copilot" then
                     return kind_icons.Copilot
                   end
@@ -161,7 +164,7 @@ return {
 
     if vim.g.ai_provider == "copilot" then
       -- configure copilot
-      opts.sources.default:append("copilot")
+      table.insert(opts.sources.default, "copilot")
       opts.sources.providers.copilot = {
         name = "copilot",
         module = "blink-cmp-copilot",
@@ -170,27 +173,33 @@ return {
       }
 
       -- configure avante
-      opts.sources.default:append('avante_commands')
-      opts.sources.default:append('avante_mentions')
-      opts.sources.default:append('avante_files')
+      table.insert(opts.sources.default, "avante_commands")
+      table.insert(opts.sources.default, "avante_mentions")
+      table.insert(opts.sources.default, "avante_files")
       opts.sources.providers.avante_commands = {
         name = "avante_commands",
         module = "blink.compat.source",
-        score_offset = 100,
-        opts = {}
+        score_offset = 100
       }
       opts.sources.providers.avante_files = {
         name = "avante_files",
         module = "blink.compat.source",
-        score_offset = 101,
-        opts = {}
+        score_offset = 101
       }
       opts.sources.providers.avante_mentions = {
         name = "avante_mentions",
         module = "blink.compat.source",
-        score_offset = 1000,
-        opts = {}
+        score_offset = 1000
       }
+    elseif vim.g.ai_provider == "llama" then
+      -- configure minuet
+      -- table.insert(opts.sources.default, "minuet")
+      -- opts.sources.providers.minuet = {
+      --   name = 'minuet',
+      --   module = 'minuet.blink',
+      --   score_offset = 100,
+      --   async = true
+      -- }
     end
 
     cmp.setup(opts)

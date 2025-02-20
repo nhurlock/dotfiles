@@ -140,6 +140,10 @@ M.on_attach = function(client, bufnr)
   --   vim.lsp.buf.inlay_hint(bufnr, true)
   -- end
 
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+  end
+
   lsp_keymaps(bufnr)
   lsp_highlight_document(client, bufnr)
 

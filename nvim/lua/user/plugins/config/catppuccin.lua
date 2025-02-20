@@ -12,9 +12,6 @@ return {
     },
     integrations = {
       blink_cmp = true,
-      barbecue = {
-        dim_dirname = true
-      },
       gitsigns = true,
       mason = true,
       markdown = true,
@@ -26,6 +23,10 @@ return {
       native_lsp = {
         enabled = true
       },
+      navic = {
+        enabled = true,
+        custom_bg = "NONE"
+      },
       noice = true,
       semantic_tokens = true,
       snacks = true,
@@ -34,7 +35,13 @@ return {
       mini = {
         enabled = true
       }
-    }
+    },
+    custom_highlights = function(colors)
+      return {
+        NavicText = { fg = colors.text, bg = "NONE" },
+        NavicSeparator = { fg = colors.overlay0, bg = "NONE" },
+      }
+    end
   },
   config = function(_, opts)
     require('catppuccin').setup(opts)

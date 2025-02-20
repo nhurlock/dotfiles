@@ -75,6 +75,11 @@ return {
     --  - handle cfn_lsp case for custom 'AWS' kind icon
 
     local opts = {
+      enabled = function()
+        return vim.bo.filetype ~= "typr"
+            and vim.bo.buftype ~= "prompt"
+            and vim.b.completion ~= false
+      end,
       keymap = {
         preset = "none",
         ["<C-k>"] = { "select_prev", "fallback" },

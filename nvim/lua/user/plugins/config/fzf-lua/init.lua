@@ -4,7 +4,6 @@ local pickers = require("user.plugins.config.fzf-lua.pickers")
 ---@type LazyPluginSpec
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   keys = utils.lazy_maps({
     { "<leader>ji",  pickers.jira_issues,                                                                           "n", "FzfLua find Jira issues" },

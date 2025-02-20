@@ -15,10 +15,7 @@ return {
         library = {
           { path = "luvit-meta/library", words = { "vim%.uv" } },
           { path = "wezterm-types",      mods = { "wezterm" } },
-          { path = "lazy.nvim",          words = { "Lazy" } },
-          { path = "barbecue.nvim",      words = { "barbecue.nvim" } },
-          { path = "qmk.nvim",           words = { "qmk.nvim" } },
-          { path = "zen-mode.nvim",      words = { "zen-mode.nvim" } },
+          { path = "lazy.nvim",          words = { "Lazy" } }
         }
       },
     },

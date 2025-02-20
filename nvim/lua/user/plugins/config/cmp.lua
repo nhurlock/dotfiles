@@ -17,39 +17,9 @@ return {
   },
   config = function()
     local cmp = require("blink.cmp")
+    local icons = require("mini.icons")
 
     local kind_icons = {
-      Text = "󰉿",
-      Method = "m",
-      Function = "󰊕",
-      Constructor = "",
-
-      Field = "",
-      Variable = "󰆧",
-      Property = "",
-
-      Class = "󰌗",
-      Interface = "",
-      Struct = "",
-      Module = "",
-
-      Unit = "",
-      Value = "󰎠",
-      Enum = "",
-      EnumMember = "",
-
-      Keyword = "󰌋",
-      Constant = "󰇽",
-
-      Snippet = "",
-      Color = "󰏘",
-      File = "󰈙",
-      Reference = "",
-      Folder = "󰉋",
-      Event = "",
-      Operator = "󰆕",
-      TypeParameter = "󰊄",
-
       Copilot = "",
       AI = "󰚩",
       Jira = "󰌃",
@@ -145,8 +115,12 @@ return {
                   if ctx.source_name == "jira_issues" then
                     return kind_icons.Jira
                   end
-                  return kind_icons[ctx.kind]
-                end
+                  return icons.get('lsp', ctx.kind)
+                end,
+                highlight = function(ctx)
+                  local _, hl = icons.get('lsp', ctx.kind)
+                  return hl
+                end,
               }
             },
             columns = {

@@ -194,6 +194,7 @@ return {
         globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
+        disabled_buftypes = { "nofile", "quickfix", "prompt" },
         disabled_filetypes = {
           winbar = { "toggleterm", "ministarter" }
         }

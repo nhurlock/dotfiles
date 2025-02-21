@@ -1,4 +1,6 @@
+notARepository: quit
 gui:
+  showBottomLine: false
   nerdFontsVersion: '3'
   theme:
     lightTheme: false

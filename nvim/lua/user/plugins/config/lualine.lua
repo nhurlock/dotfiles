@@ -92,6 +92,8 @@ local function fmt_filename(fn)
     return "Node"
   elseif fn:match("toggleterm") then
     return "Terminal"
+  elseif vim.bo.filetype == "minifiles" then
+    return "Files"
   else
     return fn
   end

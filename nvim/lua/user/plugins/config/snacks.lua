@@ -20,6 +20,11 @@ return {
     },
     rename = { enabled = true },
     gitbrowse = { enabled = true },
+    statuscolumn = {
+      enabled = true,
+      left = { "sign" },
+      right = { "fold", "git" }
+    },
     input = {
       enabled = true,
       prompt_pos = "left",

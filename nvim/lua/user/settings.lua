@@ -57,8 +57,8 @@ vim.opt.tabstop = 2
 -- leave 8 lines buffer while scrolling
 vim.opt.scrolloff = 8
 
--- 3 column sign column
-vim.opt.signcolumn = "yes:3"
+-- 1 column sign column
+vim.opt.signcolumn = "yes:1"
 
 -- shortmess updates
 -- added 's' to remove 'search hit top/bottom' messages

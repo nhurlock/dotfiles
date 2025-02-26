@@ -67,6 +67,7 @@ return {
       file_selector = {
         provider = "fzf",
       },
+      hints = { enabled = false },
       behaviour = {
         auto_suggestions = false, -- provided by copilot.lua
         auto_set_highlight_group = true,

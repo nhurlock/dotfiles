@@ -89,31 +89,28 @@ local function lsp_attach(client, bufnr)
       lsp_state[bufnr].inlay_hints = not lsp_state[bufnr].inlay_hints
       if lsp_state[bufnr].inlay_hints then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        vim.api.nvim_create_autocmd('InsertEnter', {
+          group = inlay_hints_group,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+          end,
+        })
+        vim.api.nvim_create_autocmd('InsertLeave', {
+          group = inlay_hints_group,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.inlay_hint.enable(lsp_state[bufnr].inlay_hints, { bufnr = bufnr })
+          end,
+        })
       else
+        vim.api.nvim_clear_autocmds({ group = inlay_hints_group, buffer = bufnr })
         vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
       end
     end, "LSP toggle inlay hints")
-
-    vim.api.nvim_create_autocmd('InsertEnter', {
-      group = inlay_hints_group,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('InsertLeave', {
-      group = inlay_hints_group,
-      desc = 'Disable inlay hints',
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.inlay_hint.enable(lsp_state[bufnr].inlay_hints, { bufnr = bufnr })
-      end,
-    })
   end
 
   vim.api.nvim_create_autocmd("BufDelete", {
-    group = formatting_group,
     buffer = bufnr,
     callback = function()
       lsp_state[bufnr] = nil

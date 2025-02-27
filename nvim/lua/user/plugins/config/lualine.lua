@@ -260,11 +260,18 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {
-          filepath,
-          filetype,
-          filename,
+          vim.tbl_extend("force", filepath, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
+          vim.tbl_extend("force", filetype, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
+          vim.tbl_extend("force", filename, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
           {
             "navic",
+            cond = function() return vim.bo.buftype ~= "nofile" end,
             color_correction = nil,
             navic_opts = nil,
             icon = { "", color = { fg = base_dim } },
@@ -279,9 +286,15 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {
-          filepath,
-          filetype,
-          filename,
+          vim.tbl_extend("force", filepath, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
+          vim.tbl_extend("force", filetype, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
+          vim.tbl_extend("force", filename, {
+            cond = function() return vim.bo.buftype ~= "nofile" end
+          }),
         },
         lualine_x = {},
         lualine_y = {},

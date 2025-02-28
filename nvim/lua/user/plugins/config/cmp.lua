@@ -8,15 +8,15 @@ return {
     { "saghen/blink.compat", version = "*",   lazy = true, opts = {} },
 
     -- `main` does not work at the moment
-    { 'L3MON4D3/LuaSnip',    version = 'v2.*' }, -- snippet engine
-    "rafamadriz/friendly-snippets",              -- a bunch of snippets to use
+    { 'L3MON4D3/LuaSnip',    version = 'v2.*' },                                      -- snippet engine
+    "rafamadriz/friendly-snippets",                                                   -- a bunch of snippets to use
 
-    -- nvim_cmp sources, to be replaced/updated
     { "nhurlock/jira-issues.nvim", enabled = vim.env.USER ~= "nhurlock", dev = true } -- work-only
   },
   config = function()
     local cmp = require("blink.cmp")
     local icons = require("mini.icons")
+    local has_jira, _ = pcall(require, "jira-issues.completion.blink")
 
     local kind_icons = {
       Copilot = "",
@@ -40,7 +40,6 @@ return {
 
     -- missing/todo:
     --  - replace behavior
-    --  - jira_issues provider
     --  - handle cfn_lsp case for custom 'AWS' kind icon
 
     local opts = {
@@ -111,10 +110,9 @@ return {
           ["<C-e>"] = { "hide", "fallback" }
         },
         sources = function()
-          if vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype()) then
-            return { "path", "buffer" }
-          end
-          return { "path", "buffer", "cmdline" }
+          local sources = { "path", "buffer" }
+          if not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype()) then table.insert(sources, "cmdline") end
+          return sources
         end,
         completion = {
           list = {
@@ -178,9 +176,21 @@ return {
       }
     }
 
+    if has_jira then
+      table.insert(opts.term.sources, "jira_issues")
+      ---@type blink.cmp.SourceProviderConfig
+      opts.sources.providers.jira_issues = {
+        name = "jira_issues",
+        module = "jira-issues.completion.blink",
+        async = true,
+        opts = require("user.config.jira")
+      }
+    end
+
     if vim.g.ai_provider == "copilot" then
       -- configure copilot
       table.insert(opts.sources.default, "copilot")
+      ---@type blink.cmp.SourceProviderConfig
       opts.sources.providers.copilot = {
         name = "copilot",
         module = "blink-cmp-copilot",
@@ -192,16 +202,19 @@ return {
       table.insert(opts.sources.default, "avante_commands")
       table.insert(opts.sources.default, "avante_mentions")
       table.insert(opts.sources.default, "avante_files")
+      ---@type blink.cmp.SourceProviderConfig
       opts.sources.providers.avante_commands = {
         name = "avante_commands",
         module = "blink.compat.source",
         score_offset = 100
       }
+      ---@type blink.cmp.SourceProviderConfig
       opts.sources.providers.avante_files = {
         name = "avante_files",
         module = "blink.compat.source",
         score_offset = 101
       }
+      ---@type blink.cmp.SourceProviderConfig
       opts.sources.providers.avante_mentions = {
         name = "avante_mentions",
         module = "blink.compat.source",
@@ -210,6 +223,7 @@ return {
     elseif vim.g.ai_provider == "llama" then
       -- configure minuet
       -- table.insert(opts.sources.default, "minuet")
+      -- ---@type blink.cmp.SourceProviderConfig
       -- opts.sources.providers.minuet = {
       --   name = 'minuet',
       --   module = 'minuet.blink',

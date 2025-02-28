@@ -12,7 +12,6 @@ return {
     "rafamadriz/friendly-snippets",              -- a bunch of snippets to use
 
     -- nvim_cmp sources, to be replaced/updated
-    "hrsh7th/cmp-cmdline",                                                            -- cmdline completions
     { "nhurlock/jira-issues.nvim", enabled = vim.env.USER ~= "nhurlock", dev = true } -- work-only
   },
   config = function()
@@ -69,33 +68,75 @@ return {
           'snippets',
           'path'
         },
-        providers = {
-          cmdline = {
-            name = "cmdline",
-            module = "blink.compat.source"
-          }
+        providers = {}
+      },
+      term = {
+        enabled = true,
+        keymap = {
+          preset = "none",
+          ["<C-k>"] = { "select_prev", "fallback" },
+          ["<C-j>"] = { "select_next", "fallback" },
+          ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+          ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+          ["<C-f>"] = { "snippet_backward", "fallback" },
+          ["<C-v>"] = { "snippet_forward", "fallback" },
+          ["<C-Space>"] = { "show", "fallback" },
+          ["<C-l>"] = { "select_and_accept", "fallback" },
+          ["<C-e>"] = { "hide", "fallback" }
+        },
+        sources = { "path", "buffer" },
+        completion = {
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = false
+            },
+          },
+          menu = { auto_show = false },
+          ghost_text = { enabled = true }
         }
       },
       cmdline = {
+        enabled = true,
+        keymap = {
+          preset = "none",
+          ["<C-k>"] = { "select_prev", "fallback" },
+          ["<C-j>"] = { "select_next", "fallback" },
+          ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+          ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+          ["<C-f>"] = { "snippet_backward", "fallback" },
+          ["<C-v>"] = { "snippet_forward", "fallback" },
+          ["<C-Space>"] = { "show", "fallback" },
+          ["<C-l>"] = { "select_and_accept", "fallback" },
+          ["<C-e>"] = { "hide", "fallback" }
+        },
         sources = function()
           if vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype()) then
             return { "path", "buffer" }
           end
           return { "path", "buffer", "cmdline" }
-        end
+        end,
+        completion = {
+          list = {
+            selection = {
+              preselect = true,
+              auto_insert = true
+            },
+          },
+          menu = { auto_show = true },
+          ghost_text = { enabled = true }
+        }
       },
       signature = {
         enabled = true,
-        window = {
-          show_documentation = false
-        }
+        window = { show_documentation = false }
       },
       snippets = { preset = 'luasnip' },
       completion = {
         list = {
           selection = {
-            preselect = false,
-            auto_insert = function(ctx) return ctx.mode == 'cmdline' end
+            preselect = true,
+            auto_insert = false
           }
         },
         menu = {
@@ -129,12 +170,8 @@ return {
             }
           }
         },
-        documentation = {
-          auto_show = true
-        },
-        ghost_text = {
-          enabled = true
-        }
+        documentation = { auto_show = true },
+        ghost_text = { enabled = true }
       },
       appearance = {
         kind_icons = kind_icons

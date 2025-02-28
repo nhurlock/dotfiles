@@ -79,7 +79,23 @@ local function lsp_attach(client, bufnr)
   end
 
   if client:supports_method(methods.textDocument_codeAction) then
-    keymap("<leader>.", function() vim.lsp.buf.code_action() end, "LSP code actions")
+    keymap("<leader>.", function()
+      local clients = vim.lsp.get_clients({ bufnr = bufnr })
+      local code_action_kinds = {}
+
+      -- needed to account for code actions that are not selected by default
+      for _, client in ipairs(clients) do
+        if type(client.server_capabilities.codeActionProvider) == "table" then
+          for _, kind in ipairs(client.server_capabilities.codeActionProvider.codeActionKinds) do
+            if not vim.tbl_contains(code_action_kinds, kind) then
+              table.insert(code_action_kinds, kind)
+            end
+          end
+        end
+      end
+
+      vim.lsp.buf.code_action({ context = { only = code_action_kinds } })
+    end, "LSP code actions")
   end
 
   if client:supports_method(methods.textDocument_inlayHint) then
@@ -136,10 +152,8 @@ M.setup = function()
       text = {
         [severity.ERROR] = '',
         [severity.WARN] = '',
-        -- [severity.HINT] = '',
-        [severity.HINT] = '',
-        -- [severity.INFO] = ''
-        [severity.INFO] = ''
+        [severity.HINT] = '',
+        [severity.INFO] = ''
       }
     }
   })

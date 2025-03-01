@@ -1,5 +1,9 @@
 mkdir -p ~/.config
 
+# lazydocker
+rm -rf ~/.config/lazydocker
+ln -s "$(pwd)/lazydocker" ~/.config/lazydocker
+
 # lazygit
 rm -rf ~/.config/lazygit
 ln -s "$(pwd)/lazygit" ~/.config/lazygit

@@ -1,0 +1,14 @@
+gui:
+  showBottomLine: false
+  theme:
+    activeBorderColor:
+      - "#a6da95" # Green
+      - bold
+    inactiveBorderColor:
+      - "#cad3f5" # Text
+    optionsTextColor:
+      - "#8aadf4" # Blue
+    selectedLineBgColor:
+      - "#363a4f" # Surface0
+    selectedRangeBgColor:
+      - "#363a4f" # Surface0

@@ -7,7 +7,11 @@ return {
     enabled = vim.g.ai_provider == "llama",
     init = function()
       vim.g.llama_config = {
-        show_info = 0
+        show_info = 0,
+        n_predict = 512,
+        keymap_accept_full = "<C-l>",
+        keymap_accept_line = "<Nop>",
+        keymap_accept_word = "<Nop>",
       }
     end,
     config = function()

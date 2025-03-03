@@ -195,7 +195,27 @@ return {
         name = "copilot",
         module = "blink-cmp-copilot",
         score_offset = 100,
-        async = true
+        async = true,
+        transform_items = function(_, items)
+          local full_line = vim.api.nvim_get_current_line()
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local suffix = full_line:sub(cursor[2] + 1)
+
+          return vim.tbl_map(function(item)
+            local result = item.textEdit.newText
+            local range_end = #full_line + 1
+
+            if vim.endswith(result, suffix) then
+              range_end = cursor[2]
+              result = result:sub(0, #result - #suffix)
+            end
+
+            item.textEdit.newText = result
+            item.textEdit.range['end'].character = range_end
+
+            return item
+          end, items)
+        end
       }
 
       -- configure avante

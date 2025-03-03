@@ -145,7 +145,7 @@ return {
               kind_icon = {
                 ellipsis = false,
                 text = function(ctx)
-                  if ctx.source_name == "minuet" then
+                  if ctx.source_name == "minuet" or ctx.source_name == "llama" then
                     return kind_icons.AI
                   end
                   if ctx.source_name == "copilot" then
@@ -221,6 +221,16 @@ return {
         score_offset = 1000
       }
     elseif vim.g.ai_provider == "llama" then
+      -- configure llama
+      table.insert(opts.sources.default, "llama")
+      ---@type blink.cmp.SourceProviderConfig
+      opts.sources.providers.llama = {
+        name = 'llama',
+        module = 'user.plugins.config.ai.llama.cmp',
+        score_offset = 100,
+        async = true
+      }
+
       -- configure minuet
       -- table.insert(opts.sources.default, "minuet")
       -- ---@type blink.cmp.SourceProviderConfig

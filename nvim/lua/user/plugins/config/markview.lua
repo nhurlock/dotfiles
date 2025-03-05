@@ -1,3 +1,5 @@
+---@module 'markview'
+
 ---@type LazyPluginSpec
 return {
   "OXY2DEV/markview.nvim",
@@ -6,9 +8,12 @@ return {
   opts = {
     preview = {
       modes = { "n", "i" },
-      hybrid_modes = { "i" },
-      filetypes = { "markdown", "codecompanion", "copilot-chat", "Avante", "noice" },
-      buf_ignore = {}
+      icon_provider = "mini",
+      linewise_hybrid_mode = true,
+      hybrid_modes = { "n", "i" },
+      filetypes = { "markdown", "copilot-chat", "Avante" },
+      buf_ignore = {},
+      ignore_buftypes = {}
     }
   }
 }

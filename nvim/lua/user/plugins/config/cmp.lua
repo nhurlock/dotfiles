@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
   "saghen/blink.cmp",
-  version = '*',
   event = 'InsertEnter',
   build = 'cargo build --release',
   dependencies = {
@@ -45,6 +44,7 @@ return {
     local opts = {
       enabled = function()
         return vim.bo.filetype ~= "typr"
+            and vim.bo.filetype ~= "minifiles"
             and vim.bo.buftype ~= "prompt"
             and vim.b.completion ~= false
       end,

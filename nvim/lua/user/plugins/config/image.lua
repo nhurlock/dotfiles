@@ -3,7 +3,7 @@ return {
   "3rd/image.nvim",
   dependencies = { "vhyrro/luarocks.nvim" },
   event = "VeryLazy",
-  enabled = not vim.g.neovide, -- neovide does not have image support atm
+  cond = not vim.g.neovide and not vim.env.DIFFVIEW, -- neovide does not have image support atm
   ---@type Options
   opts = {
     backend = "kitty",

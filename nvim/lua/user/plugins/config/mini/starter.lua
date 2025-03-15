@@ -2,6 +2,7 @@
 return {
   'echasnovski/mini.starter',
   version = false,
+  cond = not vim.env.DIFFVIEW,
   opts = {
     autoopen = true,
     silent = true,

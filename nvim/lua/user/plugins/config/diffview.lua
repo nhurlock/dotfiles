@@ -8,8 +8,10 @@ return {
     "DiffviewFileHistory"
   },
   keys = utils.lazy_maps({
-    { "<leader>gv", "DiffviewOpen",        "n", "Git open diff" },
-    { "<leader>gh", "DiffviewFileHistory", "n", "Git file history" },
+    { "<leader>gv", "DiffviewOpen",          "n", "Git open diff" },
+    { "<leader>gV", "DiffviewClose",         "n", "Git close diff" },
+    { "<leader>gh", "DiffviewFileHistory %", "n", "Git file history" },
+    { "<leader>gf", "DiffviewToggleFiles",   "n", "Git files" },
   }),
   dependencies = {
     "nvim-lua/plenary.nvim"
@@ -22,6 +24,10 @@ return {
       hooks = {
         view_opened = function()
           actions.toggle_files()
+        end,
+        view_closed = function()
+          if not vim.env.DIFFVIEW then return end
+          vim.cmd.quit()
         end
       }
     })

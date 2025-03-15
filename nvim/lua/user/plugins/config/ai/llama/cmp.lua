@@ -70,11 +70,11 @@ function source:get_completions(ctx, callback)
     end
   })
 
-  vim.call("llama#fim_cancel")
-  vim.call("llama#fim", true, true)
+  vim.call("llama#fim_hide")
+  vim.call("llama#fim_inline", true, true)
 
   return function()
-    vim.call("llama#fim_cancel")
+    vim.call("llama#fim_hide")
     vim.api.nvim_clear_autocmds({ group = group })
   end
 end

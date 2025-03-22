@@ -3,6 +3,7 @@ return {
   "mistweaverco/kulala.nvim",
   ft = { "http", "rest" },
   opts = {
+    urlencode = "skipencoded",
     ui = {
       icons = {
         inlay = {

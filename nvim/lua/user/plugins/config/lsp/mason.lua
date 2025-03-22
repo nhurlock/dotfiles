@@ -94,3 +94,7 @@ end
 for _, server in pairs(servers) do
   pcall(setup_server, server)
 end
+
+for _, server in pairs({ "kulala_ls" }) do
+  pcall(setup_server, server)
+end

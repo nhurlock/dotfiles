@@ -79,8 +79,4 @@ function source:get_completions(ctx, callback)
   end
 end
 
-function source:execute(_, _, callback)
-  callback()
-end
-
 return source

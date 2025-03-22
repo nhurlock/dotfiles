@@ -1,4 +1,4 @@
-local window_picker_chars = "asdfqwerzxcvjklmiuopghtybn"
+local window_picker_chars = 'asdfqwerzxcvjklmiuopghtybn'
 
 local function usable_win_ids(winid, filter)
   local tabpage = vim.api.nvim_get_current_tabpage()
@@ -12,11 +12,14 @@ local function usable_win_ids(winid, filter)
     local buf_filetype = vim.bo[buf].filetype
     local buf_type = vim.bo[buf].buftype
     local buf_name = vim.fn.bufname(buf)
-    if buf_name ~= nil and id ~= winid and
-        win_config.focusable and
-        not win_config.external and
-        ((buf_type ~= "nofile" and buf_type ~= "prompt") or
-          (buf_filetype == "ministarter")) and (filter == nil or filter(buf)) then
+    if
+      buf_name ~= nil
+      and id ~= winid
+      and win_config.focusable
+      and not win_config.external
+      and ((buf_type ~= 'nofile' and buf_type ~= 'prompt') or (buf_filetype == 'ministarter'))
+      and (filter == nil or filter(buf))
+    then
       table.insert(usable, id)
     else
       table.insert(unusable, id)
@@ -27,27 +30,27 @@ local function usable_win_ids(winid, filter)
 end
 
 local function apply_changes(id, new_statusline, new_winhl)
-  local has_hl = vim.api.nvim_get_hl(0, { name = "WindowPicker" })
+  local has_hl = vim.api.nvim_get_hl(0, { name = 'WindowPicker' })
   if has_hl == nil or vim.tbl_isempty(has_hl) then
-    local palette = require("catppuccin.palettes").get_palette()
-    vim.api.nvim_set_hl(0, "WindowPicker", { fg = palette.base, bg = palette.mauve, force = true })
+    local palette = require('catppuccin.palettes').get_palette()
+    vim.api.nvim_set_hl(0, 'WindowPicker', { fg = palette.base, bg = palette.mauve, force = true })
   end
 
-  local ok_status, statusline = pcall(vim.api.nvim_get_option_value, "statusline", { win = id })
-  local ok_hl, winhl = pcall(vim.api.nvim_get_option_value, "winhl", { win = id })
+  local ok_status, statusline = pcall(vim.api.nvim_get_option_value, 'statusline', { win = id })
+  local ok_hl, winhl = pcall(vim.api.nvim_get_option_value, 'winhl', { win = id })
 
   if new_statusline ~= nil then
     -- clear statusline for windows not selectable
-    vim.api.nvim_set_option_value("statusline", new_statusline, { win = id })
+    vim.api.nvim_set_option_value('statusline', new_statusline, { win = id })
   end
   if new_winhl ~= nil then
     -- clear statusline for windows not selectable
-    vim.api.nvim_set_option_value("winhl", new_winhl, { win = id })
+    vim.api.nvim_set_option_value('winhl', new_winhl, { win = id })
   end
 
   return {
-    statusline = ok_status and statusline or "",
-    winhl = ok_hl and winhl or "",
+    statusline = ok_status and statusline or '',
+    winhl = ok_hl and winhl or '',
   }
 end
 
@@ -62,7 +65,7 @@ end
 
 local function get_user_input_char()
   local c = vim.fn.getchar()
-  while type(c) ~= "number" do
+  while type(c) ~= 'number' do
     c = vim.fn.getchar()
   end
   return vim.fn.nr2char(c)
@@ -96,8 +99,7 @@ local function pick_win_id(winid, filter)
     local char = window_picker_chars:sub(i, i)
     win_map[char] = id
 
-    win_opts[id] = apply_changes(id, "%=" .. char .. "%=",
-      "StatusLine:WindowPicker,StatusLineNC:WindowPicker")
+    win_opts[id] = apply_changes(id, '%=' .. char .. '%=', 'StatusLine:WindowPicker,StatusLineNC:WindowPicker')
 
     i = i + 1
     if i > #window_picker_chars then
@@ -106,14 +108,14 @@ local function pick_win_id(winid, filter)
   end
   if laststatus == 3 then
     for _, id in ipairs(not_selectable) do
-      win_opts[id] = apply_changes(id, " ")
+      win_opts[id] = apply_changes(id, ' ')
     end
   end
 
   -- read input for selected char
-  vim.cmd("redraw")
+  vim.cmd('redraw')
   local _, resp = pcall(get_user_input_char)
-  resp = (resp or ""):lower()
+  resp = (resp or ''):lower()
 
   -- restore window options
   for _, id in ipairs(selectable) do
@@ -132,7 +134,7 @@ local function pick_win_id(winid, filter)
   lualine.hide({ place = { 'statusline' }, unhide = true })
 
   -- ensure user selected a char assigned to a win
-  if not vim.tbl_contains(vim.split(window_picker_chars, ""), resp) then
+  if not vim.tbl_contains(vim.split(window_picker_chars, ''), resp) then
     return nil
   end
 
@@ -141,6 +143,8 @@ end
 
 return function(winid, filter)
   local target_winid = pick_win_id(winid, filter)
-  if target_winid == nil then return end
+  if target_winid == nil then
+    return
+  end
   return target_winid
 end

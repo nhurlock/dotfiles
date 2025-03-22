@@ -1,10 +1,10 @@
 return {
   settings = {
-    ["harper-ls"] = {
+    ['harper-ls'] = {
       linters = {
         SentenceCapitalization = false,
-        LongSentences = false
-      }
-    }
-  }
+        LongSentences = false,
+      },
+    },
+  },
 }

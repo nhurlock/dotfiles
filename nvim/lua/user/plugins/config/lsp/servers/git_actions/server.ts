@@ -1,1 +1,1 @@
-import '@actions/languageserver'
+import('@actions/languageserver')

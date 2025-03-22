@@ -2,10 +2,10 @@
 -- which is similar to the mini backend: https://github.com/folke/noice.nvim/blob/bf67d70bd7265d075191e7812d8eb42b9791f737/lua/noice/view/backend/mini.lua#L10
 -- modified to work with timeouts and dismissal
 
-local require = require("noice.util.lazy")
-local Util = require("noice.util")
-local View = require("noice.view")
-local fidget = require("fidget")
+local Util = require('noice.util')
+local View = require('noice.view')
+local fidget = require('fidget')
+local require = require('noice.util.lazy')
 
 ---@class NoiceFidgetOptions
 ---@field timeout integer
@@ -19,22 +19,22 @@ local defaults = { timeout = 1000 }
 ---@field _group string
 ---@field _prev_active table<number, NoiceMessage>
 ---@diagnostic disable-next-line: undefined-field
-local FidgetView = View:extend("FidgetView")
+local FidgetView = View:extend('FidgetView')
 
 function FidgetView:init(opts)
   FidgetView.super.init(self, opts)
   self.active = {}
   self.timers = {}
-  self._group = "noice"
-  self._instance = "view"
+  self._group = 'noice'
+  self._instance = 'view'
   self._prev_active = {}
   self._view_opts = {
-    format = { "{message}" }
+    format = { '{message}' },
   }
 end
 
 function FidgetView:update_options()
-  self._opts = vim.tbl_deep_extend("force", defaults, self._opts)
+  self._opts = vim.tbl_deep_extend('force', defaults, self._opts)
 end
 
 ---@param message NoiceMessage
@@ -84,16 +84,12 @@ end
 
 ---@param message NoiceMessage
 function FidgetView:upsert(message)
-  fidget.notify(
-    message:content(),
-    message.level or vim.log.levels.INFO,
-    {
-      key = message.id,
-      group = self._group,
-      annote = message.opts.title,
-      ttl = self._opts.timeout / 1000
-    }
-  )
+  fidget.notify(message:content(), message.level or vim.log.levels.INFO, {
+    key = message.id,
+    group = self._group,
+    annote = message.opts.title,
+    ttl = self._opts.timeout / 1000,
+  })
 end
 
 ---@param message NoiceMessage
@@ -140,4 +136,4 @@ function FidgetView:hide()
   fidget.notification.clear(self._group)
 end
 
-package.loaded["noice.view.backend.fidget"] = FidgetView
+package.loaded['noice.view.backend.fidget'] = FidgetView

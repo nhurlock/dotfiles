@@ -1,8 +1,8 @@
 local M = {}
 
 M.lazy_map = function(mapping, action, modes, desc)
-  if type(action) == "string" then
-    action = "<cmd>" .. action .. "<cr>"
+  if type(action) == 'string' then
+    action = '<cmd>' .. action .. '<cr>'
   end
   return { mapping, action, mode = modes, silent = true, noremap = true, desc }
 end
@@ -15,22 +15,31 @@ end
 
 M.get_visual_selection = function()
   local mode = vim.fn.mode()
-  if mode ~= 'v' and mode ~= 'V' and mode ~= '' then return nil end
-  vim.cmd("normal! \"xy")
+  if mode ~= 'v' and mode ~= 'V' and mode ~= '' then
+    return nil
+  end
+  vim.cmd('normal! "xy')
   return vim.fn.getreg('x')
 end
 
 M.run_in_node = function()
   local selection_text = M.get_visual_selection()
   local current_line = vim.api.nvim_get_current_line()
-  if (not selection_text or #selection_text == 0) and (not current_line or #current_line == 0) then return nil end
-  local command = 'node -e "(async () => ' ..
-      (selection_text or current_line):gsub("[\\\"]", "\\%1") .. ')().then(console.log)"'
+  if (not selection_text or #selection_text == 0) and (not current_line or #current_line == 0) then
+    return nil
+  end
+  local command = 'node -e "(async () => '
+    .. (selection_text or current_line):gsub('[\\"]', '\\%1')
+    .. ')().then(console.log)"'
   local node_output = vim.fn.system(command)
-  if vim.v.shell_error ~= 0 then return nil end
-  local prefix_command = "0C"
-  if selection_text then prefix_command = "gvda" end
-  vim.api.nvim_input(prefix_command .. node_output:gsub("(.*)\n", "%1") .. "<esc>")
+  if vim.v.shell_error ~= 0 then
+    return nil
+  end
+  local prefix_command = '0C'
+  if selection_text then
+    prefix_command = 'gvda'
+  end
+  vim.api.nvim_input(prefix_command .. node_output:gsub('(.*)\n', '%1') .. '<esc>')
 end
 
 M.window_picker = require('user.utilities.window-picker')

@@ -1,31 +1,31 @@
-local utils = require("user.utilities")
+local utils = require('user.utilities')
 
 ---@type LazyPluginSpec
 return {
-  "lewis6991/gitsigns.nvim",
+  'lewis6991/gitsigns.nvim',
   keys = utils.lazy_maps({
-    { "<leader>gp", "Gitsigns preview_hunk_inline", "n", "Git preview hunk" },
-    { "<leader>gs", "Gitsigns stage_hunk",          "n", "Git stage hunk" },
-    { "<leader>gS", "Gitsigns stage_buffer",        "n", "Git stage buffer" },
-    { "<leader>gu", "Gitsigns undo_stage_hunk",     "n", "Git undo stage hunk" },
-    { "<leader>gr", "Gitsigns reset_hunk",          "n", "Git reset hunk" },
-    { "<leader>gR", "Gitsigns reset_buffer",        "n", "Git reset buffer" },
-    { "<leader>gd", "Gitsigns diffthis",            "n", "Git diff" },
-    { "]g",         "Gitsigns next_hunk",           "n", "Git next hunk" },
-    { "[g",         "Gitsigns prev_hunk",           "n", "Git prev hunk" },
+    { '<leader>gp', 'Gitsigns preview_hunk_inline', 'n', 'Git preview hunk' },
+    { '<leader>gs', 'Gitsigns stage_hunk', 'n', 'Git stage hunk' },
+    { '<leader>gS', 'Gitsigns stage_buffer', 'n', 'Git stage buffer' },
+    { '<leader>gu', 'Gitsigns undo_stage_hunk', 'n', 'Git undo stage hunk' },
+    { '<leader>gr', 'Gitsigns reset_hunk', 'n', 'Git reset hunk' },
+    { '<leader>gR', 'Gitsigns reset_buffer', 'n', 'Git reset buffer' },
+    { '<leader>gd', 'Gitsigns diffthis', 'n', 'Git diff' },
+    { ']g', 'Gitsigns next_hunk', 'n', 'Git next hunk' },
+    { '[g', 'Gitsigns prev_hunk', 'n', 'Git prev hunk' },
   }),
   lazy = false,
   opts = {
     signs = {
-      add = { text = "▎" },
-      change = { text = "▎" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "▎" },
+      add = { text = '▎' },
+      change = { text = '▎' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '▎' },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
+    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
     watch_gitdir = {
       interval = 1000,
@@ -35,7 +35,7 @@ return {
     current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts = {
       virt_text = true,
-      virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+      virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
       delay = 1000,
       ignore_whitespace = false,
       virt_text_priority = 100,
@@ -47,11 +47,11 @@ return {
     max_file_length = 40000,
     preview_config = {
       -- Options passed to nvim_open_win
-      border = "single",
-      style = "minimal",
-      relative = "cursor",
+      border = 'single',
+      style = 'minimal',
+      relative = 'cursor',
       row = 0,
       col = 1,
-    }
-  }
+    },
+  },
 }

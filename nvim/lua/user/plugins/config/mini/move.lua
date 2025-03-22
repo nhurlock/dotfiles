@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "echasnovski/mini.move",
+  'echasnovski/mini.move',
   version = false,
-  config = true
+  config = true,
 }

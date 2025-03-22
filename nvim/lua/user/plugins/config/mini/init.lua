@@ -1,2 +1,2 @@
 ---@type LazyPluginSpec
-return { import = "user.plugins.config.mini" }
+return { import = 'user.plugins.config.mini' }

@@ -18,7 +18,7 @@ function handle_source_callback(result, ctx, callback)
   local opts = {
     items = {},
     is_incomplete_backward = true,
-    is_incomplete_forward = true
+    is_incomplete_forward = true,
   }
 
   if not result or #vim.trim(result) == 0 then
@@ -47,34 +47,34 @@ function handle_source_callback(result, ctx, callback)
         newText = result,
         range = {
           start = { line = cursor[1] - 1, character = cursor[2] },
-          ['end'] = { line = cursor[1] - 1, character = range_end }
-        }
+          ['end'] = { line = cursor[1] - 1, character = range_end },
+        },
       },
       documentation = {
-        kind = "markdown",
-        value = "```" .. vim.bo[ctx.bufnr].filetype .. "\n" .. label .. "\n```"
-      }
-    }
+        kind = 'markdown',
+        value = '```' .. vim.bo[ctx.bufnr].filetype .. '\n' .. label .. '\n```',
+      },
+    },
   }
   return callback(opts)
 end
 
 function source:get_completions(ctx, callback)
-  local group = vim.api.nvim_create_augroup("LlamaFimResults", { clear = true })
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "LlamaFimResults",
+  local group = vim.api.nvim_create_augroup('LlamaFimResults', { clear = true })
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'LlamaFimResults',
     group = group,
     once = true,
     callback = function()
-      handle_source_callback(vim.fn.join(vim.call("llama#fim_results"), "\n"), ctx, callback)
-    end
+      handle_source_callback(vim.fn.join(vim.call('llama#fim_results'), '\n'), ctx, callback)
+    end,
   })
 
-  vim.call("llama#fim_hide")
-  vim.call("llama#fim_inline", true, true)
+  vim.call('llama#fim_hide')
+  vim.call('llama#fim_inline', true, true)
 
   return function()
-    vim.call("llama#fim_hide")
+    vim.call('llama#fim_hide')
     vim.api.nvim_clear_autocmds({ group = group })
   end
 end

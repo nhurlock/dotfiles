@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "echasnovski/mini.comment",
+  'echasnovski/mini.comment',
   version = false,
-  config = true
+  config = true,
 }

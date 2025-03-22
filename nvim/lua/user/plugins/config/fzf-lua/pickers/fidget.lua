@@ -8,18 +8,19 @@ return function()
   end)
 
   local fzf_fidget_history = vim.tbl_map(function(item)
-    return ansi_codes.blue(os.date("%Y-%m-%d %H:%M:%S", item.last_updated)) ..
-        ansi_codes.grey(' [' .. item.group_name .. '] ') .. item.message
+    return ansi_codes.blue(os.date('%Y-%m-%d %H:%M:%S', item.last_updated))
+      .. ansi_codes.grey(' [' .. item.group_name .. '] ')
+      .. item.message
   end, fidget_history)
 
   fzf_lua.fzf_exec(fzf_fidget_history, {
-    prompt = "Log History> ",
+    prompt = 'Log History> ',
     winopts = {
       width = 0.40,
-      height = 0.40
+      height = 0.40,
     },
     fzf_opts = {
-      ["--layout"] = "reverse"
-    }
+      ['--layout'] = 'reverse',
+    },
   })
 end

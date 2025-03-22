@@ -3,12 +3,12 @@ return {
     yaml = {
       hover = true,
       format = {
-        enable = true
+        enable = true,
       },
       keyOrdering = false,
       schemaStore = {
-        enable = true
-      }
-    }
-  }
+        enable = true,
+      },
+    },
+  },
 }

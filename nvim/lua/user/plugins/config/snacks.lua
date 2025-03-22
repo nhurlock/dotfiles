@@ -1,41 +1,62 @@
-local utils = require("user.utilities")
+local utils = require('user.utilities')
 
 ---@type LazyPluginSpec
 return {
-  "folke/snacks.nvim",
+  'folke/snacks.nvim',
   keys = utils.lazy_maps({
-    { "<leader>go", function() Snacks.gitbrowse.open() end, "n", "Git browse open" },
-    { "<leader>z",  function() Snacks.zen() end,            "n", "Zen mode" },
-    { "<leader>i",  function() Snacks.image.hover() end,    "n", "Show image at cursor" }
+    {
+      '<leader>go',
+      function()
+        Snacks.gitbrowse.open()
+      end,
+      'n',
+      'Git browse open',
+    },
+    {
+      '<leader>z',
+      function()
+        Snacks.zen()
+      end,
+      'n',
+      'Zen mode',
+    },
+    {
+      '<leader>i',
+      function()
+        Snacks.image.hover()
+      end,
+      'n',
+      'Show image at cursor',
+    },
   }),
   ---@type snacks.Config
   opts = {
     styles = {
       input = {
-        title_pos = "left",
-        relative = "cursor",
+        title_pos = 'left',
+        relative = 'cursor',
         row = -3,
         col = 0,
-      }
+      },
     },
     rename = { enabled = true },
     gitbrowse = { enabled = true },
     statuscolumn = {
       enabled = true,
-      left = { "sign" },
-      right = { "fold", "git" }
+      left = { 'sign' },
+      right = { 'fold', 'git' },
     },
     input = {
       enabled = true,
-      prompt_pos = "left",
+      prompt_pos = 'left',
     },
     image = {
       enabled = true,
       doc = {
         enabled = true,
         inline = false,
-        float = false
-      }
+        float = false,
+      },
     },
     zen = {
       enabled = true,
@@ -43,19 +64,19 @@ return {
       win = {
         width = 180,
         backdrop = {
-          transparent = false
-        }
-      }
-    }
+          transparent = false,
+        },
+      },
+    },
   },
   config = function(_, opts)
     require('snacks').setup(opts)
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "MiniFilesActionRename",
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesActionRename',
       callback = function(event)
         Snacks.rename.on_rename_file(event.data.from, event.data.to)
       end,
     })
-  end
+  end,
 }

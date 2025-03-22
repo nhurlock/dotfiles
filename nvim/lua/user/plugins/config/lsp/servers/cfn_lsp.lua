@@ -8,12 +8,12 @@ return {
     root_dir = util.root_pattern('.git'),
     single_file_support = true,
     settings = {
-      documentFormatting = false
-    }
+      documentFormatting = false,
+    },
   },
   docs = {
     description = [[
       Cloudformation LSP: https://github.com/LaurenceWarne/cfn-lsp-extra
-    ]]
-  }
+    ]],
+  },
 }

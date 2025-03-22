@@ -11,9 +11,9 @@ local function lower_opt_bang(cmd)
 end
 
 -- fix common capitalization misses
-lower_opt_bang("Q")
-lower_opt_bang("Qall")
-lower_opt_bang("W")
-lower_opt_bang("Wall")
-lower_opt_bang("Wq")
-lower_opt_bang("Wqall")
+lower_opt_bang('Q')
+lower_opt_bang('Qall')
+lower_opt_bang('W')
+lower_opt_bang('Wall')
+lower_opt_bang('Wq')
+lower_opt_bang('Wqall')

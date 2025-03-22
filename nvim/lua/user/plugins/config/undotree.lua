@@ -1,14 +1,14 @@
-local utils = require("user.utilities")
+local utils = require('user.utilities')
 
 ---@type LazyPluginSpec
 return {
-  "mbbill/undotree",
+  'mbbill/undotree',
   keys = utils.lazy_maps({
-    { "<leader>u", "UndotreeToggle", "n", "Undotree toggle" }
+    { '<leader>u', 'UndotreeToggle', 'n', 'Undotree toggle' },
   }),
-  cmd = "UndotreeToggle",
+  cmd = 'UndotreeToggle',
   config = function()
     vim.g.undotree_WindowLayout = 3
     vim.g.undotree_ShortIndicators = 1
-  end
+  end,
 }

@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
 return {
-  "echasnovski/mini.operators",
-  config = true
+  'echasnovski/mini.operators',
+  config = true,
 }

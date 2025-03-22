@@ -1,8 +1,8 @@
-vim.g.ai_provider = "llama"
+vim.g.ai_provider = 'llama'
 
-if vim.env.USER ~= "nhurlock" then
-  vim.g.ai_provider = "copilot"
+if vim.env.USER ~= 'nhurlock' then
+  vim.g.ai_provider = 'copilot'
 end
 
 ---@type LazyPluginSpec
-return { import = "user.plugins.config.ai" }
+return { import = 'user.plugins.config.ai' }

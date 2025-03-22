@@ -3,21 +3,21 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "nhurlock/llama.vim",
+    'nhurlock/llama.vim',
     dev = true,
-    enabled = vim.g.ai_provider == "llama",
+    enabled = vim.g.ai_provider == 'llama',
     init = function()
       vim.g.llama_config = {
         show_info = 0,
         n_predict = 512,
         ghost_text_enabled = false,
-        keymaps_enabled = false
+        keymaps_enabled = false,
       }
     end,
     config = function()
-      vim.api.nvim_set_hl(0, "llama_hl_hint", { link = "Comment", force = true })
-      vim.api.nvim_set_hl(0, "llama_hl_info", { link = "Comment", force = true })
-    end
+      vim.api.nvim_set_hl(0, 'llama_hl_hint', { link = 'Comment', force = true })
+      vim.api.nvim_set_hl(0, 'llama_hl_info', { link = 'Comment', force = true })
+    end,
   },
   -- disabling until more testing can be done
   -- seems worse on initial impression

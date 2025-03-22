@@ -1,13 +1,13 @@
 ---@type LazyPluginSpec
 return {
-  "iamcco/markdown-preview.nvim",
-  build = "cd app && npx --yes yarn install",
+  'iamcco/markdown-preview.nvim',
+  build = 'cd app && npx --yes yarn install',
   init = function()
-    vim.g.mkdp_filetypes = { "markdown" }
+    vim.g.mkdp_filetypes = { 'markdown' }
   end,
   cmd = {
-    "MarkdownPreview",
-    "MarkdownPreviewToggle"
+    'MarkdownPreview',
+    'MarkdownPreviewToggle',
   },
-  ft = { "markdown" }
+  ft = { 'markdown' },
 }

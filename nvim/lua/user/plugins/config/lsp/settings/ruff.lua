@@ -1,5 +1,5 @@
 return {
   settings = {
-    args = {}
-  }
+    args = {},
+  },
 }

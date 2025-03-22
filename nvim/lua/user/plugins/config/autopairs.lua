@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "windwp/nvim-autopairs",
+  'windwp/nvim-autopairs',
   lazy = true,
   opts = {
     check_ts = true,
-    fast_wrap = {}
-  }
+    fast_wrap = {},
+  },
 }

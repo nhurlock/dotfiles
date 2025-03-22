@@ -2,18 +2,16 @@
 
 ---@type LazyPluginSpec
 return {
-  "OXY2DEV/markview.nvim",
+  'OXY2DEV/markview.nvim',
   lazy = false,
   ---@type mkv.config
   opts = {
     preview = {
-      modes = { "n", "i" },
-      icon_provider = "mini",
+      modes = { 'n', 'i' },
+      icon_provider = 'mini',
       linewise_hybrid_mode = true,
-      hybrid_modes = { "n", "i" },
-      filetypes = { "markdown", "copilot-chat", "Avante" },
-      buf_ignore = {},
-      ignore_buftypes = {}
-    }
-  }
+      hybrid_modes = { 'n', 'i' },
+      filetypes = { 'markdown', 'copilot-chat', 'Avante' },
+    },
+  },
 }

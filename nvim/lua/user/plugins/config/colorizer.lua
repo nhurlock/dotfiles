@@ -2,7 +2,7 @@
 return {
   'norcalli/nvim-colorizer.lua',
   cmd = {
-    "ColorizerToggle"
+    'ColorizerToggle',
   },
-  config = true
+  config = true,
 }

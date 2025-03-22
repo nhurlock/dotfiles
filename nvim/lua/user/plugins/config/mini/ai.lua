@@ -1,8 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "echasnovski/mini.ai",
+  'echasnovski/mini.ai',
   version = false,
   opts = {
+    n_lines = 300,
     mappings = {
       -- Main textobject prefixes
       around = 'a',
@@ -18,6 +19,6 @@ return {
       goto_left = 'g[',
       goto_right = 'g]',
     },
-    search_method = 'cover_or_next'
-  }
+    search_method = 'cover_or_next',
+  },
 }

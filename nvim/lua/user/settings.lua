@@ -9,10 +9,10 @@ if vim.g.neovide then
 end
 
 -- JetBrainsMono font
-vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h17"
+vim.opt.guifont = 'JetBrainsMono Nerd Font Mono:h17'
 
 -- cursor config (overwrites default term and cmd cursor - to 'beam')
-vim.opt.guicursor = "n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20,t:ver25-TermCursor"
+vim.opt.guicursor = 'n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20,t:ver25-TermCursor'
 
 -- disable continuation of comment when // is not the start of a line
 vim.opt.formatoptions:append('o/')
@@ -25,7 +25,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- fuzzy completion
-vim.opt.completeopt:append("fuzzy")
+vim.opt.completeopt:append('fuzzy')
 
 -- full color support
 vim.opt.termguicolors = true
@@ -58,11 +58,11 @@ vim.opt.tabstop = 2
 vim.opt.scrolloff = 8
 
 -- 1 column sign column
-vim.opt.signcolumn = "yes:1"
+vim.opt.signcolumn = 'yes:1'
 
 -- shortmess updates
 -- added 's' to remove 'search hit top/bottom' messages
-vim.opt.shortmess = "ltToOCFs"
+vim.opt.shortmess = 'ltToOCFs'
 
 -- keep only a single statusline for current window
 vim.opt.laststatus = 3
@@ -88,8 +88,8 @@ vim.opt.showcmdloc = 'statusline'
 
 -- remove fillchars for vertical
 vim.opt.fillchars = {
-  fold = " ",
-  vert = " ",
+  fold = ' ',
+  vert = ' ',
 }
 
 -- md indent fix
@@ -110,6 +110,6 @@ if vim.fn.has('wsl') == 1 then
       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
-    cache_enabled = 0
+    cache_enabled = 0,
   }
 end

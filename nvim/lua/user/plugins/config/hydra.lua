@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
-  "nvimtools/hydra.nvim",
-  keys = "<C-w>a",
+  'nvimtools/hydra.nvim',
+  keys = '<C-w>a',
   config = function()
     local Hydra = require('hydra')
     local window_swap = require('user.utilities').window_swap
@@ -40,24 +40,24 @@ return {
         color = 'amaranth',
         hint = false,
         exit = false,
-        invoke_on_body = true
+        invoke_on_body = true,
       },
       heads = {
-        { 'h',     '<C-w>h',                      { desc = 'Focus window left' } },
-        { 'j',     '<C-w>j',                      { desc = 'Focus window below' } },
-        { 'k',     '<C-w>k',                      { desc = 'Focus window above' } },
-        { 'l',     '<C-w>l',                      { desc = 'Focus window right' } },
+        { 'h', '<C-w>h', { desc = 'Focus window left' } },
+        { 'j', '<C-w>j', { desc = 'Focus window below' } },
+        { 'k', '<C-w>k', { desc = 'Focus window above' } },
+        { 'l', '<C-w>l', { desc = 'Focus window right' } },
         { '<M-h>', '<cmd>vertical resize -3<cr>', { desc = 'Resize window width smaller' } },
-        { '<M-j>', '<cmd>resize -3<cr>',          { desc = 'Resize window width height smaller' } },
-        { '<M-k>', '<cmd>resize +3<cr>',          { desc = 'Resize window width height larger' } },
+        { '<M-j>', '<cmd>resize -3<cr>', { desc = 'Resize window width height smaller' } },
+        { '<M-k>', '<cmd>resize +3<cr>', { desc = 'Resize window width height larger' } },
         { '<M-l>', '<cmd>vertical resize +3<cr>', { desc = 'Resize window width larger' } },
-        { 'H',     move_window('h'),              { desc = 'Move window left' } },
-        { 'J',     move_window('j'),              { desc = 'Move window below' } },
-        { 'K',     move_window('k'),              { desc = 'Move window above' } },
-        { 'L',     move_window('l'),              { desc = 'Move window right' } },
-        { 'S',     window_swap,                   { desc = 'Swap window with another' } },
-        { '<esc>', nil,                           { desc = 'Exit window adjustment', exit = true } },
-      }
+        { 'H', move_window('h'), { desc = 'Move window left' } },
+        { 'J', move_window('j'), { desc = 'Move window below' } },
+        { 'K', move_window('k'), { desc = 'Move window above' } },
+        { 'L', move_window('l'), { desc = 'Move window right' } },
+        { 'S', window_swap, { desc = 'Swap window with another' } },
+        { '<esc>', nil, { desc = 'Exit window adjustment', exit = true } },
+      },
     })
-  end
+  end,
 }

@@ -28,7 +28,7 @@ return {
       group = formatting_group,
       callback = function()
         local bufnr = vim.fn.bufnr()
-        if formatting_state[bufnr] and formatting_state[bufnr].formatting then
+        if formatting_state[bufnr] ~= false then
           pcall(require('conform').format, { lsp_format = 'fallback' })
         end
       end,
@@ -47,7 +47,7 @@ return {
       '<leader>tfi',
       function()
         local bufnr = vim.fn.bufnr()
-        formatting_state[bufnr].formatting = not formatting_state[bufnr].formatting
+        formatting_state[bufnr] = not formatting_state[bufnr]
       end,
       'n',
       'LSP toggle formatting',

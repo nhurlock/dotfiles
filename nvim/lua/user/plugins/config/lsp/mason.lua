@@ -26,8 +26,6 @@ local servers = {
   'docker_compose_language_service',
 }
 
-local formatters = { 'stylua', 'kulala-fmt' }
-
 local settings = {
   ui = {
     border = 'none',
@@ -43,7 +41,7 @@ local settings = {
 
 mason.setup(settings)
 masonlspconfig.setup({
-  ensure_installed = vim.tbl_extend('force', servers, formatters),
+  ensure_installed = servers,
   automatic_installation = true,
 })
 
@@ -53,7 +51,7 @@ if not lspconfig_status_ok then
 end
 
 local configs = require('lspconfig.configs')
-local custom_servers = { 'cfn_lsp', 'git_actions' }
+local custom_servers = { 'cfn_lsp', 'git_actions', 'copilot-language-server' }
 
 for _, server in pairs(custom_servers) do
   configs[server] = require('user.plugins.config.lsp.servers.' .. server)

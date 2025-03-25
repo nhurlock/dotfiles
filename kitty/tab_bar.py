@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from kitty.boss import get_boss
 from kitty.fast_data_types import Screen, add_timer, get_options
 from kitty.utils import color_as_int
@@ -14,10 +14,16 @@ from kitty.tab_bar import (
 )
 
 options = get_options()
+timer_id = None
+tab_refresh_time = datetime.now()
+battery_time = datetime.now()
+battery_cell = {"icon_bg_color": options.color7, "text": ""}
+
 
 REFRESH_TIME = 1
 LEFT_SLANT = ""
-CHARGING_ICON = "󰚥"
+BATTERY_TIME_DELTA = timedelta(minutes=1)
+BATTERY_CHARGING_ICON = "󰚥"
 BATTERY_ICONS = [
     "󰂃",
     "󰁻",
@@ -30,9 +36,6 @@ BATTERY_ICONS = [
     "󰂂",
     "󱟢",
 ]
-
-
-timer_id = None
 
 
 def draw_tab(
@@ -48,6 +51,9 @@ def draw_tab(
     global timer_id
     if timer_id is None:
         timer_id = add_timer(_redraw_tab_bar, REFRESH_TIME, True)
+
+    global tab_refresh_time
+    tab_refresh_time = datetime.now()
 
     draw_tab_with_powerline(
         draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
@@ -66,12 +72,24 @@ def _get_key_mode_cell() -> dict:
 
 
 def _get_datetime_cell() -> dict:
-    now = datetime.now().strftime("%a %b %-d %I:%M %p")
-    return {"icon_bg_color": options.color4, "text": now}
+    return {
+        "icon_bg_color": options.color4,
+        "text": tab_refresh_time.strftime("%a %b %-d %I:%M %p"),
+    }
 
 
 def _get_battery_cell() -> dict:
-    cell = {"icon_bg_color": options.color7, "text": ""}
+    global battery_time
+    global battery_cell
+
+    if (
+        len(battery_cell["text"]) > 0
+        and (tab_refresh_time - battery_time) < BATTERY_TIME_DELTA
+    ):
+        return battery_cell
+    else:
+        battery_time = tab_refresh_time
+
     try:
         battery_info = (
             os.popen("pmset -g batt | awk '/[0-9]+%/{ print $3$4 }'")
@@ -84,19 +102,19 @@ def _get_battery_cell() -> dict:
             raise AssertionError
 
         battery_charge = battery_info[0]
-        cell["text"] = battery_charge
+        battery_cell["text"] = battery_charge
 
         battery_charge = int(battery_charge[:-1])
         battery_state = battery_info[1]
 
         if battery_state == "charging":
-            cell["icon"] = CHARGING_ICON
+            battery_cell["icon"] = BATTERY_CHARGING_ICON
         else:
-            cell["icon"] = BATTERY_ICONS[(battery_charge // 10) - 1]
+            battery_cell["icon"] = BATTERY_ICONS[(battery_charge // 10) - 1]
     except:
-        cell["text"] = ""
+        battery_cell["text"] = ""
 
-    return cell
+    return battery_cell
 
 
 def _create_cells() -> list[dict]:

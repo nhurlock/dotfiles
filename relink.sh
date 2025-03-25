@@ -24,6 +24,11 @@ rm -rf ~/.config/wezterm
 ln -s "$(pwd)/wezterm" ~/.config/wezterm
 
 
+# kitty
+rm -rf ~/.config/kitty
+ln -s "$(pwd)/kitty" ~/.config/kitty
+
+
 # aerospace
 rm ~/.aerospace.toml
 ln -s "$(pwd)/aerospace/.aerospace.toml" ~/.aerospace.toml

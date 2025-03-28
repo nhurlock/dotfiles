@@ -268,23 +268,23 @@ return {
         lualine_c = {
           vim.tbl_extend('force', filepath, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
           vim.tbl_extend('force', filetype, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
           vim.tbl_extend('force', filename, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
           {
             'navic',
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
             color_correction = nil,
             navic_opts = nil,

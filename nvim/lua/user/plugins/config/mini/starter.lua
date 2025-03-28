@@ -3,6 +3,7 @@ return {
   'echasnovski/mini.starter',
   version = false,
   cond = not vim.env.DIFFVIEW,
+  enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true',
   opts = {
     autoopen = true,
     silent = true,

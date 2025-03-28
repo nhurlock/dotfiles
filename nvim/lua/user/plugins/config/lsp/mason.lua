@@ -73,9 +73,7 @@ local setup_server = function(server_name)
     server_opts = vim.tbl_deep_extend('force', server_opts, conf_opts)
   end
 
-  if server == 'ts_ls' then
-    require('typescript-tools').setup(server_opts)
-  elseif server == 'jdtls' then
+  if server == 'jdtls' then
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'java',
       callback = function()

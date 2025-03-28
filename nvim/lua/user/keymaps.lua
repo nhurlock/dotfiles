@@ -129,18 +129,6 @@ end, with_desc(opts, 'Open quickfix list'))
 keymap('n', '[t', vim.cmd.tabprev, with_desc(opts, 'Go to prev tab'))
 keymap('n', ']t', vim.cmd.tabnext, with_desc(opts, 'Go to next next'))
 
--- buffer rotate
-keymap('n', '[b', vim.cmd.bprevious, with_desc(opts, 'Go to prev buffer'))
-keymap('n', ']b', vim.cmd.bnext, with_desc(opts, 'Go to next buffer'))
-
--- qfix rotate
-keymap('n', '[q', function()
-  pcall(vim.cmd.cprevious)
-end, with_desc(opts, 'Go to prev quickfix'))
-keymap('n', ']q', function()
-  pcall(vim.cmd.cnext)
-end, with_desc(opts, 'Go to next quickfix'))
-
 -- no upper Q
 keymap('n', 'Q', '<nop>', opts)
 

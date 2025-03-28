@@ -23,14 +23,18 @@ return {
   },
   init = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = formatting_group,
-      callback = function()
-        local bufnr = vim.fn.bufnr()
-        if formatting_state[bufnr] ~= false then
+      callback = function(args)
+        if formatting_state[args.buf] ~= false then
           pcall(require('conform').format, { lsp_format = 'fallback' })
         end
+      end,
+    })
+    vim.api.nvim_create_autocmd('BufDelete', {
+      group = formatting_group,
+      callback = function(args)
+        formatting_state[args.buf] = nil
       end,
     })
   end,
@@ -47,7 +51,11 @@ return {
       '<leader>tfi',
       function()
         local bufnr = vim.fn.bufnr()
-        formatting_state[bufnr] = not formatting_state[bufnr]
+        if formatting_state[bufnr] == nil then
+          formatting_state[bufnr] = false
+        else
+          formatting_state[bufnr] = not formatting_state[bufnr]
+        end
       end,
       'n',
       'LSP toggle formatting',

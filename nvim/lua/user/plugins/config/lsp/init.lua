@@ -19,7 +19,6 @@ return {
         },
       },
     },
-    'pmizio/typescript-tools.nvim', -- javascript/typescript-specific lsp helpers
     'yioneko/nvim-vtsls', -- javascript/typescript-specific lsp helpers
     'mfussenegger/nvim-jdtls', -- java-specific lsp helpers
   },

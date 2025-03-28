@@ -152,17 +152,28 @@ M.setup = function()
 
   local keymap = bufnr_keymap(nil)
   keymap('gl', function()
+    local diagnostic_config = vim.diagnostic.config()
+    if not diagnostic_config then
+      return
+    end
+    if
+      diagnostic_config.virtual_lines == nil
+      or diagnostic_config.virtual_lines == false
+      or diagnostic_config.virtual_lines.current_line == false
+    then
+      diagnostic_config.virtual_lines = { current_line = true }
+      vim.diagnostic.config(diagnostic_config)
+    else
+      diagnostic_config.virtual_lines = false
+      vim.diagnostic.config(diagnostic_config)
+    end
+  end, 'Toggle inline diagnostics')
+  keymap('gL', function()
     vim.diagnostic.open_float({ focusable = true })
-  end, 'Open diagnostic')
+  end, 'Open diagnostic float')
   keymap('<leader>q', function()
     vim.diagnostic.setloclist()
   end, 'Set in location list')
-  keymap('[d', function()
-    vim.diagnostic.jump({ count = -1 })
-  end, 'Go to prev diagnostic')
-  keymap(']d', function()
-    vim.diagnostic.jump({ count = 1 })
-  end, 'Go to next diagnostic')
   keymap('[e', function()
     vim.diagnostic.jump({ count = -1, severity = severity.ERROR })
   end, 'Go to prev error diagnostic')
@@ -193,7 +204,7 @@ M.on_attach = function(client, bufnr)
   if client.name == 'clangd' then
     client.server_capabilities.documentFormattingProvider = false
   end
-  if client.name == 'typescript-tools' or client.name == 'vtsls' then
+  if client.name == 'vtsls' then
     client.server_capabilities.documentFormattingProvider = false
   end
   if client.name == 'eslint' then

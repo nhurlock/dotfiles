@@ -35,11 +35,11 @@ M.run_in_node = function()
   if vim.v.shell_error ~= 0 then
     return nil
   end
-  local prefix_command = '0C'
+  local prefix_command = 'S'
   if selection_text then
-    prefix_command = 'gvda'
+    prefix_command = 'gvdi'
   end
-  vim.api.nvim_input(prefix_command .. node_output:gsub('(.*)\n', '%1') .. '<esc>')
+  vim.api.nvim_input(prefix_command .. vim.trim(node_output) .. '<esc>')
 end
 
 M.window_picker = require('user.utilities.window-picker')

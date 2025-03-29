@@ -34,9 +34,9 @@
   "mini.icons": { "branch": "main", "commit": "86a633f0dffcfd80110bac86681dbf4b5c37ba5c" },
   "mini.indentscope": { "branch": "main", "commit": "8ce41a77eed7f4121c83c67fda5e2e86af999e6d" },
   "mini.move": { "branch": "main", "commit": "c8b30e92dd2668dd6e56a9a23cb7d4ee38c2266d" },
-  "mini.operators": { "branch": "main", "commit": "02cfac95919b945c19221f0fcebe883c6dce04f6" },
+  "mini.operators": { "branch": "main", "commit": "298218fb8280fd4a8234db80230dd84db6b07efd" },
   "mini.starter": { "branch": "main", "commit": "cf770619b85968bc0f45cace82f5c80b69ca0e96" },
-  "mini.surround": { "branch": "main", "commit": "c92d262deae79545b7674b2069332116461a85f3" },
+  "mini.surround": { "branch": "main", "commit": "97796f68a8698d9b63ac3927da0d0bf5c3a0876b" },
   "minuet-ai.nvim": { "branch": "main", "commit": "9168232920cc0d00f53f0f5b8f5df04212635912" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "8d3bce9764e627b62b07424e0df77f680d47ffdb" },
@@ -65,6 +65,6 @@
   "undotree": { "branch": "master", "commit": "b951b87b46c34356d44aa71886aecf9dd7f5788a" },
   "vim-fugitive": { "branch": "master", "commit": "4a745ea72fa93bb15dd077109afbb3d1809383f2" },
   "volt": { "branch": "main", "commit": "21a2351697abfed26d4469b88d3ab124d55a1b3f" },
-  "vscode-js-debug": { "branch": "main", "commit": "77f4d10d14bd9c8d232e257317f28eb08c1166d4" },
+  "vscode-js-debug": { "branch": "main", "commit": "c1b740abb7336603f6f74e9cf0495017900cb480" },
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" }
 }

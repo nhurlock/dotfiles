@@ -17,4 +17,8 @@ return {
     },
     search_method = 'cover_or_next',
   },
+  init = function()
+    -- remap adding surrounding to visual mode selection
+    vim.keymap.set('x', 'S', ":<C-u>lua MiniSurround.add('visual')<CR>", { noremap = true })
+  end,
 }

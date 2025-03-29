@@ -51,7 +51,7 @@ M.window_swap = function()
     return
   end
   local frombuf = vim.api.nvim_win_get_buf(fromwin)
-  if vim.bo[frombuf].filetype == 'neo-tree' then
+  if vim.bo[frombuf].filetype == 'minifiles' then
     return
   end
   local fromline = vim.fn.line('.')

@@ -8,9 +8,6 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 1.0
 end
 
--- JetBrainsMono font
-vim.opt.guifont = 'JetBrainsMono Nerd Font Mono:h17'
-
 -- cursor config (overwrites default term and cmd cursor - to 'beam')
 vim.opt.guicursor = 'n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20,t:ver25-TermCursor'
 
@@ -24,8 +21,8 @@ vim.opt.linebreak = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- fuzzy completion
-vim.opt.completeopt:append('fuzzy')
+-- more sane menu, fuzzy
+vim.opt.completeopt = 'menuone,noselect,popup,fuzzy'
 
 -- full color support
 vim.opt.termguicolors = true
@@ -60,9 +57,8 @@ vim.opt.scrolloff = 8
 -- 1 column sign column
 vim.opt.signcolumn = 'yes:1'
 
--- shortmess updates
--- added 's' to remove 'search hit top/bottom' messages
-vim.opt.shortmess = 'ltToOCFs'
+-- remove 'search hit top/bottom' messages
+vim.opt.shortmess:append('s')
 
 -- keep only a single statusline for current window
 vim.opt.laststatus = 3

@@ -54,16 +54,24 @@ usercmd('TermHl', function()
 
   -- move the buffer contents into the same view as the terminal was
   -- place the cursor where the cursor was
-  vim.defer_fn(function()
-    vim.fn.feedkeys(
-      tonumber(vim.env.KITTY_SCROLLBACK_NVIM_INPUT_LN)
-        .. 'Gzt'
-        .. tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_LN) - 1
-        .. 'j'
-        .. tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_COL) - 1
-        .. 'l'
-    )
-  end, 10)
+  local top_line = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_TOP_LN)
+  local cursor_line = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_LN)
+  local cursor_col = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_COL)
+  local cmd = ''
+  if top_line ~= nil then
+    cmd = top_line .. 'Gzt'
+  end
+  if cursor_line ~= nil and cursor_line > 1 then
+    cmd = cmd .. cursor_line - 1 .. 'j'
+  end
+  if cursor_col ~= nil and cursor_col > 1 then
+    cmd = cmd .. cursor_col - 1 .. 'l'
+  end
+  if cmd ~= '' then
+    vim.defer_fn(function()
+      vim.fn.feedkeys(cmd)
+    end, 10)
+  end
 end, { desc = 'Highlights ANSI termcodes in curbuf' })
 
 if vim.env.KITTY_SCROLLBACK_NVIM == 'true' then

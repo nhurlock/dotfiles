@@ -88,6 +88,8 @@ end
 local function fmt_filename(fn)
   if fn:match('lazygit') and fn:match('toggleterm') then
     return 'Git'
+  elseif fn:match('welcome') then
+    return 'Welcome'
   elseif fn:match('node') and fn:match('toggleterm') then
     return 'Node'
   elseif fn:match('toggleterm') then
@@ -188,7 +190,7 @@ return {
         modified = '%#MiniIconsOrange#●',
         readonly = '%#MiniIconsRed#',
         unnamed = '[No Name]',
-        newfile = '[New]',
+        newfile = '*',
       },
       fmt = fmt_filename,
       color = { bg = 'NONE', gui = 'bold' },

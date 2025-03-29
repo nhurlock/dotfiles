@@ -3,3 +3,4 @@ node_modules
 dist
 env.lua
 .DS_Store
+kitty/work

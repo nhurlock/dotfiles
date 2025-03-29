@@ -404,6 +404,22 @@ return {
           end,
           ['alt-q'] = actions.file_sel_to_qf,
           ['alt-l'] = actions.file_sel_to_ll,
+          ['ctrl-g'] = function(_, opts)
+            if opts.cmd:find('%-%-no%-ignore%-vcs') then
+              opts.cmd = opts.cmd:gsub('%-%-no%-ignore%-vcs', '', 1)
+            else
+              opts.cmd = opts.cmd .. ' --no-ignore-vcs'
+            end
+            require('fzf-lua').files(opts)
+          end,
+          ['ctrl-h'] = function(_, opts)
+            if opts.cmd:find('%-%-hidden') then
+              opts.cmd = opts.cmd:gsub('%-%-hidden', '', 1)
+            else
+              opts.cmd = opts.cmd .. ' --hidden'
+            end
+            require('fzf-lua').files(opts)
+          end,
         },
         buffers = {
           -- providers that inherit these actions:

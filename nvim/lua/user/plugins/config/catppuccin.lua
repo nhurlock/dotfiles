@@ -6,7 +6,7 @@ return {
   ---@type CatppuccinOptions
   opts = {
     flavour = 'macchiato',
-    term_colors = true,
+    term_colors = false,
     dim_inactive = {
       enabled = false,
     },

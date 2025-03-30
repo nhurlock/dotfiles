@@ -3,8 +3,6 @@
 ---@type LazyPluginSpec
 return {
   'OXY2DEV/markview.nvim',
-  lazy = false,
-  enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true',
   ---@type mkv.config
   opts = {
     preview = {

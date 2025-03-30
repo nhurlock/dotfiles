@@ -64,7 +64,6 @@ return {
     'yetone/avante.nvim',
     enabled = vim.g.ai_provider == 'copilot',
     event = 'VeryLazy',
-    lazy = false,
     version = false,
     build = 'make',
     opts = {

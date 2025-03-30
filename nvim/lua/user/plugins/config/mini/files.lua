@@ -11,7 +11,6 @@ end
 return {
   'echasnovski/mini.files',
   version = false,
-  lazy = false,
   keys = utils.lazy_maps({
     {
       '<leader>v',

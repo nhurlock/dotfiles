@@ -3,6 +3,7 @@ local utils = require('user.utilities')
 ---@type LazyPluginSpec
 return {
   'lewis6991/gitsigns.nvim',
+  lazy = false,
   keys = utils.lazy_maps({
     { '<leader>gp', 'Gitsigns preview_hunk_inline', 'n', 'Git preview hunk' },
     { '<leader>gs', 'Gitsigns stage_hunk', 'n', 'Git stage hunk' },
@@ -14,7 +15,6 @@ return {
     { ']g', 'Gitsigns next_hunk', 'n', 'Git next hunk' },
     { '[g', 'Gitsigns prev_hunk', 'n', 'Git prev hunk' },
   }),
-  lazy = false,
   opts = {
     signs = {
       add = { text = '▎' },

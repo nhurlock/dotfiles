@@ -75,17 +75,5 @@ return {
   config = function(_, opts)
     require('user.plugins.config.noice.backends.fidget')
     require('noice').setup(opts)
-
-    vim.keymap.set({ 'n', 'i', 's' }, '<C-d>', function()
-      if not require('noice.lsp').scroll(4) then
-        return '<C-d>'
-      end
-    end, { silent = true, expr = true })
-
-    vim.keymap.set({ 'n', 'i', 's' }, '<C-u>', function()
-      if not require('noice.lsp').scroll(-4) then
-        return '<C-u>'
-      end
-    end, { silent = true, expr = true })
   end,
 }

@@ -12,7 +12,7 @@ return {
 
     {
       'nhurlock/jira-issues.nvim',
-      enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' and vim.env.USER ~= 'nhurlock',
+      enabled = vim.env.USER ~= 'nhurlock',
       dev = true,
     }, -- work-only
   },

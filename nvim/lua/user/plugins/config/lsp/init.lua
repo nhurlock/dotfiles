@@ -19,7 +19,6 @@ return {
         },
       },
     },
-    'yioneko/nvim-vtsls', -- javascript/typescript-specific lsp helpers
     'mfussenegger/nvim-jdtls', -- java-specific lsp helpers
   },
   config = function()

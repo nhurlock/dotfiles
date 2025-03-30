@@ -24,6 +24,7 @@ lazy.setup('user.plugins.config', {
   },
   install = { colorscheme = { 'catppuccin' } },
   change_detection = { notify = false },
+  rocks = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {

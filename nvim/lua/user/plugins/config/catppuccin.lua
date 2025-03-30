@@ -46,5 +46,18 @@ return {
   config = function(_, opts)
     require('catppuccin').setup(opts)
     vim.cmd.colorscheme('catppuccin')
+
+    local palette = require('catppuccin.palettes').get_palette()
+    local colors = require('catppuccin.utils.colors')
+
+    local darkerbg = colors.darken(colors.bg, 0.03, palette.mantle)
+
+    vim.api.nvim_set_hl(0, 'NormalFloat', { fg = palette.text, bg = darkerbg, force = true })
+    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = palette.base, bg = darkerbg, force = true })
+    vim.api.nvim_set_hl(0, 'FloatTitle', { fg = palette.text, bg = darkerbg, force = true })
+
+    vim.api.nvim_set_hl(0, 'FloatPreviewNormal', { link = 'Normal', force = true })
+    vim.api.nvim_set_hl(0, 'FloatPreviewTitle', { link = 'FloatTitle', force = true })
+    vim.api.nvim_set_hl(0, 'FloatPreviewBorder', { link = 'FloatBorder', force = true })
   end,
 }

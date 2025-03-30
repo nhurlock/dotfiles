@@ -5,4 +5,4 @@ if vim.env.USER ~= 'nhurlock' then
 end
 
 ---@type LazyPluginSpec
-return { import = 'user.plugins.config.ai', enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' }
+return { import = 'user.plugins.config.ai', cond = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' }

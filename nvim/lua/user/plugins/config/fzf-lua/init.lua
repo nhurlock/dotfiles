@@ -4,7 +4,6 @@ local utils = require('user.utilities')
 ---@type LazyPluginSpec
 return {
   'ibhagwan/fzf-lua',
-  lazy = false,
   keys = utils.lazy_maps({
     {
       '<leader>ji',
@@ -233,17 +232,6 @@ return {
     local fzf_utils = require('fzf-lua.utils')
     local quickfix = require('fzf-lua.providers.quickfix')
     local palette = require('catppuccin.palettes').get_palette()
-    local colors = require('catppuccin.utils.colors')
-
-    local darkerbg = colors.darken(colors.bg, 0.03, palette.mantle)
-
-    vim.api.nvim_set_hl(0, 'NormalFloat', { fg = palette.text, bg = darkerbg, force = true })
-    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = palette.base, bg = darkerbg, force = true })
-    vim.api.nvim_set_hl(0, 'FloatTitle', { fg = palette.text, bg = darkerbg, force = true })
-
-    vim.api.nvim_set_hl(0, 'FloatPreviewNormal', { link = 'Normal', force = true })
-    vim.api.nvim_set_hl(0, 'FloatPreviewTitle', { link = 'FloatTitle', force = true })
-    vim.api.nvim_set_hl(0, 'FloatPreviewBorder', { link = 'FloatBorder', force = true })
 
     vim.api.nvim_set_hl(0, 'FzfLuaNormal', { link = 'NormalFloat', force = true })
     vim.api.nvim_set_hl(0, 'FzfLuaBorder', { link = 'FloatBorder', force = true })

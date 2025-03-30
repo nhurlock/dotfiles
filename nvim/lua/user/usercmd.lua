@@ -54,12 +54,12 @@ usercmd('TermHl', function()
 
   -- move the buffer contents into the same view as the terminal was
   -- place the cursor where the cursor was
-  local top_line = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_TOP_LN)
+  local input_line = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_INPUT_LN)
   local cursor_line = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_LN)
   local cursor_col = tonumber(vim.env.KITTY_SCROLLBACK_NVIM_CURSOR_COL)
   local cmd = ''
-  if top_line ~= nil then
-    cmd = top_line .. 'Gzt'
+  if input_line ~= nil then
+    cmd = input_line .. 'Gzt'
   end
   if cursor_line ~= nil and cursor_line > 1 then
     cmd = cmd .. cursor_line - 1 .. 'j'

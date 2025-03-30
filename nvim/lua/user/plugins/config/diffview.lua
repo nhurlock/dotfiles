@@ -3,6 +3,7 @@ local utils = require('user.utilities')
 ---@type LazyPluginSpec
 return {
   'sindrets/diffview.nvim',
+  lazy = vim.env.DIFFVIEW ~= 'true',
   cmd = {
     'DiffviewOpen',
     'DiffviewFileHistory',
@@ -13,9 +14,6 @@ return {
     { '<leader>gh', 'DiffviewFileHistory %', 'n', 'Git file history' },
     { '<leader>gf', 'DiffviewToggleFiles', 'n', 'Git files' },
   }),
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
   config = function()
     local actions = require('diffview.actions')
 
@@ -24,12 +22,14 @@ return {
       hooks = {
         view_opened = function()
           actions.toggle_files()
+          if vim.env.DIFFVIEW == 'true' then
+            vim.cmd('tabo')
+          end
         end,
         view_closed = function()
-          if not vim.env.DIFFVIEW then
-            return
+          if vim.env.DIFFVIEW == 'true' then
+            vim.cmd.quitall()
           end
-          vim.cmd.quit()
         end,
       },
     })

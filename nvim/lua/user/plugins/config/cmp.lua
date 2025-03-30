@@ -148,6 +148,7 @@ return {
           auto_show = true,
           border = 'none',
           draw = {
+            treesitter = { 'lsp' },
             components = {
               kind_icon = {
                 ellipsis = false,

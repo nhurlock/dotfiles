@@ -10,7 +10,7 @@ return {
       icon_provider = 'mini',
       linewise_hybrid_mode = true,
       hybrid_modes = { 'n', 'i' },
-      filetypes = { 'markdown', 'copilot-chat', 'Avante' },
+      filetypes = { 'markdown', 'copilot-chat', 'Avante', 'codecompanion' },
     },
   },
 }

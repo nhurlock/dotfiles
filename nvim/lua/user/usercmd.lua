@@ -70,7 +70,7 @@ usercmd('TermHl', function()
   if cmd ~= '' then
     vim.defer_fn(function()
       vim.fn.feedkeys(cmd)
-    end, 10)
+    end, 100)
   end
 end, { desc = 'Highlights ANSI termcodes in curbuf' })
 

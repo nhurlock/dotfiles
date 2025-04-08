@@ -18,7 +18,7 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       http = { 'kulala' },
-      ['_'] = { 'trim_whitespace', 'trim_newlines' },
+      ['_'] = { 'trim_whitespace', 'trim_newlines', lsp_format = 'last' },
     },
   },
   init = function()
@@ -27,7 +27,7 @@ return {
       group = formatting_group,
       callback = function(args)
         if formatting_state[args.buf] ~= false then
-          pcall(require('conform').format, { lsp_format = 'fallback' })
+          pcall(require('conform').format)
         end
       end,
     })
@@ -42,7 +42,7 @@ return {
     {
       '<leader>fi',
       function()
-        require('conform').format({ async = true, lsp_format = 'fallback' })
+        require('conform').format({ async = true })
       end,
       'n',
       'LSP format',

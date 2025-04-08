@@ -31,6 +31,7 @@ return {
     }),
     ---@type copilot_config
     opts = {
+      model = 'claude-3.5-sonnet',
       filetypes = {
         ['yaml.git_actions'] = true,
         ['yaml.cloudformation'] = true,
@@ -61,8 +62,50 @@ return {
     enabled = vim.g.ai_provider == 'copilot',
   },
   {
+    'olimorris/codecompanion.nvim',
+    opts = function()
+      return {
+        adapters = {
+          copilot = function()
+            return require('codecompanion.adapters').extend('copilot', {
+              schema = {
+                model = {
+                  default = 'claude-3.5-sonnet',
+                },
+              },
+            })
+          end,
+        },
+        strategies = {
+          chat = {
+            adapter = 'copilot',
+            slash_commands = {
+              ['file'] = {
+                callback = 'strategies.chat.slash_commands.file',
+                description = 'Select a file using fzf',
+                opts = {
+                  provider = 'fzf_lua',
+                  contains_code = true,
+                },
+              },
+            },
+          },
+          inline = {
+            adapter = 'copilot',
+          },
+          cmd = {
+            adapter = 'copilot',
+          },
+        },
+        opts = {
+          log_level = 'DEBUG',
+        },
+      }
+    end,
+  },
+  {
     'yetone/avante.nvim',
-    enabled = vim.g.ai_provider == 'copilot',
+    enabled = false, -- disabled for now since codecompanion seems to provide greater value
     event = 'VeryLazy',
     version = false,
     build = 'make',

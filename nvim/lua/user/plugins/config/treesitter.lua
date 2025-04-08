@@ -38,7 +38,7 @@ return {
         keymaps = {
           init_selection = '<C-space>',
           node_incremental = '<C-space>',
-          node_decremental = '<C-H>',
+          node_decremental = '<C-BS>',
           scope_incremental = false,
         },
       },

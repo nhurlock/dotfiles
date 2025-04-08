@@ -185,7 +185,7 @@ return {
           },
           {
             'n',
-            '<C-_>',
+            '<C-->',
             function()
               actual_open(true, false)
             end,

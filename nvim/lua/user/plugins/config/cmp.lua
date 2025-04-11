@@ -43,7 +43,7 @@ return {
 
     -- missing/todo:
     --  - replace behavior
-    --  - handle cfn_lsp case for custom 'AWS' kind icon
+    --  - change kind icon based on lsp name
 
     local opts = {
       enabled = function()
@@ -266,14 +266,14 @@ return {
           async = true,
         }
 
-        -- configure minuet
-        -- table.insert(opts.sources.default, "minuet")
+        -- -- configure minuet
+        -- table.insert(opts.sources.default, 'minuet')
         -- ---@type blink.cmp.SourceProviderConfig
         -- opts.sources.providers.minuet = {
         --   name = 'minuet',
         --   module = 'minuet.blink',
         --   score_offset = 100,
-        --   async = true
+        --   async = true,
         -- }
       end
     end

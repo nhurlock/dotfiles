@@ -231,6 +231,7 @@ return {
     local path = require('fzf-lua.path')
     local fzf_utils = require('fzf-lua.utils')
     local quickfix = require('fzf-lua.providers.quickfix')
+    local grep = require('fzf-lua.providers.grep')
     local palette = require('catppuccin.palettes').get_palette()
 
     vim.api.nvim_set_hl(0, 'FzfLuaNormal', { link = 'NormalFloat', force = true })
@@ -392,6 +393,9 @@ return {
           end,
           ['alt-q'] = actions.file_sel_to_qf,
           ['alt-l'] = actions.file_sel_to_ll,
+          ['ctrl-l'] = function(selected, opts)
+            grep.live_grep({ filename = path.entry_to_file(selected[1], opts).path })
+          end,
           ['ctrl-g'] = function(_, opts)
             if opts.cmd:find('%-%-no%-ignore%-vcs') then
               opts.cmd = opts.cmd:gsub('%-%-no%-ignore%-vcs', '', 1)

@@ -63,6 +63,7 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
+    enabled = vim.g.ai_provider == 'copilot',
     opts = function()
       return {
         adapters = {

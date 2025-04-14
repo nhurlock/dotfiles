@@ -4,7 +4,18 @@ return {
   event = 'InsertEnter',
   build = 'cargo build --release',
   dependencies = {
-    { 'saghen/blink.compat', version = '*', lazy = true, opts = {} },
+    {
+      'saghen/blink.compat',
+      version = '*',
+      lazy = true,
+      config = function()
+        -- monkeypatch cmp.ConfirmBehavior for Avante
+        require('cmp').ConfirmBehavior = {
+          Insert = 'insert',
+          Replace = 'replace',
+        }
+      end,
+    },
 
     -- `main` does not work at the moment
     { 'L3MON4D3/LuaSnip', version = 'v2.*' }, -- snippet engine
@@ -208,7 +219,7 @@ return {
         ---@type blink.cmp.SourceProviderConfig
         opts.sources.providers.copilot = {
           name = 'copilot',
-          module = 'blink-cmp-copilot',
+          module = 'blink-copilot',
           score_offset = 100,
           async = true,
           transform_items = function(_, items)

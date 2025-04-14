@@ -5,7 +5,6 @@ return {
   {
     'nhurlock/llama.vim',
     dev = true,
-    enabled = vim.g.ai_provider == 'llama',
     init = function()
       vim.g.llama_config = {
         show_info = 0,
@@ -51,7 +50,6 @@ return {
   },
   -- {
   --   'milanglacier/minuet-ai.nvim',
-  --   enabled = vim.g.ai_provider == 'llama',
   --   opts = {
   --     provider = 'openai_fim_compatible',
   --     n_completions = 2,

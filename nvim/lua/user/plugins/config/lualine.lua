@@ -109,7 +109,10 @@ return {
   dependencies = {
     'AndreM222/copilot-lualine',
     {
-      'SmiteshP/nvim-navic',
+      -- 'SmiteshP/nvim-navic',
+      'barrett-ruth/nvim-navic',
+      branch = 'nvim-11-compatability',
+      commit = '0088cae',
       opts = function()
         local icons = require('mini.icons')
         return {

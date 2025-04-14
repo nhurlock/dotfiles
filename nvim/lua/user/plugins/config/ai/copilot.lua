@@ -4,7 +4,6 @@ local utils = require('user.utilities')
 return {
   {
     'zbirenbaum/copilot.lua',
-    enabled = vim.g.ai_provider == 'copilot',
     cmd = 'Copilot',
     event = 'InsertEnter',
     keys = utils.lazy_maps({
@@ -31,7 +30,10 @@ return {
     }),
     ---@type copilot_config
     opts = {
-      model = 'claude-3.5-sonnet',
+      copilot_model = 'gpt-4o-copilot',
+      server = {
+        type = 'binary',
+      },
       filetypes = {
         ['yaml.git_actions'] = true,
         ['yaml.cloudformation'] = true,
@@ -54,16 +56,13 @@ return {
   },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    enabled = vim.g.ai_provider == 'copilot',
     config = true,
   },
   {
-    'giuxtaposition/blink-cmp-copilot',
-    enabled = vim.g.ai_provider == 'copilot',
+    'fang2hou/blink-copilot',
   },
   {
     'olimorris/codecompanion.nvim',
-    enabled = vim.g.ai_provider == 'copilot',
     opts = function()
       return {
         adapters = {
@@ -71,7 +70,7 @@ return {
             return require('codecompanion.adapters').extend('copilot', {
               schema = {
                 model = {
-                  default = 'claude-3.5-sonnet',
+                  default = 'claude-3.7-sonnet',
                 },
               },
             })
@@ -106,12 +105,14 @@ return {
   },
   {
     'yetone/avante.nvim',
-    enabled = false, -- disabled for now since codecompanion seems to provide greater value
     event = 'VeryLazy',
     version = false,
     build = 'make',
     opts = {
       provider = 'copilot',
+      copilot = {
+        model = 'claude-3.7-sonnet',
+      },
       file_selector = {
         provider = 'fzf',
       },
@@ -123,7 +124,7 @@ return {
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
         minimize_diff = true,
-        enable_token_counting = false,
+        enable_token_counting = true,
         enable_cursor_planning_mode = true,
       },
     },

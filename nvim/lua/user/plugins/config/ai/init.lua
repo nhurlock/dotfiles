@@ -6,6 +6,6 @@ end
 
 ---@type LazyPluginSpec
 return {
-  import = (vim.g.ai_provider == 'copilot' and 'user.plugins.config.ai.copilot') or 'user.plugins.config.ai.llama',
+  import = (vim.g.ai_provider == 'copilot' and 'user.plugins.config.ai.copilot') or 'user.plugins.config.ai.llama.init',
   cond = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true',
 }

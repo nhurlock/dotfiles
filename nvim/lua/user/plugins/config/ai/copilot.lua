@@ -79,6 +79,14 @@ return {
         strategies = {
           chat = {
             adapter = 'copilot',
+            tools = {
+              ['mcp'] = {
+                callback = function()
+                  return require('mcphub.extensions.codecompanion')
+                end,
+                description = 'Call tools and resources from the MCP Servers',
+              },
+            },
             slash_commands = {
               ['file'] = {
                 callback = 'strategies.chat.slash_commands.file',
@@ -126,7 +134,25 @@ return {
         minimize_diff = true,
         enable_token_counting = true,
         enable_cursor_planning_mode = true,
+        enable_claude_text_editor_tool_mode = true,
       },
+      system_prompt = function()
+        local hub = require('mcphub').get_hub_instance()
+        if not hub then
+          return nil
+        end
+        return hub:get_active_servers_prompt()
+      end,
+      custom_tools = function()
+        return {
+          require('mcphub.extensions.avante').mcp_tool(),
+        }
+      end,
     },
+  },
+  {
+    'ravitemer/mcphub.nvim',
+    build = 'npm install -g mcp-hub@latest',
+    config = true,
   },
 }

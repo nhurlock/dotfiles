@@ -1,4 +1,5 @@
--- llama-server --fim-qwen-7b-default
+-- llama-server --fim-qwen-7b-default --port 8012
+-- llama-server --jinja -fa -c 0 -hf unsloth/Qwen2.5-Coder-14B-Instruct-128K-GGUF --port 8080
 
 ---@type LazyPluginSpec[]
 return {
@@ -25,12 +26,15 @@ return {
         llama = function()
           return require('codecompanion.adapters').extend('openai_compatible', {
             env = {
-              url = 'http://localhost:8012',
+              url = 'http://localhost:8080',
             },
             schema = {
               model = {
                 default = '',
               },
+            },
+            opts = {
+              stream = false,
             },
           })
         end,
@@ -38,6 +42,24 @@ return {
       strategies = {
         chat = {
           adapter = 'llama',
+          tools = {
+            ['mcp'] = {
+              callback = function()
+                return require('mcphub.extensions.codecompanion')
+              end,
+              description = 'Call tools and resources from the MCP Servers',
+            },
+          },
+          slash_commands = {
+            ['file'] = {
+              callback = 'strategies.chat.slash_commands.file',
+              description = 'Select a file using fzf',
+              opts = {
+                provider = 'fzf_lua',
+                contains_code = true,
+              },
+            },
+          },
         },
         inline = {
           adapter = 'llama',
@@ -47,6 +69,11 @@ return {
         },
       },
     },
+  },
+  {
+    'ravitemer/mcphub.nvim',
+    build = 'npm install -g mcp-hub@latest',
+    config = true,
   },
   -- {
   --   'milanglacier/minuet-ai.nvim',

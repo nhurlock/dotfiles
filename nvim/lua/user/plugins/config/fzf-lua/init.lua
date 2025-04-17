@@ -4,6 +4,7 @@ local utils = require('user.utilities')
 ---@type LazyPluginSpec
 return {
   'ibhagwan/fzf-lua',
+  lazy = false,
   keys = utils.lazy_maps({
     {
       '<leader>ji',
@@ -290,7 +291,8 @@ return {
       },
     }
 
-    require('fzf-lua').setup({
+    local fzf_lua = require('fzf-lua')
+    fzf_lua.setup({
       hls = {
         header_bind = hl_validate('FzfCustomHeaderBind'),
         header_text = hl_validate('FzfCustomHeaderText'),
@@ -428,6 +430,6 @@ return {
         },
       },
     })
-    vim.cmd([[FzfLua register_ui_select]])
+    fzf_lua.register_ui_select()
   end,
 }

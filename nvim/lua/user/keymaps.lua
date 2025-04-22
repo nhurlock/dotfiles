@@ -45,7 +45,7 @@ keymap('', '<M-down>', '<cmd>resize -3<cr>', with_desc(opts, 'Resize window heig
 keymap('', '<leader>th', '<C-w>t<C-w>H', with_desc(opts, 'Swap window to horizontal split'))
 keymap('', '<leader>tk', '<C-w>t<C-w>K', with_desc(opts, 'Swap window to vertical split'))
 
--- window mappings to mirror wezterm
+-- window mappings to mirror terminal splits
 keymap('n', '<C-w>-', '<cmd>split<cr>', with_desc(opts, 'Create horizontal split'))
 keymap('n', '<C-w>\\', '<cmd>vsplit<cr>', with_desc(opts, 'Create vertical split'))
 keymap('n', '<C-w>c', '<cmd>vsplit | enew<cr>', with_desc(opts, 'Create vertical split with new buffer'))

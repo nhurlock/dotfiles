@@ -55,6 +55,19 @@ return {
     },
   },
   {
+    'copilotlsp-nvim/copilot-lsp',
+    cond = false,
+    init = function()
+      vim.g.copilot_nes_debounce = 500
+      vim.lsp.enable('copilot')
+      vim.keymap.set({ 'n', 'i' }, '<C-l>', function()
+        if not require('blink.cmp').is_visible() then
+          require('copilot-lsp.nes').apply_pending_nes()
+        end
+      end)
+    end,
+  },
+  {
     'CopilotC-Nvim/CopilotChat.nvim',
     config = true,
   },

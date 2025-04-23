@@ -9,7 +9,6 @@ local servers = {
   'harper_ls',
   'jsonls',
   'vtsls',
-  -- "ts_ls",
   'eslint',
   'gopls',
   'yamlls',
@@ -51,7 +50,7 @@ if not lspconfig_status_ok then
 end
 
 local configs = require('lspconfig.configs')
-local custom_servers = { 'cfn_lsp', 'git_actions', 'copilot-language-server' }
+local custom_servers = { 'cfn_lsp', 'git_actions' }
 
 for _, server in pairs(custom_servers) do
   configs[server] = require('user.plugins.config.lsp.servers.' .. server)

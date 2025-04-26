@@ -26,7 +26,7 @@ local function lsp_attach(client, bufnr)
   end
   local keymap = bufnr_keymap(bufnr)
 
-  if client:supports_method(methods.textDocument_documentHighlight) and not lsp_state[bufnr].highlight then
+  if client:supports_method(methods.textDocument_documentHighlight, bufnr) and not lsp_state[bufnr].highlight then
     lsp_state[bufnr].highlight = true
 
     vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
@@ -41,36 +41,36 @@ local function lsp_attach(client, bufnr)
     })
   end
 
-  if client:supports_method(methods.textDocument_documentSymbol) and not lsp_state[bufnr].navic then
+  if client:supports_method(methods.textDocument_documentSymbol, bufnr) and not lsp_state[bufnr].navic then
     lsp_state[bufnr].navic = true
     require('nvim-navic').attach(client, bufnr)
   end
 
-  if client:supports_method(methods.textDocument_declaration) then
+  if client:supports_method(methods.textDocument_declaration, bufnr) then
     keymap('gD', function()
       vim.lsp.buf.declaration()
     end, 'LSP go to declaration')
   end
 
-  if client:supports_method(methods.textDocument_hover) then
+  if client:supports_method(methods.textDocument_hover, bufnr) then
     keymap('K', function()
       vim.lsp.buf.hover(lsp_popup_config)
     end, 'LSP hover')
   end
 
-  if client:supports_method(methods.textDocument_signatureHelp) then
+  if client:supports_method(methods.textDocument_signatureHelp, bufnr) then
     keymap('<C-k>', function()
       vim.lsp.buf.signature_help(lsp_popup_config)
     end, 'LSP signature help')
   end
 
-  if client:supports_method(methods.textDocument_rename) then
+  if client:supports_method(methods.textDocument_rename, bufnr) then
     keymap('<leader>rn', function()
       vim.lsp.buf.rename()
     end, 'LSP rename')
   end
 
-  if client:supports_method(methods.textDocument_codeAction) then
+  if client:supports_method(methods.textDocument_codeAction, bufnr) then
     keymap('<leader>.', function()
       local clients = vim.lsp.get_clients({ bufnr = bufnr })
       local code_action_kinds = {}
@@ -90,7 +90,7 @@ local function lsp_attach(client, bufnr)
     end, 'LSP code actions')
   end
 
-  if client:supports_method(methods.textDocument_inlayHint) then
+  if client:supports_method(methods.textDocument_inlayHint, bufnr) then
     vim.lsp.inlay_hint.enable(lsp_state[bufnr].inlay_hints, { bufnr = bufnr })
 
     keymap('<leader>tih', function()
@@ -116,6 +116,10 @@ local function lsp_attach(client, bufnr)
         vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
       end
     end, 'LSP toggle inlay hints')
+  end
+
+  if client:supports_method(methods.textDocument_documentColor, bufnr) then
+    vim.lsp.document_color.enable(true, bufnr, { style = 'virtual' })
   end
 
   vim.api.nvim_create_autocmd('BufDelete', {

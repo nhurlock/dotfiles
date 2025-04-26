@@ -21,6 +21,14 @@ return {
       'n',
       'Node terminal',
     },
+    {
+      '<leader>da',
+      function()
+        _GH_DASH_TOGGLE()
+      end,
+      'n',
+      'GitHub Dash',
+    },
   }),
   cmd = 'ToggleTerm',
   config = function()
@@ -61,6 +69,12 @@ return {
     local node = Terminal:new({ cmd = 'node', hidden = true })
     function _NODE_TOGGLE()
       node:toggle()
+    end
+
+    -- create a terminal for GitHub Dash
+    local gh_dash = Terminal:new({ cmd = 'gh dash', hidden = true, direction = 'float' })
+    function _GH_DASH_TOGGLE()
+      gh_dash:toggle()
     end
   end,
 }

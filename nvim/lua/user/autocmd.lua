@@ -42,12 +42,21 @@ autocmd('TermEnter', {
   end,
 })
 
+-- allow esc key in GitHub Dash, use <C-q> instead
+autocmd('TermEnter', {
+  pattern = 'term://*gh dash*toggleterm#*',
+  callback = function()
+    vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { noremap = true, silent = true, buffer = true })
+    vim.keymap.set('t', '<esc>', '<esc>', { noremap = true, silent = true, buffer = true })
+  end,
+})
+
 -- special keys to support fzf
 autocmd('TermEnter', {
   pattern = 'term://*',
   callback = function(opts)
+    vim.b.miniindentscope_disable = true
     if vim.bo[opts.buf].filetype == 'fzf' then
-      vim.b.miniindentscope_disable = true
       vim.keymap.set('t', '<C-h>', '<C-h>', { noremap = true, silent = true, buffer = true })
       vim.keymap.set('t', '<C-j>', '<C-j>', { noremap = true, silent = true, buffer = true })
       vim.keymap.set('t', '<C-k>', '<C-k>', { noremap = true, silent = true, buffer = true })

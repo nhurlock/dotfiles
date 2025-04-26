@@ -117,6 +117,9 @@ keymap('n', '<leader>y', '"+y', with_desc(opts, 'Yank to system clipboard'))
 keymap('n', '<leader>Y', '"+Y', with_desc(opts, 'Yank line to system clipboard'))
 keymap('v', '<leader>y', '"+y', with_desc(opts, 'Yank selection to system clipboard'))
 
+-- search within visual selection
+keymap('x', '/', '<esc>/\\%V', with_desc(opts, 'Search within visual selection'))
+
 -- lists
 keymap('n', '<leader>xl', function()
   pcall(vim.cmd.lopen)

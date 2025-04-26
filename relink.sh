@@ -29,6 +29,11 @@ rm -rf ~/.config/kitty
 ln -s "$(pwd)/kitty" ~/.config/kitty
 
 
+# gh-dash
+rm -rf ~/.config/gh-dash
+ln -s "$(pwd)/gh-dash" ~/.config/gh-dash
+
+
 # aerospace
 rm ~/.aerospace.toml
 ln -s "$(pwd)/aerospace/.aerospace.toml" ~/.aerospace.toml

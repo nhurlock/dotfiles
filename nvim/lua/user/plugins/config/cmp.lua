@@ -30,6 +30,7 @@ return {
   config = function()
     local cmp = require('blink.cmp')
     local icons = require('mini.icons')
+    local autopairs = require('nvim-autopairs.completion.cmp')
     local has_jira, _ = pcall(require, 'jira-issues.completion.blink')
 
     local kind_icons = {
@@ -72,7 +73,14 @@ return {
         ['<C-f>'] = { 'snippet_backward', 'fallback' },
         ['<C-v>'] = { 'snippet_forward', 'fallback' },
         ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-l>'] = { 'select_and_accept', 'fallback' },
+        ['<C-l>'] = {
+          function(_cmp)
+            return _cmp.select_and_accept({
+              callback = autopairs.on_confirm_done,
+            })
+          end,
+          'fallback',
+        },
         ['<C-e>'] = { 'hide', 'fallback' },
       },
       sources = {

@@ -39,17 +39,19 @@ return {
           })
         end,
       },
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
       strategies = {
         chat = {
           adapter = 'llama',
-          tools = {
-            ['mcp'] = {
-              callback = function()
-                return require('mcphub.extensions.codecompanion')
-              end,
-              description = 'Call tools and resources from the MCP Servers',
-            },
-          },
           slash_commands = {
             ['file'] = {
               callback = 'strategies.chat.slash_commands.file',

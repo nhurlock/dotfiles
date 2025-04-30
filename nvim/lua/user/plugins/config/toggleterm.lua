@@ -4,7 +4,7 @@ local utils = require('user.utilities')
 return {
   'akinsho/toggleterm.nvim',
   keys = utils.lazy_maps({
-    { '<leader>\\', 'ToggleTerm', 'n', 'Toggle terminal' },
+    { '<leader>to', 'ToggleTerm', 'n', 'Toggle terminal' },
     {
       '<leader>gg',
       function()

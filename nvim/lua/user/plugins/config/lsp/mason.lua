@@ -19,6 +19,7 @@ local servers = {
   'dockerls',
   'zls',
   'rust_analyzer',
+  'gh_actions_ls',
   'jdtls',
   'sqlls',
   'lemminx',
@@ -41,7 +42,7 @@ local settings = {
 mason.setup(settings)
 masonlspconfig.setup({
   ensure_installed = servers,
-  automatic_installation = true,
+  automatic_enable = true,
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, 'lspconfig')
@@ -50,7 +51,7 @@ if not lspconfig_status_ok then
 end
 
 local configs = require('lspconfig.configs')
-local custom_servers = { 'cfn_lsp', 'git_actions' }
+local custom_servers = { 'cfn_lsp' }
 
 for _, server in pairs(custom_servers) do
   configs[server] = require('user.plugins.config.lsp.servers.' .. server)

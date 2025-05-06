@@ -2,8 +2,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim', -- simple to use language server installer
-    'williamboman/mason-lspconfig.nvim', -- simple to use language server installer
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     {
       'folke/lazydev.nvim', -- lua-specific lsp helpers
       ft = 'lua',

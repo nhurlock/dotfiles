@@ -35,7 +35,6 @@ return {
         type = 'binary',
       },
       filetypes = {
-        ['yaml.git_actions'] = true,
         ['yaml.cloudformation'] = true,
       },
       suggestion = {

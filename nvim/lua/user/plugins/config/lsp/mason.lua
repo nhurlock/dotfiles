@@ -26,7 +26,7 @@ local servers = {
   'docker_compose_language_service',
 }
 
-local settings = {
+mason.setup({
   ui = {
     border = 'none',
     icons = {
@@ -37,12 +37,10 @@ local settings = {
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
-}
-
-mason.setup(settings)
+})
 masonlspconfig.setup({
   ensure_installed = servers,
-  automatic_enable = true,
+  automatic_enable = false,
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, 'lspconfig')

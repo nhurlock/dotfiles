@@ -109,10 +109,7 @@ return {
   dependencies = {
     'AndreM222/copilot-lualine',
     {
-      -- 'SmiteshP/nvim-navic',
-      'barrett-ruth/nvim-navic',
-      branch = 'nvim-11-compatability',
-      commit = '0088cae',
+      'SmiteshP/nvim-navic',
       opts = function()
         local icons = require('mini.icons')
         return {
@@ -163,6 +160,18 @@ return {
       separator = '',
       padding = 1,
       color = { bg = 'NONE', fg = base_dim },
+    }
+
+    local filepath_filler = {
+      function()
+        return ' '
+      end,
+      padding = { left = 0, right = 0 },
+      separator = '',
+      color = { bg = 'NONE' },
+      cond = function()
+        return filepath[1]() == '.' and vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
+      end,
     }
 
     local filetype_filler = {
@@ -275,9 +284,10 @@ return {
         lualine_c = {
           vim.tbl_extend('force', filepath, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
+              return filepath[1]() ~= '.' and vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
+          filepath_filler,
           vim.tbl_extend('force', filetype, {
             cond = function()
               return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
@@ -309,9 +319,10 @@ return {
         lualine_c = {
           vim.tbl_extend('force', filepath, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return filepath[1]() ~= '.' and vim.bo.buftype ~= 'nofile'
             end,
           }),
+          filepath_filler,
           vim.tbl_extend('force', filetype, {
             cond = function()
               return vim.bo.buftype ~= 'nofile'

@@ -149,17 +149,17 @@ return {
     },
   },
   config = function()
-    local palette = require('catppuccin.palettes').get_palette()
-    local base_dim = palette.overlay0
+    local navic_separator_hl = vim.api.nvim_get_hl(0, { name = 'NavicSeparator' })
+    local separator_hl = { fg = string.format('#%06x', navic_separator_hl.fg), bg = 'NONE' }
 
     local filepath = {
       function()
         return vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h')
       end,
-      icon = { '', align = 'right', color = { fg = base_dim } },
+      icon = { '', align = 'right', color = separator_hl },
       separator = '',
       padding = 1,
-      color = { bg = 'NONE', fg = base_dim },
+      color = separator_hl,
     }
 
     local filepath_filler = {
@@ -305,7 +305,7 @@ return {
             end,
             color_correction = nil,
             navic_opts = nil,
-            icon = { '', color = { fg = base_dim } },
+            icon = { '', color = separator_hl },
             color = { bg = 'NONE' },
           },
         },

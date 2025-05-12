@@ -233,7 +233,6 @@ return {
     local fzf_utils = require('fzf-lua.utils')
     local quickfix = require('fzf-lua.providers.quickfix')
     local grep = require('fzf-lua.providers.grep')
-    local palette = require('catppuccin.palettes').get_palette()
 
     vim.api.nvim_set_hl(0, 'FzfLuaNormal', { link = 'NormalFloat', force = true })
     vim.api.nvim_set_hl(0, 'FzfLuaBorder', { link = 'FloatBorder', force = true })
@@ -242,12 +241,12 @@ return {
     vim.api.nvim_set_hl(0, 'FzfLuaPreviewTitle', { link = 'FloatPreviewTitle', force = true })
     vim.api.nvim_set_hl(0, 'FzfLuaPreviewBorder', { link = 'FloatPreviewBorder', force = true })
 
-    vim.api.nvim_set_hl(0, 'FzfCustomPromptPrefix', { fg = palette.mauve })
-    vim.api.nvim_set_hl(0, 'FzfCustomSelectionCaret', { fg = palette.mauve, force = true })
-    vim.api.nvim_set_hl(0, 'FzfCustomMultiSelection', { fg = palette.subtext0, force = true })
-    vim.api.nvim_set_hl(0, 'FzfCustomMatching', { fg = palette.red, force = true })
-    vim.api.nvim_set_hl(0, 'FzfCustomHeaderBind', { fg = palette.blue, force = true })
-    vim.api.nvim_set_hl(0, 'FzfCustomHeaderText', { fg = palette.peach, force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomPromptPrefix', { link = 'Statement', force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomSelectionCaret', { link = 'Statement', force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomMultiSelection', { link = 'Delimiter', force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomMatching', { link = 'Error', force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomHeaderBind', { link = 'Function', force = true })
+    vim.api.nvim_set_hl(0, 'FzfCustomHeaderText', { link = 'Constant', force = true })
 
     local function hl_validate(hl)
       return not fzf_utils.is_hl_cleared(hl) and hl or nil

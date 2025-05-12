@@ -30,12 +30,6 @@ local function usable_win_ids(winid, filter)
 end
 
 local function apply_changes(id, new_statusline, new_winhl)
-  local has_hl = vim.api.nvim_get_hl(0, { name = 'WindowPicker' })
-  if has_hl == nil or vim.tbl_isempty(has_hl) then
-    local palette = require('catppuccin.palettes').get_palette()
-    vim.api.nvim_set_hl(0, 'WindowPicker', { fg = palette.base, bg = palette.mauve, force = true })
-  end
-
   local ok_status, statusline = pcall(vim.api.nvim_get_option_value, 'statusline', { win = id })
   local ok_hl, winhl = pcall(vim.api.nvim_get_option_value, 'winhl', { win = id })
 
@@ -99,7 +93,7 @@ local function pick_win_id(winid, filter)
     local char = window_picker_chars:sub(i, i)
     win_map[char] = id
 
-    win_opts[id] = apply_changes(id, '%=' .. char .. '%=', 'StatusLine:WindowPicker,StatusLineNC:WindowPicker')
+    win_opts[id] = apply_changes(id, '%=' .. char .. '%=', 'StatusLine:Todo,StatusLineNC:Todo')
 
     i = i + 1
     if i > #window_picker_chars then

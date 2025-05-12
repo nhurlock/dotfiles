@@ -17,6 +17,10 @@ vim.opt.formatoptions:append('o/')
 -- break on words
 vim.opt.linebreak = true
 
+-- logical breaking newlining
+vim.opt.breakindent = true
+vim.opt.breakindentopt = 'shift:1,min:0'
+
 -- netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

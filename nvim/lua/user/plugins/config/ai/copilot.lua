@@ -28,7 +28,7 @@ return {
         'Copilot toggle',
       },
     }),
-    ---@type copilot_config
+    ---@type CopilotConfig
     opts = {
       copilot_model = 'gpt-4o-copilot',
       server = {
@@ -41,6 +41,7 @@ return {
         enabled = false,
         auto_trigger = false,
         hide_during_completion = true,
+        trigger_on_accept = true,
         debounce = 75,
         keymap = {
           accept = '<M-l>',

@@ -45,6 +45,9 @@ return {
       enabled = true,
       left = { 'sign' },
       right = { 'fold', 'git' },
+      folds = {
+        git_hl = true,
+      },
     },
     input = {
       enabled = true,

@@ -63,6 +63,12 @@ return {
       'FzfLua git branches',
     },
     {
+      '<leader>fgh',
+      'FzfLua git_hunks',
+      'n',
+      'FzfLua git hunks',
+    },
+    {
       '<leader>fgs',
       'FzfLua git_status',
       'n',

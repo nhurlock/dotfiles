@@ -65,7 +65,7 @@ outer.top =        0
 outer.right =      0
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
+if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace --focus-follows-window T'
 
 # 'main' binding mode must be always presented
@@ -195,7 +195,7 @@ esc = 'mode main'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
-equal = 'resize smart +50'
+shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#balance-sizes
-shift-equal = ['balance-sizes', 'mode main']
+equal = ['balance-sizes', 'mode main']

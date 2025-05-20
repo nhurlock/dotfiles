@@ -10,8 +10,8 @@ local M = {}
 
 ---@param bufnr number | nil
 local bufnr_keymap = function(bufnr)
-  return function(lhs, rhs, desc)
-    vim.keymap.set('n', lhs, rhs, { silent = true, buffer = bufnr, desc = desc })
+  return function(lhs, rhs, desc, modes)
+    vim.keymap.set(modes or 'n', lhs, rhs, { silent = true, buffer = bufnr, desc = desc })
   end
 end
 
@@ -61,7 +61,7 @@ local function lsp_attach(client, bufnr)
   if client:supports_method(methods.textDocument_signatureHelp, bufnr) then
     keymap('<C-k>', function()
       vim.lsp.buf.signature_help(lsp_popup_config)
-    end, 'LSP signature help')
+    end, 'LSP signature help', 'i')
   end
 
   if client:supports_method(methods.textDocument_rename, bufnr) then

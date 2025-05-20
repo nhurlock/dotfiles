@@ -71,60 +71,59 @@ return {
     end,
   },
   {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    config = true,
-  },
-  {
     'fang2hou/blink-copilot',
   },
   {
     'olimorris/codecompanion.nvim',
-    opts = function()
-      return {
-        adapters = {
-          copilot = function()
-            return require('codecompanion.adapters').extend('copilot', {
-              schema = {
-                model = {
-                  default = 'claude-3.7-sonnet',
-                },
-              },
-            })
-          end,
+    opts = {
+      display = {
+        action_palette = {
+          provider = 'fzf_lua',
         },
-        extensions = {
-          mcphub = {
-            callback = 'mcphub.extensions.codecompanion',
-            opts = {
-              make_vars = true,
-              make_slash_commands = true,
-              show_result_in_chat = true,
+      },
+      adapters = {
+        copilot = function()
+          return require('codecompanion.adapters').extend('copilot', {
+            schema = {
+              model = {
+                default = 'claude-3.7-sonnet',
+              },
+            },
+          })
+        end,
+      },
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
+      strategies = {
+        chat = {
+          adapter = 'copilot',
+          slash_commands = {
+            ['file'] = {
+              callback = 'strategies.chat.slash_commands.file',
+              description = 'Select a file using fzf',
+              opts = {
+                provider = 'fzf_lua',
+                contains_code = true,
+              },
             },
           },
         },
-        strategies = {
-          chat = {
-            adapter = 'copilot',
-            slash_commands = {
-              ['file'] = {
-                callback = 'strategies.chat.slash_commands.file',
-                description = 'Select a file using fzf',
-                opts = {
-                  provider = 'fzf_lua',
-                  contains_code = true,
-                },
-              },
-            },
-          },
-          inline = {
-            adapter = 'copilot',
-          },
-          cmd = {
-            adapter = 'copilot',
-          },
+        inline = {
+          adapter = 'copilot',
         },
-      }
-    end,
+        cmd = {
+          adapter = 'copilot',
+        },
+      },
+    },
   },
   {
     'yetone/avante.nvim',

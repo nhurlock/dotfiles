@@ -22,6 +22,11 @@ return {
   {
     'olimorris/codecompanion.nvim',
     opts = {
+      display = {
+        action_palette = {
+          provider = 'fzf_lua',
+        },
+      },
       adapters = {
         llama = function()
           return require('codecompanion.adapters').extend('openai_compatible', {

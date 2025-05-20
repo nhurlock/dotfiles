@@ -26,8 +26,8 @@ after-startup-command = []
 start-at-login = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 accordion-padding = 50
@@ -156,11 +156,6 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 f = ['fullscreen', 'mode main']
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#split
-# backwards from logic??
-backslash = ['split horizontal', 'mode main']
-minus = ['split vertical', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#balance-sizes
 equal = ['balance-sizes', 'mode main']

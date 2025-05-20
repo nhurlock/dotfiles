@@ -96,8 +96,16 @@ local function fmt_filename(fn)
     return 'Terminal'
   elseif vim.bo.filetype == 'minifiles' then
     return 'Files'
+  elseif vim.bo.filetype == 'lazy' then
+    return 'Lazy'
+  elseif vim.bo.filetype == 'mason' then
+    return 'Mason'
+  elseif vim.bo.filetype == 'fzf' then
+    return 'fzf'
   elseif vim.bo.filetype == 'codecompanion' then
     return 'CodeCompanion'
+  elseif vim.bo.filetype:match('Avante') then
+    return 'Avante'
   else
     return fn
   end

@@ -16,6 +16,7 @@ local servers = {
   'ansiblels',
   'bashls',
   'powershell_es',
+  'emmet_language_server',
   'dockerls',
   'zls',
   'rust_analyzer',

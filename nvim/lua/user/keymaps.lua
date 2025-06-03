@@ -118,7 +118,17 @@ keymap('n', '<leader>Y', '"+Y', with_desc(opts, 'Yank line to system clipboard')
 keymap('v', '<leader>y', '"+y', with_desc(opts, 'Yank selection to system clipboard'))
 
 -- search within visual selection
-keymap('x', '/', '<esc>/\\%V', with_desc(opts, 'Search within visual selection'))
+keymap('x', '/', '<esc>/\\%V', with_desc(opts, 'Search forward within visual selection'))
+keymap('x', '?', '<esc>?\\%V', with_desc(opts, 'Search backward within visual selection'))
+
+-- jump to end of current treesitter node
+keymap('i', '<C-l>', function()
+  local node = vim.treesitter.get_node()
+  if node ~= nil then
+    local row, col = node:end_()
+    pcall(vim.api.nvim_win_set_cursor, 0, { row + 1, col })
+  end
+end, with_desc(opts, 'Jump to end of current treesitter node'))
 
 -- lists
 keymap('n', '<leader>xl', function()

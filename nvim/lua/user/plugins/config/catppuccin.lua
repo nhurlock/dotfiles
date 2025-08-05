@@ -2,6 +2,7 @@
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
+  commit = '931a129463ca09c8805d564a28b3d0090e536e1d',
   priority = 1000,
   ---@type CatppuccinOptions
   opts = {

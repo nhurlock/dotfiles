@@ -5,6 +5,9 @@ return {
   'OXY2DEV/markview.nvim',
   ---@type mkv.config
   opts = {
+    experimental = {
+      check_rtp_message = false,
+    },
     preview = {
       modes = { 'n', 'i' },
       icon_provider = 'mini',

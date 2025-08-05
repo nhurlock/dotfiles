@@ -86,7 +86,7 @@ return {
           return require('codecompanion.adapters').extend('copilot', {
             schema = {
               model = {
-                default = 'claude-3.7-sonnet',
+                default = 'claude-sonnet-4',
               },
             },
           })
@@ -134,7 +134,7 @@ return {
       provider = 'copilot',
       providers = {
         copilot = {
-          model = 'claude-3.7-sonnet',
+          model = 'claude-sonnet-4',
         },
       },
       file_selector = {

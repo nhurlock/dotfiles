@@ -13,6 +13,14 @@ return {
       'Git browse open',
     },
     {
+      '<C-W>f',
+      function()
+        Snacks.zen.zoom()
+      end,
+      'n',
+      'Toggle zoom',
+    },
+    {
       '<leader>z',
       function()
         Snacks.zen()
@@ -63,11 +71,18 @@ return {
     },
     zen = {
       enabled = true,
-      toggles = { dim = false },
+      toggles = {},
+      show = { statusline = true, tabline = true },
       win = {
         width = 180,
         backdrop = {
           transparent = false,
+        },
+      },
+      zoom = {
+        win = {
+          width = 0,
+          backdrop = false,
         },
       },
     },

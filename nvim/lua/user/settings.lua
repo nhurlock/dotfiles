@@ -11,6 +11,9 @@ end
 -- cursor config (overwrites default term and cmd cursor - to 'beam')
 vim.opt.guicursor = 'n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20,t:ver25-TermCursor'
 
+-- let 'find' search in subdirs
+vim.opt.path = '.,,**'
+
 -- disable continuation of comment when // is not the start of a line
 vim.opt.formatoptions:append('o/')
 

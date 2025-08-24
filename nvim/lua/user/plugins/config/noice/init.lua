@@ -31,6 +31,8 @@ return {
         search_up = { kind = 'search', pattern = '^%?', icon = '  ', lang = 'regex' },
         cmdline = { pattern = '^:', icon = ' ', lang = 'vim' },
         filter = { pattern = '^:%s*!', icon = ' $', lang = 'bash' },
+        grep = { pattern = '^:grep ', icon = '  ?', lang = 'bash' },
+        find = { pattern = '^:find ', icon = '  󰉋', lang = 'bash' },
         lua = { pattern = { '^:%s*lua%s+', '^:%s*lua%s*=%s*', '^:%s*=%s*' }, icon = ' ', lang = 'lua' },
       },
     },

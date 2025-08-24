@@ -52,7 +52,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-context": { "branch": "master", "commit": "dca8726fea2c14e1ce6adbaa76a04816fbfaff61" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "71385f191ec06ffc60e80e6b0c9a9d5daed4824c" },
-  "opencode.nvim": { "branch": "main", "commit": "6ec63052776f6959c6a48c202096857e79950637" },
+  "opencode.nvim": { "branch": "main", "commit": "df72d2c776f7156a176277ac815895d61d693386" },
   "otter.nvim": { "branch": "main", "commit": "71fec0dc58c3a66078e691b9a77b2516fe3e319b" },
   "overseer.nvim": { "branch": "master", "commit": "fe7b2f9ba263e150ab36474dfc810217b8cf7400" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
@@ -65,6 +65,7 @@
   "treewalker.nvim": { "branch": "main", "commit": "357f8e11bd4a6e0a7bb3a4e49bfe9e1ed91e55f8" },
   "typr": { "branch": "main", "commit": "bdd9ef7143702851edd1dac85101e0a537056d2f" },
   "undotree": { "branch": "master", "commit": "28f2f54a34baff90ea6f4a735ef1813ad875c743" },
+  "unnest.nvim": { "branch": "main", "commit": "5773880455c97d21bc28462cb69b6816d3903b8f" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "volt": { "branch": "main", "commit": "7b8c5e790120d9f08c8487dcb80692db6d2087a1" },
   "vscode-js-debug": { "branch": "main", "commit": "cf9ddb1c8c2138d23ca0c0dafd183748e5059fa6" }

@@ -169,9 +169,4 @@ return {
       end,
     },
   },
-  {
-    'ravitemer/mcphub.nvim',
-    build = 'npm install -g mcp-hub@latest',
-    config = true,
-  },
 }

@@ -77,11 +77,6 @@ return {
       },
     },
   },
-  {
-    'ravitemer/mcphub.nvim',
-    build = 'npm install -g mcp-hub@latest',
-    config = true,
-  },
   -- {
   --   'milanglacier/minuet-ai.nvim',
   --   opts = {

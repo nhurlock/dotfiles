@@ -90,6 +90,8 @@ local function fmt_filename(fn)
     return 'Git'
   elseif fn:match('welcome') then
     return 'Welcome'
+  elseif fn:match('opencode') then
+    return 'opencode'
   elseif fn:match('node') and fn:match('toggleterm') then
     return 'Node'
   elseif fn:match('toggleterm') then
@@ -327,18 +329,18 @@ return {
         lualine_c = {
           vim.tbl_extend('force', filepath, {
             cond = function()
-              return filepath[1]() ~= '.' and vim.bo.buftype ~= 'nofile'
+              return filepath[1]() ~= '.' and vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
           filepath_filler,
           vim.tbl_extend('force', filetype, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
           vim.tbl_extend('force', filename, {
             cond = function()
-              return vim.bo.buftype ~= 'nofile'
+              return vim.bo.buftype ~= 'nofile' and vim.bo.buftype ~= 'terminal'
             end,
           }),
         },

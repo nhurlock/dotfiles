@@ -28,6 +28,9 @@ vim.g.loaded_netrwPlugin = 1
 -- more sane menu, fuzzy
 vim.opt.completeopt = 'menuone,noselect,popup,fuzzy'
 
+-- number formats
+vim.opt.nrformats:append('blank')
+
 -- full color support
 vim.opt.termguicolors = true
 

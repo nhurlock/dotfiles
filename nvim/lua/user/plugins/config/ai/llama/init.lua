@@ -28,21 +28,23 @@ return {
         },
       },
       adapters = {
-        llama = function()
-          return require('codecompanion.adapters').extend('openai_compatible', {
-            env = {
-              url = 'http://localhost:8080',
-            },
-            schema = {
-              model = {
-                default = '',
+        http = {
+          llama = function()
+            return require('codecompanion.adapters.http').extend('openai_compatible', {
+              env = {
+                url = 'http://localhost:8080',
               },
-            },
-            opts = {
-              stream = false,
-            },
-          })
-        end,
+              schema = {
+                model = {
+                  default = '',
+                },
+              },
+              opts = {
+                stream = false,
+              },
+            })
+          end,
+        }
       },
       extensions = {
         mcphub = {

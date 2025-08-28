@@ -42,7 +42,7 @@ local plugins = {
         mode = 'v',
       },
       {
-        '<leader>oo',
+        '<leader>oc',
         function()
           require('opencode').toggle()
         end,

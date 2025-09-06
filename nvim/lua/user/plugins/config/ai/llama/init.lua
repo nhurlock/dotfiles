@@ -1,5 +1,6 @@
 -- llama-server --fim-qwen-7b-default --port 8012
 -- llama-server --jinja -fa -c 0 -hf unsloth/Qwen2.5-Coder-14B-Instruct-128K-GGUF --port 8080
+-- llama-server --jinja -fa -c 0 -hf unsloth/Qwen3-14B-GGUF --port 8080
 
 ---@type LazyPluginSpec[]
 return {
@@ -38,9 +39,6 @@ return {
                 model = {
                   default = '',
                 },
-              },
-              opts = {
-                stream = false,
               },
             })
           end,

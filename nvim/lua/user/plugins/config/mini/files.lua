@@ -9,7 +9,7 @@ end
 
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.files',
+  'nvim-mini/mini.files',
   version = false,
   keys = utils.lazy_maps({
     {

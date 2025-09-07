@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.surround',
+  'nvim-mini/mini.surround',
   version = false,
   opts = {
     mappings = {

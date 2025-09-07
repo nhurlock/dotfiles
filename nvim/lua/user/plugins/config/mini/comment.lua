@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.comment',
+  'nvim-mini/mini.comment',
   version = false,
   config = true,
 }

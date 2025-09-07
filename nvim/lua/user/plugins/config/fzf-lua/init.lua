@@ -322,6 +322,7 @@ return {
         preview = {
           title = false,
           scrollbar = false,
+          border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
         },
       },
       fzf_opts = {

@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.indentscope',
+  'nvim-mini/mini.indentscope',
   version = false,
   opts = function()
     return {

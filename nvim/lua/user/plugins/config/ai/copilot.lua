@@ -145,7 +145,9 @@ return {
       selector = {
         exclude_auto_select = { 'ministarter' },
       },
-      hints = { enabled = false },
+      selection = {
+        hint_display = 'none',
+      },
       behaviour = {
         auto_suggestions = false, -- provided by copilot.lua
         auto_set_highlight_group = true,

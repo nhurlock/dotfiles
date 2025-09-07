@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.operators',
+  'nvim-mini/mini.operators',
   config = true,
 }

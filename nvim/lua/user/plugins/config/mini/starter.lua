@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  'echasnovski/mini.starter',
+  'nvim-mini/mini.starter',
   version = false,
   cond = vim.env.DIFFVIEW ~= 'true',
   opts = {

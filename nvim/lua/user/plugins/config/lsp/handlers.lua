@@ -59,9 +59,11 @@ local function lsp_attach(client, bufnr)
   end
 
   if client:supports_method(methods.textDocument_signatureHelp, bufnr) then
-    keymap('<C-k>', function()
-      vim.lsp.buf.signature_help(lsp_popup_config)
-    end, 'LSP signature help', 'i')
+    vim.keymap.set('i', '<C-k>', function()
+      if not require('blink.cmp').is_visible() then
+        return vim.lsp.buf.signature_help(lsp_popup_config)
+      end
+    end, { silent = true, buffer = bufnr, desc = 'LSP signature help' })
   end
 
   if client:supports_method(methods.textDocument_rename, bufnr) then

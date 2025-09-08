@@ -44,28 +44,19 @@ masonlspconfig.setup({
   automatic_enable = false,
 })
 
-local lspconfig_status_ok, lspconfig = pcall(require, 'lspconfig')
-if not lspconfig_status_ok then
-  return
-end
-
-local configs = require('lspconfig.configs')
-local custom_servers = { 'cfn_lsp' }
-
-for _, server in pairs(custom_servers) do
-  configs[server] = require('user.plugins.config.lsp.servers.' .. server)
-end
-
 local lsp_handlers = require('user.plugins.config.lsp.handlers')
 local on_attach = lsp_handlers.on_attach
 local capabilities = lsp_handlers.capabilities
 
-local setup_server = function(server_name)
+local setup_server = function(server_name, opts)
+  if not opts then
+    opts = {}
+  end
   local server = vim.split(server_name, '@')[1]
-  local server_opts = {
+  local server_opts = vim.tbl_deep_extend('force', opts, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 
   local require_ok, conf_opts = pcall(require, 'user.plugins.config.lsp.settings.' .. server)
   if require_ok then
@@ -80,12 +71,13 @@ local setup_server = function(server_name)
       end,
     })
   else
-    pcall(lspconfig[server].setup, server_opts)
+    vim.lsp.config(server, server_opts)
+    vim.lsp.enable(server)
   end
 end
 
-for _, server in pairs(custom_servers) do
-  pcall(setup_server, server)
+for _, server in pairs({ 'cfn_lsp' }) do
+  pcall(setup_server, server, require('user.plugins.config.lsp.servers.' .. server))
 end
 
 for _, server in pairs(servers) do

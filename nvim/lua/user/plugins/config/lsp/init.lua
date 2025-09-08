@@ -20,7 +20,6 @@ return {
     'mfussenegger/nvim-jdtls', -- java-specific lsp helpers
   },
   config = function()
-    require('lspconfig')
     require('user.plugins.config.lsp.mason')
     require('user.plugins.config.lsp.handlers').setup()
   end,

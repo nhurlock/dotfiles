@@ -22,7 +22,7 @@ gui:
     unstagedChangesColor:
       - red # Red
 git:
-  paging:
-    pager: delta --paging=never --diff-so-fancy  --features="interactive catppuccin-macchiato"
+  pagers:
+    - pager: delta --paging=never --diff-so-fancy  --features="interactive catppuccin-macchiato"
 os:
   editPreset: 'nvim-remote'

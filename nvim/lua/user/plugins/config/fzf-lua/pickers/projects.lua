@@ -32,10 +32,10 @@ local function projects(dir)
       ['ctrl-o'] = function(selected)
         minifiles.open(vim.fn.expand(dir .. '/' .. selected[1]))
       end,
-      ['ctrl-u'] = function()
+      ['btab'] = function()
         projects(parent)
       end,
-      ['ctrl-p'] = function(selected)
+      ['tab'] = function(selected)
         projects(dir .. '/' .. selected[1])
       end,
       ['ctrl-l'] = function(selected)

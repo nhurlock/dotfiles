@@ -4,6 +4,7 @@ local masonlspconfig = require('mason-lspconfig')
 local servers = {
   'clangd',
   'lua_ls',
+  'jinja_lsp',
   'pyright',
   'ruff',
   'harper_ls',

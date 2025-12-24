@@ -404,22 +404,8 @@ return {
           ['ctrl-l'] = function(selected, opts)
             grep.live_grep({ filename = path.entry_to_file(selected[1], opts).path })
           end,
-          ['ctrl-g'] = function(_, opts)
-            if opts.cmd:find('%-%-no%-ignore%-vcs') then
-              opts.cmd = opts.cmd:gsub('%-%-no%-ignore%-vcs', '', 1)
-            else
-              opts.cmd = opts.cmd .. ' --no-ignore-vcs'
-            end
-            require('fzf-lua').files(opts)
-          end,
-          ['ctrl-h'] = function(_, opts)
-            if opts.cmd:find('%-%-hidden') then
-              opts.cmd = opts.cmd:gsub('%-%-hidden', '', 1)
-            else
-              opts.cmd = opts.cmd .. ' --hidden'
-            end
-            require('fzf-lua').files(opts)
-          end,
+          ['ctrl-g'] = actions.toggle_ignore,
+          ['ctrl-h'] = actions.toggle_hidden,
         },
         buffers = {
           -- providers that inherit these actions:

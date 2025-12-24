@@ -4,6 +4,7 @@ mkdir -p ~/.config
 rm -rf ~/.config/lazydocker
 ln -s "$(pwd)/lazydocker" ~/.config/lazydocker
 
+
 # lazygit
 rm -rf ~/.config/lazygit
 ln -s "$(pwd)/lazygit" ~/.config/lazygit
@@ -37,3 +38,8 @@ ln -s "$(pwd)/gh-dash" ~/.config/gh-dash
 # aerospace
 rm ~/.aerospace.toml
 ln -s "$(pwd)/aerospace/.aerospace.toml" ~/.aerospace.toml
+
+
+# fzf-lua
+rm -rf ~/.config/fzf-lua
+ln -s "$(pwd)/fzf-lua" ~/.config/fzf-lua

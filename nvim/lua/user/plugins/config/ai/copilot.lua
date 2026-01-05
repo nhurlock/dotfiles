@@ -6,6 +6,14 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
+    dependencies = {
+      {
+        'copilotlsp-nvim/copilot-lsp',
+        init = function()
+          vim.g.copilot_nes_debounce = 500
+        end,
+      },
+    },
     keys = utils.lazy_maps({
       {
         '<M-Space>',
@@ -37,6 +45,14 @@ return {
       filetypes = {
         ['yaml.cloudformation'] = true,
       },
+      nes = {
+        enabled = true,
+        keymap = {
+          accept_and_goto = '<M-L>',
+          accept = false,
+          dismiss = '<esc>',
+        },
+      },
       suggestion = {
         enabled = false,
         auto_trigger = false,
@@ -44,31 +60,15 @@ return {
         trigger_on_accept = true,
         debounce = 75,
         keymap = {
-          accept = '<M-l>',
+          accept = false,
           accept_word = false,
-          accept_line = '<M-L>',
-          next = '<M-J>',
-          prev = '<M-K>',
+          accept_line = false,
+          next = false,
+          prev = false,
           dismiss = false,
         },
       },
     },
-  },
-  {
-    'copilotlsp-nvim/copilot-lsp',
-    cond = false,
-    init = function()
-      vim.g.copilot_nes_debounce = 500
-      vim.lsp.enable('copilot_ls')
-      vim.keymap.set({ 'n', 'i' }, '<C-l>', function()
-        if not require('blink.cmp').is_visible() then
-          -- Try to jump to the start of the suggestion edit.
-          -- If already at the start, then apply the pending suggestion and jump to the end of the edit.
-          local _ = require('copilot-lsp.nes').walk_cursor_start_edit()
-            or (require('copilot-lsp.nes').apply_pending_nes() and require('copilot-lsp.nes').walk_cursor_end_edit())
-        end
-      end)
-    end,
   },
   {
     'fang2hou/blink-copilot',
@@ -87,7 +87,7 @@ return {
             return require('codecompanion.adapters.http').extend('copilot', {
               schema = {
                 model = {
-                  default = 'claude-sonnet-4',
+                  default = 'claude-sonnet-4.5',
                 },
               },
             })
@@ -98,13 +98,20 @@ return {
         mcphub = {
           callback = 'mcphub.extensions.codecompanion',
           opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
+            -- MCP Tools
+            make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+            show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+            add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+            show_result_in_chat = true, -- Show tool results directly in chat buffer
+            format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+            -- MCP Resources
+            make_vars = true, -- Convert MCP resources to #variables for prompts
+            -- MCP Prompts
+            make_slash_commands = true, -- Add MCP prompts as /slash commands
           },
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           adapter = 'copilot',
           slash_commands = {
@@ -136,7 +143,7 @@ return {
       provider = 'copilot',
       providers = {
         copilot = {
-          model = 'claude-sonnet-4',
+          model = 'claude-sonnet-4.5',
         },
       },
       file_selector = {

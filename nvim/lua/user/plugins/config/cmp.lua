@@ -23,7 +23,8 @@ return {
 
     {
       'nhurlock/jira-issues.nvim',
-      enabled = vim.env.USER ~= 'nhurlock',
+      -- enabled = vim.env.USER ~= 'nhurlock',
+      enabled = false,
       dev = true,
     }, -- work-only
   },
@@ -115,7 +116,7 @@ return {
             },
           },
           menu = { auto_show = false },
-          ghost_text = { enabled = true },
+          ghost_text = { enabled = false },
         },
       },
       cmdline = {

@@ -99,6 +99,12 @@ return {
       'FzfLua buffers',
     },
     {
+      '<leader>fu',
+      'FzfLua undotree',
+      'n',
+      'FzfLua undotree',
+    },
+    {
       '<leader>fd',
       'FzfLua diagnostics_workspace',
       'n',
@@ -318,7 +324,7 @@ return {
         ['preview-border'] = { 'fg', 'FzfLuaPreviewBorder' },
       },
       winopts = {
-        border = false,
+        border = 'none',
         preview = {
           title = false,
           scrollbar = false,

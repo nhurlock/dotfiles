@@ -42,7 +42,7 @@ return {
               },
             })
           end,
-        }
+        },
       },
       extensions = {
         mcphub = {
@@ -54,7 +54,7 @@ return {
           },
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           adapter = 'llama',
           slash_commands = {

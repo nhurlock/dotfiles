@@ -8,10 +8,6 @@ return {
       'nvim-treesitter/nvim-treesitter-context',
       config = true,
     },
-    {
-      'nvim-treesitter/playground',
-      lazy = true,
-    },
   },
   config = function()
     require('nvim-treesitter.configs').setup({
@@ -19,7 +15,7 @@ return {
       auto_install = true,
       ensure_installed = 'all',
       sync_install = false,
-      ignore_install = { '' }, -- list of parsers to ignore installing
+      ignore_install = { 'ipkg' }, -- list of parsers to ignore installing
       playground = { enable = false },
       highlight = {
         enable = true, -- false will disable the whole extension

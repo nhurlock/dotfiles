@@ -6,8 +6,8 @@ return {
   dev = false,
   -- cmd = "JestWatch",
   event = {
-    'BufEnter *.test.[tj]s',
-    'BufEnter *.spec.[tj]s',
+    'BufEnter *.test.[tj]sx?',
+    'BufEnter *.spec.[tj]sx?',
   },
   keys = utils.lazy_maps({
     { '<leader>tt', 'JestWatchToggle', 'n', 'Toggle Jest watch' },

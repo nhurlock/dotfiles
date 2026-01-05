@@ -16,7 +16,6 @@ local plugins = {
   },
   {
     'NickvanDyke/opencode.nvim',
-    config = true,
     keys = {
       {
         '<leader>oA',

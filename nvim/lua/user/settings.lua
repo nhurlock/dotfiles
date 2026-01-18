@@ -81,6 +81,13 @@ vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
+-- fold settings
+vim.opt.foldlevel = 99
+vim.opt.foldnestmax = 20
+vim.opt.foldenable = false -- all folds open
+vim.opt.foldtext =
+  [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+
 -- configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true

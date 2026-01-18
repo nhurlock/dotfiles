@@ -11,8 +11,10 @@ local plugins = {
   },
   {
     'ravitemer/mcphub.nvim',
-    build = 'npm install -g mcp-hub@latest',
-    config = true,
+    build = 'bundled_build.lua',
+    opts = {
+      use_bundled_binary = true,
+    },
   },
   {
     'NickvanDyke/opencode.nvim',
@@ -88,6 +90,6 @@ local plugins = {
 }
 
 return vim.tbl_map(function(plugin)
-  plugin.cond = (plugin.cond or true) and vim.env.KITTY_SCROLLBACK_NVIM ~= 'true'
+  plugin.cond = (plugin.cond or true) and vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' and string.len(vim.env.OVIM_SESSION_ID or '') == 0
   return plugin
 end, plugins)

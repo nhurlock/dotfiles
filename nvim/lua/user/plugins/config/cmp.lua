@@ -221,7 +221,7 @@ return {
       }
     end
 
-    if vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' then
+    if vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' and string.len(vim.env.OVIM_SESSION_ID or '') == 0 then
       if vim.g.ai_provider == 'copilot' then
         -- configure copilot
         table.insert(opts.sources.default, 'copilot')

@@ -84,6 +84,8 @@ local function fmt_encoding(ft)
   end
 end
 
+local ovim_file_name = vim.fn.fnamemodify(vim.env.OVIM_FILE or '/doesntmatch.none', ':t')
+
 -- extension formater for file name
 local function fmt_filename(fn)
   if fn:match('lazygit') and fn:match('toggleterm') then
@@ -96,6 +98,8 @@ local function fmt_filename(fn)
     return 'Node'
   elseif fn:match('toggleterm') then
     return 'Terminal'
+  elseif fn:sub(0, string.len(ovim_file_name)) == ovim_file_name then
+    return 'ovim' .. fn:sub(string.len(ovim_file_name) + 1)
   elseif vim.bo.filetype == 'minifiles' then
     return 'Files'
   elseif vim.bo.filetype == 'lazy' then

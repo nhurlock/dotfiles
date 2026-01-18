@@ -66,6 +66,11 @@ outer.right =      0
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
+if.window-title-regex-substring = 'ovim'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace --focus-follows-window T'
 
 # 'main' binding mode must be always presented

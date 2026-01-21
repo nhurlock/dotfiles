@@ -33,6 +33,14 @@ autocmd('BufEnter', {
   command = 'startinsert',
 })
 
+-- always default to end-of-line insert mode when entering an ovim window
+autocmd('BufEnter', {
+  pattern = vim.fn.fnamemodify(vim.env.OVIM_FILE or '/doesntmatch.none', ':t'),
+  callback = function()
+    vim.fn.feedkeys('A')
+  end,
+})
+
 -- allow esc key in lazygit, use <C-q> instead
 autocmd('TermEnter', {
   pattern = 'term://*lazygit*toggleterm#*',

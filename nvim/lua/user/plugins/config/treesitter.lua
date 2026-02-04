@@ -154,33 +154,26 @@ return {
       'markdown_inline',
     })
 
-    local max_filesize = 100 * 1024 -- 100 KB
     local parsers = require('nvim-treesitter.parsers')
-
     vim.api.nvim_create_autocmd('FileType', {
       callback = function(args)
         local language = vim.treesitter.language.get_lang(args.match)
         if not parsers[language] then
           return
         end
-
-        local ok, stats = pcall(vim.uv.fs_fstat, vim.api.nvim_buf_get_name(args.buf))
-        if ok and stats and stats.size > max_filesize then
-          return
-        end
-
         treesitter.install({ language }):await(function(err)
           if err then
             return vim.notify('Treesitter failed to install parsers for: ' .. language .. ', Error: ' .. err)
           end
 
-          vim.treesitter.start(args.buf)
+          if vim.api.nvim_buf_is_valid(args.buf) then
+            vim.treesitter.start(args.buf)
+            vim.wo[0][0].foldmethod = 'expr'
+            vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-          vim.wo[0][0].foldmethod = 'expr'
-          vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
-          if language ~= 'yaml' then
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            if language ~= 'yaml' then
+              vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
           end
         end)
       end,

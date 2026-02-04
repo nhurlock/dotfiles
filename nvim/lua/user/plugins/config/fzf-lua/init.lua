@@ -87,12 +87,6 @@ return {
       'FzfLua live grep',
     },
     {
-      '<leader>flg',
-      'FzfLua live_grep_glob',
-      'n',
-      'FzfLua live grep glob',
-    },
-    {
       '<leader>fb',
       'FzfLua buffers',
       'n',

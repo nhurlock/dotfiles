@@ -38,7 +38,7 @@ return {
     }),
     ---@type CopilotConfig
     opts = {
-      copilot_model = 'gpt-4o-copilot',
+      copilot_model = 'claude-sonnet-4.5',
       server = {
         type = 'binary',
       },

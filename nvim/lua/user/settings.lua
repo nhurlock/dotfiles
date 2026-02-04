@@ -126,3 +126,9 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = 0,
   }
 end
+
+-- todo: migrate msg_show to use fidget.notify, then remove noice
+require('vim._extui.messages').msg_show = function() end
+require('vim._extui').enable({
+  enable = true,
+})

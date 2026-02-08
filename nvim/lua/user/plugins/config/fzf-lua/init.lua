@@ -7,12 +7,6 @@ return {
   lazy = false,
   keys = utils.lazy_maps({
     {
-      '<leader>ji',
-      pickers.jira_issues,
-      'n',
-      'FzfLua find Jira issues',
-    },
-    {
       '<leader>fp',
       pickers.projects,
       'n',

@@ -127,6 +127,7 @@ return {
       'jsx',
       'tsx',
       'jsdoc',
+      'rust',
       'html',
       'http',
       'java',

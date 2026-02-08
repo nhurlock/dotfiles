@@ -20,24 +20,15 @@ return {
     -- `main` does not work at the moment
     { 'L3MON4D3/LuaSnip', version = 'v2.*' }, -- snippet engine
     'rafamadriz/friendly-snippets', -- a bunch of snippets to use
-
-    {
-      'nhurlock/jira-issues.nvim',
-      -- enabled = vim.env.USER ~= 'nhurlock',
-      enabled = false,
-      dev = true,
-    }, -- work-only
   },
   config = function()
     local cmp = require('blink.cmp')
     local icons = require('mini.icons')
     local autopairs = require('nvim-autopairs.completion.cmp')
-    local has_jira, _ = pcall(require, 'jira-issues.completion.blink')
 
     local kind_icons = {
       Copilot = '',
       AI = '󰚩',
-      Jira = '󰌃',
       AWS = '󰸏',
     }
 
@@ -147,7 +138,7 @@ return {
               auto_insert = false,
             },
           },
-          menu = { auto_show = true },
+          menu = { auto_show = true, auto_show_delay = 10 },
           ghost_text = { enabled = true },
         },
       },
@@ -166,6 +157,7 @@ return {
         },
         menu = {
           auto_show = true,
+          auto_show_delay = 10,
           border = 'none',
           draw = {
             treesitter = { 'lsp' },
@@ -178,9 +170,6 @@ return {
                   end
                   if ctx.source_name == 'copilot' then
                     return kind_icons.Copilot
-                  end
-                  if ctx.source_name == 'jira_issues' then
-                    return kind_icons.Jira
                   end
                   return icons.get('lsp', ctx.kind)
                 end,
@@ -209,17 +198,6 @@ return {
         kind_icons = kind_icons,
       },
     }
-
-    if has_jira then
-      table.insert(opts.term.sources, 'jira_issues')
-      ---@type blink.cmp.SourceProviderConfig
-      opts.sources.providers.jira_issues = {
-        name = 'jira_issues',
-        module = 'jira-issues.completion.blink',
-        async = true,
-        opts = require('user.config.jira'),
-      }
-    end
 
     if vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' and string.len(vim.env.OVIM_SESSION_ID or '') == 0 then
       if vim.g.ai_provider == 'copilot' then

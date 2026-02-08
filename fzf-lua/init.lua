@@ -1,5 +1,4 @@
 local fzf_lua = require("fzf-lua")
-local fzf_utils = require("fzf-lua.utils")
 local actions = require("fzf-lua.actions")
 local files = require("fzf-lua.providers.files")
 local grep = require("fzf-lua.providers.grep")

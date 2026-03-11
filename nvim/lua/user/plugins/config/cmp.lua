@@ -138,7 +138,7 @@ return {
               auto_insert = false,
             },
           },
-          menu = { auto_show = true, auto_show_delay = 10 },
+          menu = { auto_show = true },
           ghost_text = { enabled = true },
         },
       },
@@ -157,7 +157,7 @@ return {
         },
         menu = {
           auto_show = true,
-          auto_show_delay = 10,
+          auto_show_delay_ms = 10,
           border = 'none',
           draw = {
             treesitter = { 'lsp' },

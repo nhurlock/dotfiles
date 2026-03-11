@@ -1,28 +1,29 @@
 notARepository: quit
 gui:
   showBottomLine: false
-  nerdFontsVersion: '3'
+  nerdFontsVersion: "3"
   theme:
-    lightTheme: false
     activeBorderColor:
-      - "#a6da95" # Green
+      - "#a6e3a1"
       - bold
     inactiveBorderColor:
-      - "#cad3f5" # Text
+      - "#a6adc8"
     optionsTextColor:
-      - "#8aadf4" # Blue
+      - "#89b4fa"
     selectedLineBgColor:
-      - "#363a4f" # Surface0
-    selectedRangeBgColor:
-      - "#363a4f" # Surface0
+      - "#313244"
     cherryPickedCommitBgColor:
-      - "#8bd5ca" # Teal
+      - "#45475a"
     cherryPickedCommitFgColor:
-      - "#8aadf4" # Blue
+      - "#a6e3a1"
     unstagedChangesColor:
-      - red # Red
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"
 git:
   pagers:
-    - pager: delta --paging=never --diff-so-fancy  --features="interactive catppuccin-macchiato"
+    - pager: delta --paging=never --diff-so-fancy  --features="interactive catppuccin-mocha"
 os:
-  editPreset: 'nvim-remote'
+  editPreset: "nvim-remote"

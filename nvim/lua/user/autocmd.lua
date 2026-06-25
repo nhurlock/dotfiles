@@ -8,7 +8,8 @@ autocmd('BufEnter', {
     end
   end,
 })
-autocmd('BufModifiedSet', {
+autocmd('OptionSet', {
+  pattern = 'modified',
   callback = function(opts)
     vim.b[opts.buf].is_unchanged = false
   end,
@@ -88,10 +89,10 @@ autocmd('TermClose', {
   end,
 })
 
--- highlight text yank
-autocmd('TextYankPost', {
+-- highlight text yank / paste
+autocmd({ 'TextYankPost', 'TextPutPost' }, {
   callback = function()
-    vim.hl.on_yank({ higroup = 'Search', priority = 250 })
+    vim.hl.hl_op({ higroup = 'Search', priority = vim.hl.priorities.user })
   end,
 })
 

@@ -6,9 +6,10 @@ local servers = {
   'lua_ls',
   'jinja_lsp',
   'pyright',
-  'ruff',
+  -- 'ruff',
   'harper_ls',
   'jsonls',
+  -- 'tsgo',
   'vtsls',
   'eslint',
   'gopls',
@@ -26,6 +27,7 @@ local servers = {
   'sqlls',
   'lemminx',
   'docker_compose_language_service',
+  'copilot',
 }
 
 mason.setup({

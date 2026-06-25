@@ -22,7 +22,7 @@ lazy.setup('user.plugins.config', {
     path = vim.env.dev,
     patterns = { 'nhurlock' },
   },
-  install = { colorscheme = { 'catppuccin' } },
+  install = { colorscheme = { 'catppuccin-nvim' } },
   change_detection = { notify = false },
   rocks = { enabled = false },
   performance = {

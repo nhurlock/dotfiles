@@ -87,7 +87,12 @@ return {
             vim.cmd.split(content.path)
           end
         else
-          vim.cmd.edit(content.path)
+          local bufnr = vim.fn.bufnr(content.path)
+          if bufnr ~= -1 then
+            vim.cmd.buffer(bufnr)
+          else
+            vim.cmd.edit(content.path)
+          end
         end
       end
     end

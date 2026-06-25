@@ -124,7 +124,7 @@ local function lsp_attach(client, bufnr)
   end
 
   if client:supports_method(methods.textDocument_documentColor, bufnr) then
-    vim.lsp.document_color.enable(true, bufnr, { style = 'virtual' })
+    vim.lsp.document_color.enable(true, { bufnr = bufnr }, { style = 'virtual' })
   end
 
   vim.api.nvim_create_autocmd('BufDelete', {
@@ -201,7 +201,9 @@ M.setup = function()
   vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
     local client = vim.lsp.get_client_by_id(ctx.client_id)
     if client ~= nil then
-      M.on_attach(client, ctx.bufnr)
+      for bufnr, _ in pairs(client.attached_buffers) do
+        M.on_attach(client, bufnr)
+      end
     end
     return orig_reg_cap(err, res, ctx)
   end
@@ -213,7 +215,7 @@ M.on_attach = function(client, bufnr)
   if client.name == 'clangd' then
     client.server_capabilities.documentFormattingProvider = false
   end
-  if client.name == 'vtsls' then
+  if client.name == 'tsgo' or client.name == 'vtsls' then
     client.server_capabilities.documentFormattingProvider = false
   end
   if client.name == 'eslint' then

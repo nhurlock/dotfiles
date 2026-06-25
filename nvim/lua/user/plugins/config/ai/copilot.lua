@@ -3,17 +3,39 @@ local utils = require('user.utilities')
 ---@type LazyPluginSpec[]
 return {
   {
+    'folke/sidekick.nvim',
+    keys = {
+      {
+        '<esc>',
+        function()
+          if not require('sidekick.nes').have() then
+            return '<esc><cmd>noh<cr>'
+          else
+            require('sidekick.nes').clear()
+          end
+        end,
+        noremap = true,
+        expr = true,
+        desc = 'Clear Next Edit Suggestion',
+      },
+      {
+        '<M-L>',
+        function()
+          if not require('sidekick').nes_jump_or_apply() then
+            return '<M-L>'
+          end
+        end,
+        mode = { 'n', 'i' },
+        expr = true,
+        desc = 'Goto/Apply Next Edit Suggestion',
+      },
+    },
+    opts = {},
+  },
+  {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
-    dependencies = {
-      {
-        'copilotlsp-nvim/copilot-lsp',
-        init = function()
-          vim.g.copilot_nes_debounce = 500
-        end,
-      },
-    },
     keys = utils.lazy_maps({
       {
         '<M-Space>',
@@ -38,7 +60,7 @@ return {
     }),
     ---@type CopilotConfig
     opts = {
-      copilot_model = 'claude-sonnet-4.5',
+      copilot_model = 'gpt-41-copilot',
       server = {
         type = 'binary',
       },
@@ -46,7 +68,7 @@ return {
         ['yaml.cloudformation'] = true,
       },
       nes = {
-        enabled = true,
+        enabled = false,
         keymap = {
           accept_and_goto = '<M-L>',
           accept = false,
@@ -75,6 +97,7 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
+    enabled = false,
     opts = {
       display = {
         action_palette = {

@@ -2,8 +2,11 @@
 return {
   'saghen/blink.cmp',
   event = 'InsertEnter',
-  build = 'cargo build --release',
+  build = function()
+    require('blink.cmp').build():pwait()
+  end,
   dependencies = {
+    'saghen/blink.lib',
     {
       'saghen/blink.compat',
       version = '*',
@@ -17,8 +20,7 @@ return {
       end,
     },
 
-    -- `main` does not work at the moment
-    { 'L3MON4D3/LuaSnip', version = 'v2.*' }, -- snippet engine
+    'L3MON4D3/LuaSnip', -- snippet engine
     'rafamadriz/friendly-snippets', -- a bunch of snippets to use
   },
   config = function()
@@ -82,7 +84,13 @@ return {
           'snippets',
           'path',
         },
-        providers = {},
+        providers = {
+          cmdline = {
+            enabled = function()
+              return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+            end,
+          },
+        },
       },
       term = {
         enabled = true,
@@ -98,7 +106,9 @@ return {
           ['<C-l>'] = { 'select_and_accept', 'fallback' },
           ['<C-e>'] = { 'hide', 'fallback' },
         },
-        sources = { 'path', 'buffer' },
+        sources = {
+          default = { 'path', 'buffer' },
+        },
         completion = {
           list = {
             selection = {
@@ -124,13 +134,9 @@ return {
           ['<C-l>'] = { 'select_and_accept', 'fallback' },
           ['<C-e>'] = { 'hide', 'fallback' },
         },
-        sources = function()
-          local sources = { 'path', 'buffer' }
-          if not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype()) then
-            table.insert(sources, 'cmdline')
-          end
-          return sources
-        end,
+        sources = {
+          default = { 'path', 'buffer', 'cmdline' }
+        },
         completion = {
           list = {
             selection = {
